@@ -1,0 +1,18 @@
+# 服务端核心（运行时下载，不进仓库——EULA 合规）
+canvas.jar
+
+# Playit（运行时下载 + 含 secret）
+playit-linux-amd64
+playit.toml
+playit.log
+
+# 敏感文件
+credentials.json
+
+# 日志（走 artifact 不上 git）
+logs/
+server-logs.tar.gz
+
+# 系统垃圾
+.DS_Store
+Thumbs.db
