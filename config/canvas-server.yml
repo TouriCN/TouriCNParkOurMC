@@ -1,0 +1,224 @@
+# Global Configuration for CanvasMC
+#
+# This is the server-wide configuration file provided by
+# CanvasMC. This config holds options that are set across the
+# entire server, and cannot be overridden per-world. You are
+# free to modify, add, or remove comments as you please.
+#
+# You may refresh this configuration at runtime using the
+# "/canvas reload" command, however it is not recommended to
+# do this during production, as this can cause issues like
+# unexpected crashes or unintended behavior.
+#
+# All defaults for the options provided in this configuration
+# are configured for upstream compatibility over performance.
+# You must do some manual configuration to get some of the
+# performance benefits Canvas provides.
+#
+# If you have questions about certain configuration options
+# please reach out in our discord. As a general rule, if you
+# don't know what a certain option does, DO NOT TOUCH IT.
+# https://canvasmc.io/discord
+
+region-scheduler:
+   # Configurations for the AFFINITY scheduler provided by Canvas. For these options to take
+   # effect, change the "threaded-regions.scheduler" option in "paper-global.yml" to "AFFINITY"
+   affinity-scheduler:
+      # The maximum amount of time, in milliseconds, a thread will delay the execution of a
+      # scheduled task before allowing other threads to steal it for execution.
+      #
+      # Note: A smaller value reduces task deadline delays but increases potential task stealing between threads
+      steal-threshold-millis: 3
+      # Buffer time (in milliseconds) before tick deadline to stop executing intermediate tasks.
+      # Ensures runTick() can start on time, at the deadline.
+      #
+      # Default: 0.1ms, Higher is safer, lower means more work is done
+      run-tasks-buffer-millis: 0.08
+      # Thread affinity for the AFFINITY scheduler provided by Canvas. By using this, you could
+      # pin the threads of region scheduler to cpu cores
+      tick-region-affinity: [
+         ]
+      # Enables pinning threads of the AFFINITY region scheduler to cpu cores
+      enable-affinity-scheduler-cpu-affinity: false
+   # Amount of time between the end and next start of a region tick where the server will log a
+   # warning that the scheduler is overloaded. Can help catch if you need to allocate more
+   # threads or help identify deadline missing issues
+   overloaded-log-millis: 5000
+   # The default tick rate for the scheduler. Vanilla is 20, the game will run faster or slower
+   # depending on how you adjust this value. Note this should really only be used for debugging
+   # purposes and for custom environments that require this change
+   default-tick-rate: 20.0
+   # Canvas introduces extra tick thread checks to help catch plugin issues. This determines
+   # how aggressive the new guards are
+   # Possible values(can be lowercase):
+   #  - SILENT - Doesn't say anything or do anything
+   #  - LOG - Just logs a warning in console, but continues the operation
+   #  - THROW - Throws an exception, can crash the server. Good for ensuring correctness
+   guard-severity: "THROW"
+   # This option prevents the attempted movement of entities with excessive velocity from
+   # exceeding the region bounds by setting the velocity of the entity to 0 if it attempts to
+   # move outside of the region. Note this option does not take collisions into account, and it
+   # will calculate this from the raw velocity, which is a much stricter way to govern this
+   # safe guard. By disabling this, if the entity is still attempting to move out of region
+   # after applying collisions, a warning will show in console and the entity will instead be
+   # teleported to prevent the server from crashing.
+   prevent-excessive-velocity-move-out-of-region: false
+chunk-system:
+   # The worldgen processes creates a lot of unnecessary fluid post-processing tasks, which can
+   # overload the server and cause stuttering when generating new chunks. Depending on the
+   # algorithm chosen, this can help reduce stutter and improve performance when generating
+   # chunks
+   # Possible values(can be lowercase):
+   #  - VANILLA - Normal post processing algorithm, everything is processed
+   #  - DISABLED - Disables fluid post processing entirely
+   #  - FILTERED - C2MEs algorithm to filter unnecessary post processing tasks
+   fluid-post-processing-algorithm: "VANILLA"
+   # Treasure map locating is a very expensive operation, leading to most production servers
+   # disabling it. This option tries to optimize the treasure map initial search to make this
+   # less expensive on item creation
+   optimize-treasure-map-locating: false
+vanilla-fixes:
+   # Fixes low firework propulsion in the void
+   # https://bugs.mojang.com/browse/MC/issues/MC-261810
+   mc261810: false
+   # Fixes a memory leak related to Hoglin removal due to CHANGED_DIMENSION
+   # https://bugs.mojang.com/browse/MC/issues/MC-298464
+   mc298464: false
+   # Fixes blocks of raw copper using stone sounds instead of copper sounds
+   # https://bugs.mojang.com/browse/MC/issues/MC-223153
+   mc223153: false
+   # Fixes cured baby zombies staying as jockey variants
+   # https://bugs.mojang.com/browse/MC/issues/MC-200418
+   mc200418: false
+   # Fixes cave spiders and spiders with the small scale attribute spinning around when walking
+   # https://bugs.mojang.com/browse/MC/issues/MC-94054
+   mc94054: false
+   # Fixes raid horn blare sounds being controlled by the Friendly Creatures sound slider
+   # https://bugs.mojang.com/browse/MC/issues/MC-245394
+   mc245394: false
+   # Fixes explosion sounds and particles not being produced when a shulker bullet hits an
+   # entity
+   # https://bugs.mojang.com/browse/MC/issues/MC-227337
+   mc227337: false
+   # Fixes shulker bullets not producing bubble particles when moving through water
+   # https://bugs.mojang.com/browse/MC/issues/MC-221257
+   mc221257: false
+   # Fixes item drops by entities that were killed by lightning instantly disappearing
+   # https://bugs.mojang.com/browse/MC/issues/MC-206922
+   mc206922: false
+   # Fixes dying puffed pufferfishes still stinging players
+   # https://bugs.mojang.com/browse/MC/issues/MC-155509
+   mc155509: false
+   # Fixes armor stands destroyed by explosions/lava/fire not producing particles
+   # https://bugs.mojang.com/browse/MC/issues/MC-132878
+   mc132878: false
+   # Fixes skeletons and illusioners not looking up/down at their target while strafing
+   # https://bugs.mojang.com/browse/MC/issues/MC-121706
+   mc121706: false
+   # Fixes elytra firework boosts continuing while in spectator mode
+   # https://bugs.mojang.com/browse/MC/issues/MC-119754
+   mc119754: false
+   # Fixes killing entities with a fishing rod not counting as a kill
+   # https://bugs.mojang.com/browse/MC/issues/MC-100991
+   mc100991: false
+   # Fixes chickens, blazes and withers emitting particles during landing despite falling
+   # slowly
+   # https://bugs.mojang.com/browse/MC/issues/MC-30391
+   mc30391: false
+   # Fixes group AI of some mobs breaking when their target dies
+   # https://bugs.mojang.com/browse/MC/issues/MC-183990
+   mc183990: false
+   # Fixes wearing enchanted boots with depth strider decreasing the strength of the riptide
+   # enchantment
+   # https://bugs.mojang.com/browse/MC/issues/MC-136249
+   mc136249: false
+networking:
+   # The ClientboundSetEntityMotionPacket, also known as the entity velocity packet, can often
+   # consume major amounts of network usage, often being up to 60% on large production servers
+   # This option filters the unnecessary packets sent, while still maintaining Vanilla visual
+   # effects
+   filter-velocity-packet: false
+   # Filters useless move packets that don't need to be sent
+   filter-move-packets: false
+   # Splits players into buckets to be spread evenly across the playerlist tick
+   alternative-player-list-tick: false
+   # If alternative playerlist tick is enabled, this is the interval in ticks for how often
+   # each bucket will be ticked
+   player-info-send-interval: 600
+   # Uses a different approach to keepalive ping timeouts. Enabling this sends a keepalive
+   # packet once per second to a player, and only kicks for timeout if none of them were
+   # responded to in 30 seconds. Responding to any of them in any order will keep the player
+   # connected.
+   #
+   # AKA, it won't kick your players because one packet gets dropped somewhere along the lines
+   purpur-alternative-keepalive: false
+   # Derived from Leaf, this synchronizes the player immediately when knocked back
+   flush-location-while-knockback: false
+# The server mod name displayed in server listings and client info
+server-mod-name: "Canvas"
+# Folia's portaling rewrite makes the world loading screen not display on the client
+# properly, and instead shows an empty void. With this enabled, Canvas will display the
+# proper world loading screen
+display-world-load-screen-for-cross-region-transfers: true
+# Whether to cache expensive CraftEntityType#minecraftToBukkit call
+cache-minecraft2-bukkit-entity-type-conversion: false
+# Enables creation of tile entity snapshots on retrieving blockstates
+tile-entity-snapshot-creation: false
+purpur-containers:
+   # The amount of rows for the barrel block
+   barrel-rows: 3
+   # Whether to use 6 rows for the player ender chest, rather than the normal 3
+   ender-chest-six-rows: false
+   # Whether to use a permission based system for defining the size of ender chests per player
+   # Valid permissions
+   #  - purpur.enderchest.rows.six
+   #  - purpur.enderchest.rows.five
+   #  - purpur.enderchest.rows.four
+   #  - purpur.enderchest.rows.three
+   #  - purpur.enderchest.rows.two
+   #  - purpur.enderchest.rows.one
+   ender-chest-permission-rows: false
+   # Whether items should remain stored in slots, even if those slots become inaccessible
+   # through permissions
+   ender-chest-persist-hidden-rows: true
+blacklist-non-player-entities-from-entering-nether-portals: false
+blacklist-non-player-entities-from-entering-end-portals: false
+blacklist-non-player-entities-from-entering-gateway-portals: false
+chat:
+   # Disables Minecraft chat signing to prevent player chat reporting
+   disable-chat-reporting: false
+   # Disables Minecraft chat verification ordering
+   disable-chat-verification-order: false
+logs:
+   # Auto-removes old log files from the "logs" directory
+   enable-log-cleaner: false
+   # The amount of the time since the log file was last edited until it will be deleted
+   cleaner-time-span: "30d"
+   # Logs when a pearl is saved or loaded from Canvas' pearl save rewrite
+   log-ender-pearl-rewrite-actions: true
+enchant-command:
+   # Uncaps the max level, allowing you to enchant to any level, even beyond the max
+   uncap-max-level: false
+   # Allows setting enchants on items that normally do not support that enchantment
+   allow-enchants-on-unsupported-items: false
+   # Allows setting enchants on items with incompatible enchants. e.g. Protection & Blast
+   # Protection
+   allow-enchanting-with-incompatible-enchants: false
+# Disables the locator bar globally, removing the need to disable it using gamerules
+# per-world
+disable-locator-bar-in-all-worlds: false
+# Folia breaks a lot of autosave features. Canvas restores these, and this section allows
+# more specific configuration of autosave functionalities
+autosave:
+   # The time frequency of how often to autosave the enabled selection. Default is 5 minutes to
+   # match upstream
+   autosave-frequency: "5m"
+   autosave-scoreboards: true
+   autosave-stopwatches: true
+   autosave-pearls: true
+   autosave-custom-boss-events: true
+   autosave-time: true
+   autosave-maps: true
+   autosave-weather: true
+   autosave-gamerules: true
+   autosave-players: true
