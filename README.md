@@ -1,10 +1,11 @@
-# actionsMinecraftBetter
+# actionMinecraftBetter
 
 本项目由 [Briiqn/Actions-Server](https://github.com/Briiqn/Actions-Server) Fork 而来，在其基础上进行了重构和扩展。
 
 ## 主要功能
 
-- **快速部署**：将插件、世界数据、配置文件等打包为 `server.zip` 上传到仓库根目录，工作流启动时会自动解压到根目录并删除该 zip 文件。
+- **快速部署（server.zip）**：将插件、世界数据、配置文件等打包为 `server.zip` 上传到仓库任意目录，工作流启动时会自动解压到该文件所在目录并删除。`server.zip` 已被加入 `.gitignore`，不会进入 git 历史，仅作为一次性传输容器使用。
+- **分卷快速部署（halfserver*.zip）**：当单个目录内容超过 GitHub 网页单文件 25MB 限制时，可将其拆分为多个 `halfserver1.zip`、`halfserver2.zip`、…、`halfserverN.zip` 分批上传到目标目录。工作流启动时会扫描并解压所有 `halfserver*.zip` 到各自所在目录，然后删除。例如将 `world/` 拆分为 `world/halfserver1.zip`、`world/halfserver2.zip` 等，即可绕过单文件大小限制分批传输大目录。
 - **服务端自动下载**：默认使用 [Canvas](https://canvasmc.io/) 服务端核心，运行时自动从官方下载 `canvas.jar`，不进入仓库（符合 Mojang EULA）。
 - **隧道自动配置**：集成 playit.gg 隧道，首次运行交互认领，后续自动连接。
 - **优雅关停**：被 SIGTERM 关闭时通过 RCON 踢出所有在线玩家并附带说明消息，然后执行紧急保存和 git push。
@@ -21,14 +22,19 @@ Fork 后进入仓库 Settings -> Secrets and variables -> Actions，配置以下
 | FINE_GRAINED_PAT | Fine-grained Personal Access Token，需 Contents 和 Issues 的 Read/Write 权限 |
 | PLAYIT_SECRET | 首次运行留空。第一次启动会输出 playit.toml 内容，填入后再次运行即自动连接 |
 
+初始文件部署（任选其一或组合）：
+
+- 将服务器文件打包为 `server.zip` 上传到仓库任意目录
+- 将大目录拆分为多个 `halfserver*.zip` 分批上传到目标目录
+- 直接通过网页逐个创建配置文件和插件 jar
+
 首次运行流程：
 
-1. 将服务器文件打包为 `server.zip` 上传到仓库根目录（或直接通过网页逐个创建配置文件和插件 jar）
-2. Actions -> Minecraft Server -> Run workflow（直接点击，不勾选 debug）
-3. 查看运行日志，找到 CLAIM URL 并在浏览器中打开，完成 playit 隧道认领
-4. 认领成功后日志中会输出 playit.toml 的完整内容，复制
-5. 回到 Secrets 页面，新建 PLAYIT_SECRET 并粘贴内容
-6. 再次 Run workflow，服务器启动，玩家通过 playit 分配的地址加入
+1. Actions -> Minecraft Server -> Run workflow（直接点击，不勾选 debug）
+2. 查看运行日志，找到 CLAIM URL 并在浏览器中打开，完成 playit 隧道认领
+3. 认领成功后日志中会输出 playit.toml 的完整内容，复制
+4. 回到 Secrets 页面，新建 PLAYIT_SECRET 并粘贴内容
+5. 再次 Run workflow，服务器启动，玩家通过 playit 分配的地址加入
 
 ## 服务端
 
@@ -70,7 +76,8 @@ Fork 后进入仓库 Settings -> Secrets and variables -> Actions，配置以下
 ## 架构说明
 
 - canvas.jar 和 playit-linux-amd64 在运行时从官方下载，不进入仓库
-- server.zip 在运行时解压后删除，不进入仓库历史
+- server.zip 和 halfserver*.zip 在运行时解压后删除，不进入仓库历史
+- 工作流文件 `.github/workflows/blank.yml` 本身进入仓库，受版本管理
 - 所有敏感凭证（PAT、playit 认证信息）仅存在于 GitHub Secrets 中，仓库内不可见
 - RCON 密码存储在 server.properties 中，只监听 127.0.0.1，外部无法访问
 - 插件全部为开源协议（MIT / GPL-3.0 / MPL-2.0），已包含在 plugins/ 目录中
