@@ -80,7 +80,7 @@ Fork 后进入仓库 Settings -> Secrets and variables -> Actions，配置以下
 - 工作流文件 `.github/workflows/blank.yml` 本身进入仓库，受版本管理
 - 所有敏感凭证（PAT、playit 认证信息）仅存在于 GitHub Secrets 中，仓库内不可见
 - RCON 密码存储在 server.properties 中，只监听 127.0.0.1，外部无法访问
-- 插件全部为开源协议（MIT / GPL-3.0 / MPL-2.0），已包含在 plugins/ 目录中
+- 许可证使用CC0 1.0 Universal，覆盖所有开源插件使用，但绝对开源
 - 世界数据通过 git 同步，非实时数据库
 
 ## 许可证
