@@ -1,151 +1,257 @@
-name: CI
+name: Minecraft Server
+
 on:
-  push:
-    branches: [ "playit-only" ]
-  pull_request:
-    branches: [ "playit-only" ]
   workflow_dispatch:
-  schedule:
-    - cron: '0 */5 * * *'  # Run every 5 hours
+    inputs:
+      debug:
+        description: "调试模式：关闭时不踢玩家、不发到期/关停提醒 Issue"
+        type: boolean
+        default: false
+  push:
+    branches: ["${{ github.ref_name }}"]
+
 jobs:
-  build:
+  server:
     runs-on: ubuntu-24.04
+    timeout-minutes: 350
     steps:
       - uses: actions/checkout@v4
         with:
-          token: ${{ secrets.FINE_GRAINED_PAT }}  # Use fine-grained PAT for checkout
-      - uses: graalvm/setup-graalvm@v1
+          token: ${{ secrets.FINE_GRAINED_PAT }}
+
+      - uses: actions/setup-java@v4
         with:
-          java-version: '22'
-          distribution: 'graalvm'
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-      - name: Debug - List directory contents
-        run: ls -la
-      - name: Run Spigot and playit with 30-second commits and workflow deletion
-        if: "!contains(github.event.head_commit.message, 'Auto commit every 30 seconds')"
+          java-version: '25'
+          distribution: 'temurin'
+
+      - name: Run server
         env:
           FINE_GRAINED_PAT: ${{ secrets.FINE_GRAINED_PAT }}
           REPO: ${{ github.repository }}
+          BRANCH: ${{ github.ref_name }}
+          RUN_ID: ${{ github.run_id }}
           PLAYIT_SECRET: ${{ secrets.PLAYIT_SECRET }}
+          DEBUG: ${{ github.event.inputs.debug }}
         run: |
           cd $GITHUB_WORKSPACE
+
+          # 解压 server.zip（如果存在）
+          if [ -f server.zip ]; then
+            echo "Extracting server.zip..."
+            unzip -o server.zip
+            rm -f server.zip
+            echo "server.zip extracted and removed."
+          fi
+
+          # 安装 mcrcon
+          sudo apt-get update -qq && sudo apt-get install -y -qq mcrcon
+
+          # 下载 Canvas
+          curl -L -o canvas.jar "https://canvasmc.io/downloads/latest?project=canvas"
+          chmod +x canvas.jar
+
+          # 准备 playit
+          curl -L -o playit-linux-amd64 https://builds.playit.gg/1.0.10/playit-linux-amd64
           chmod +x playit-linux-amd64
-          echo "$PLAYIT_SECRET" > playit.toml
-          echo "Starting Spigot..."
-          java -XX:+UseG1GC -XX:+ParallelRefProcEnabled -XX:MaxGCPauseMillis=200 -XX:+UnlockExperimentalVMOptions -XX:+DisableExplicitGC -XX:+AlwaysPreTouch -XX:G1NewSizePercent=30 -XX:G1MaxNewSizePercent=40 -XX:G1HeapRegionSize=8M -XX:G1ReservePercent=20 -XX:G1HeapWastePercent=5 -XX:G1MixedGCCountTarget=4 -XX:InitiatingHeapOccupancyPercent=15 -XX:G1MixedGCLiveThresholdPercent=90 -XX:G1RSetUpdatingPauseTimePercent=5 -XX:SurvivorRatio=32 -XX:+PerfDisableSharedMem -XX:MaxTenuringThreshold=1 -Dusing.aikars.flags=https://mcflags.emc.gs -Daikars.new.flags=true -Xms16G -Xmx16G -jar spigot.jar nogui 2>&1 | sed '/login:/s/.*/<REDACTED>/' &
-          SPIGOT_PID=$!
-          echo "Spigot started with PID $SPIGOT_PID"
-          echo "Starting playit..."
-          ./playit-linux-amd64 2>&1 | sed '/login:/s/.*/<REDACTED>/' &
-          PLAYIT_PID=$!
-          echo "playit started with PID $PLAYIT_PID"
-          # Function to commit and push changes
-          commit_and_push() {
+          mkdir -p ~/.config/playit_gg
+
+          PLAYIT_PID=""
+          if [ -z "$PLAYIT_SECRET" ]; then
+            echo "=========================================="
+            echo "NO PLAYIT_SECRET - interactive claim mode"
+            echo "After claiming, server will start automatically"
+            echo "=========================================="
+            ./playit-linux-amd64 > playit.log 2>&1 &
+            PLAYIT_PID=$!
+            for i in $(seq 1 30); do
+              sleep 2
+              URL=$(grep -o 'https://playit.gg/claim/[A-Za-z0-9]*' playit.log | head -1)
+              if [ -n "$URL" ]; then
+                echo "CLAIM URL: $URL"
+                break
+              fi
+            done
+            echo "Waiting for claim (max 5 min)..."
+            for i in $(seq 1 150); do
+              sleep 2
+              if grep -q "Program approved" playit.log 2>/dev/null; then
+                echo "=========================================="
+                echo "Claim successful!"
+                echo "Copy this into PLAYIT_SECRET for next runs:"
+                cat ~/.config/playit_gg/playit.toml
+                echo "=========================================="
+                break
+              fi
+            done
+            if ! grep -q "Program approved" playit.log 2>/dev/null; then
+              echo "Claim timeout - starting server anyway"
+            fi
+          else
+            echo "$PLAYIT_SECRET" > ~/.config/playit_gg/playit.toml
+          fi
+
+          # SIGTERM 被传唤时
+          trap '
+            echo "Received SIGTERM - emergency save..."
+
+            if [ "$DEBUG" != "true" ]; then
+              RCON_PASSWORD=$(grep "^rcon.password=" server.properties | cut -d"=" -f2)
+              mcrcon -H 127.0.0.1 -P 25575 -p "$RCON_PASSWORD" \
+                "kick @a 该进程的工作流持续时间已耗尽。请等待一段时间后服务器重新开启再次进入。查看运行状态: https://github.com/$REPO/actions" \
+                || true
+              echo "Waiting 5s for kick messages to deliver..."
+              sleep 5
+            else
+              echo "Debug mode: skip kicking players and skip issue notifications."
+            fi
+
+            echo "Emergency save..."
             git config --local user.email "github-actions[bot]@users.noreply.github.com"
             git config --local user.name "github-actions[bot]"
-            git add -A  # Stage all changes
-            git reset -- playit.toml  # Unstage playit.toml
-            git reset -- playit.log
-            git reset -- tunnel-config.yml
+            git add -A
+            git reset -- canvas.jar
+            git reset -- playit-linux-amd64
+            git reset -- playit.toml
             git reset -- credentials.json
-            git reset -- logs/
-            
-            if ! git commit -m "Auto commit every 30 seconds [no ci]"; then
-                echo "No changes to commit or commit failed"
-                return 1
+            git reset -- logs/ 2>/dev/null || true
+            git reset -- server.zip 2>/dev/null || true
+            git commit -m "Emergency save before shutdown [no ci]" || true
+            git push https://x-access-token:${FINE_GRAINED_PAT}@github.com/${REPO}.git \
+              HEAD:${BRANCH} --force || true
+
+            if [ -d logs ]; then
+              tar -czf server-logs.tar.gz logs/
+              echo "Logs archived."
             fi
-            
-            for i in {1..3}; do
-                if git push https://x-access-token:${FINE_GRAINED_PAT}@github.com/${GITHUB_REPOSITORY}.git HEAD:playit-only --force; then
-                    echo "Push successful on attempt $i"
-                    return 0
-                else
-                    echo "Push failed on attempt $i, retrying..."
-                    git pull --rebase
-                fi
-            done
-            
-            echo "Failed to push after 3 attempts"
-            return 1
-          }
-          start_spigot() {
-            echo "Starting Spigot..."
-            java -XX:+UseG1GC -XX:+ParallelRefProcEnabled -XX:MaxGCPauseMillis=200 -XX:+UnlockExperimentalVMOptions -XX:+DisableExplicitGC -XX:+AlwaysPreTouch -XX:G1NewSizePercent=30 -XX:G1MaxNewSizePercent=40 -XX:G1HeapRegionSize=8M -XX:G1ReservePercent=20 -XX:G1HeapWastePercent=5 -XX:G1MixedGCCountTarget=4 -XX:InitiatingHeapOccupancyPercent=15 -XX:G1MixedGCLiveThresholdPercent=90 -XX:G1RSetUpdatingPauseTimePercent=5 -XX:SurvivorRatio=32 -XX:+PerfDisableSharedMem -XX:MaxTenuringThreshold=1 -Dusing.aikars.flags=https://mcflags.emc.gs -Daikars.new.flags=true -Xms16G -Xmx16G -jar spigot.jar nogui 2>&1 | sed '/login:/s/.*/<REDACTED>/' &
-            SPIGOT_PID=$!
-            echo "Spigot started with PID $SPIGOT_PID"
-          }
-          delete_auto_commit_workflows() {
-            workflow_ids=$(curl -s -H "Authorization: token $FINE_GRAINED_PAT" \
-              "https://api.github.com/repos/${REPO}/actions/runs" | \
-              jq '.workflow_runs[] | select(.head_commit.message | contains("Auto commit every 30 seconds [no ci]")) | .id')
-            for id in $workflow_ids; do
-              echo "Deleting workflow run $id"
-              curl -s -X DELETE -H "Authorization: token $FINE_GRAINED_PAT" \
-                "https://api.github.com/repos/${REPO}/actions/runs/$id"
-            done
-          }
 
-          create_new_workflow_run() {
-            curl -X POST -H "Authorization: token $FINE_GRAINED_PAT" \
-              -H "Accept: application/vnd.github.v3+json" \
-              "https://api.github.com/repos/${REPO}/actions/workflows/blank.yml/dispatches" \
-              -d '{"ref":"playit-only"}'
-            echo "New workflow run created"
-          } 
+            curl -s -H "Authorization: token $FINE_GRAINED_PAT" \
+              "https://api.github.com/repos/$REPO/actions/runs" \
+              | jq -r ".workflow_runs[] | select(.head_commit.message | contains(\"Auto commit every 10 minutes\")) | .id" \
+              | while read -r id; do
+                  curl -s -X DELETE -H "Authorization: token $FINE_GRAINED_PAT" \
+                    "https://api.github.com/repos/$REPO/actions/runs/$id"
+                done
+          ' SIGTERM
 
-          cancel_old_workflow_runs() {
-            current_run_id=$GITHUB_RUN_ID
-            workflow_runs=$(curl -s -H "Authorization: token $FINE_GRAINED_PAT" \
-              "https://api.github.com/repos/${REPO}/actions/runs?branch=playit-only&status=in_progress")
-            
-            echo "$workflow_runs" | jq -r ".workflow_runs[] | select(.id != $current_run_id) | .id" | while read -r run_id; do
-              echo "Cancelling workflow run $run_id"
-              curl -s -X POST -H "Authorization: token $FINE_GRAINED_PAT" \
-                "https://api.github.com/repos/${REPO}/actions/runs/$run_id/cancel"
-            done
-          }
+          # 启动 Canvas
+          java -Xms2G -Xmx6G \
+               -server \
+               -XX:+UseG1GC \
+               -XX:+UseCompressedOops \
+               -XX:+UseStringDeduplication \
+               -XX:+ParallelRefProcEnabled \
+               -XX:MaxGCPauseMillis=200 \
+               -XX:+UnlockExperimentalVMOptions \
+               -XX:+DisableExplicitGC \
+               -XX:+AlwaysPreTouch \
+               -XX:G1NewSizePercent=30 \
+               -XX:G1MaxNewSizePercent=40 \
+               -XX:G1HeapRegionSize=8M \
+               -XX:G1ReservePercent=20 \
+               -XX:G1HeapWastePercent=5 \
+               -XX:G1MixedGCCountTarget=4 \
+               -XX:InitiatingHeapOccupancyPercent=15 \
+               -XX:G1MixedGCLiveThresholdPercent=90 \
+               --add-modules=jdk.incubator.vector \
+               -jar canvas.jar --nogui 2>&1 | sed '/login:/s/.*/<REDACTED>/' &
 
-          
+          CANVAS_PID=$!
+          echo "Canvas PID: $CANVAS_PID"
+
+          # 启动 playit（交互模式已启动则复用）
+          if [ -z "$PLAYIT_PID" ] || ! kill -0 $PLAYIT_PID 2>/dev/null; then
+            ./playit-linux-amd64 2>&1 | sed '/login:/s/.*/<REDACTED>/' &
+            PLAYIT_PID=$!
+          fi
+          echo "playit PID: $PLAYIT_PID"
+
+          # 20 秒后清理 credentials
+          (sleep 20 && rm -f credentials.json) &
+
+          # 30 秒后取消同分支其他在跑的 runs
+          (sleep 30 && curl -s -X POST \
+            -H "Authorization: token $FINE_GRAINED_PAT" \
+            "https://api.github.com/repos/$REPO/actions/runs?branch=$BRANCH&status=in_progress" \
+            | jq -r ".workflow_runs[] | select(.id != $RUN_ID) | .id" \
+            | while read -r id; do
+                curl -s -X POST -H "Authorization: token $FINE_GRAINED_PAT" \
+                  "https://api.github.com/repos/$REPO/actions/runs/$id/cancel"
+              done) &
+
+          # 主循环
           START_TIME=$(date +%s)
-          
-          # Schedule the cancellation of old workflow runs after 30 seconds
-          (sleep 30 && cancel_old_workflow_runs) &
-          (sleep 20 && rm credentials.json) &
+          WARNED=""
 
           while true; do
-            if ! commit_and_push; then
-                echo "Commit and push failed, continuing without stopping the workflow"
-            fi
-            
-            CURRENT_TIME=$(date +%s)
-            ELAPSED_TIME=$((CURRENT_TIME - START_TIME))
-            
-            if ! kill -0 $SPIGOT_PID 2>/dev/null; then
-              echo "Spigot process has stopped. Restarting Spigot..."
-              start_spigot
+            git config --local user.email "github-actions[bot]@users.noreply.github.com"
+            git config --local user.name "github-actions[bot]"
+            git add -A
+            git reset -- canvas.jar
+            git reset -- playit-linux-amd64
+            git reset -- playit.toml
+            git reset -- credentials.json
+            git reset -- logs/ 2>/dev/null || true
+            git reset -- server.zip 2>/dev/null || true
+            git commit -m "Auto commit every 10 minutes [no ci]" || true
+            for i in 1 2 3; do
+              git push https://x-access-token:${FINE_GRAINED_PAT}@github.com/${REPO}.git \
+                HEAD:${BRANCH} --force && break
+              git pull --rebase
+            done
+
+            if ! kill -0 $CANVAS_PID 2>/dev/null; then
+              echo "Canvas stopped, restarting..."
+              java -Xms2G -Xmx6G \
+                   -server \
+                   -XX:+UseG1GC \
+                   -XX:+UseCompressedOops \
+                   -XX:+UseStringDeduplication \
+                   -XX:+ParallelRefProcEnabled \
+                   -XX:MaxGCPauseMillis=200 \
+                   -XX:+UnlockExperimentalVMOptions \
+                   -XX:+DisableExplicitGC \
+                   -XX:+AlwaysPreTouch \
+                   -XX:G1NewSizePercent=30 \
+                   -XX:G1MaxNewSizePercent=40 \
+                   -XX:G1HeapRegionSize=8M \
+                   -XX:G1ReservePercent=20 \
+                   -XX:G1HeapWastePercent=5 \
+                   -XX:G1MixedGCCountTarget=4 \
+                   -XX:InitiatingHeapOccupancyPercent=15 \
+                   -XX:G1MixedGCLiveThresholdPercent=90 \
+                   --add-modules=jdk.incubator.vector \
+                   -jar canvas.jar --nogui 2>&1 | sed '/login:/s/.*/<REDACTED>/' &
+              CANVAS_PID=$!
             fi
 
-            if ! kill -0 $PLAYIT_PID 2>/dev/null || [ $ELAPSED_TIME -ge 18000 ]; then
-              if ! kill -0 $PLAYIT_PID 2>/dev/null; then
-                echo "PlayIt Tunnel process has stopped."
-              else
-                echo "Workflow has been running for 5 hours."
-              fi
-              echo "Creating new workflow run and exiting current one."
-              create_new_workflow_run
+            if ! kill -0 $PLAYIT_PID 2>/dev/null; then
+              echo "playit stopped, exiting"
               exit 0
             fi
-            
-            sleep 30
+
+            CURRENT_TIME=$(date +%s)
+            ELAPSED=$((CURRENT_TIME - START_TIME))
+            if [ $ELAPSED -ge 20400 ] && [ -z "$WARNED" ]; then
+              WARNED=1
+              if [ "$DEBUG" != "true" ]; then
+                curl -s -X POST \
+                  -H "Authorization: token $FINE_GRAINED_PAT" \
+                  -H "Accept: application/vnd.github.v3+json" \
+                  "https://api.github.com/repos/$REPO/issues" \
+                  -d '{"title":"⏰ 服务器即将关闭 - 手动启动新实例","body":"工作流已运行约 5 小时 40 分钟，即将达到 6 小时限制。\n\n请前往 Actions 页面手动点击 **Run workflow** 启动新服务器。\n\n（此 Issue 由 workflow 自动创建，提醒你纯手点开服 🫡）"}' > /dev/null
+                echo "::warning::⏰ Server will shut down soon! Created GitHub Issue to remind you."
+              else
+                echo "::warning::⏰ Server near shutdown, but debug mode is ON - skipping issue notification."
+              fi
+            fi
+
+            sleep 600
           done
 
-      - name: Rerun workflow if previous step failed
-        if: failure()
-        env:
-          GITHUB_TOKEN: ${{ secrets.FINE_GRAINED_PAT }}
-        run: |
-          curl -X POST -H "Authorization: token $GITHUB_TOKEN" \
-            -H "Accept: application/vnd.github.v3+json" \
-            "https://api.github.com/repos/${{ github.repository }}/actions/workflows/blank.yml/dispatches" \
-            -d '{"ref":"playit-only"}'
-          echo "Workflow rerun triggered due to previous step failure"
+      - name: Upload logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: server-logs
+          path: server-logs.tar.gz
+          retention-days: 7
