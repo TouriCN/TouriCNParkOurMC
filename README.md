@@ -1,4 +1,4 @@
-# GitHub Actions Minecraft Server
+# actionsMinecraftBetter
 
 本项目由 [Briiqn/Actions-Server](https://github.com/Briiqn/Actions-Server) Fork 而来，在其基础上进行了重构和扩展。
 
