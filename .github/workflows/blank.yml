@@ -7,8 +7,6 @@ on:
         description: "调试模式：关闭时不踢玩家、不发到期/关停提醒 Issue"
         type: boolean
         default: false
-  push:
-    branches: ["${{ github.ref_name }}"]
 
 jobs:
   server:
