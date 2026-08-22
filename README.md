@@ -36,7 +36,7 @@ Fork 后进入仓库 Settings -> Secrets and variables -> Actions，配置以下
 
 ## 自定义
 
-工作流文件 `.github/workflows/server.yml` 包含所有运行逻辑，可根据需求自行修改：
+工作流文件 `.github/workflows/blank.yml` 包含所有运行逻辑，可根据需求自行修改：
 
 - **JVM 参数**：调整内存分配（-Xms/-Xmx）、GC 策略、实验性 VM 选项等
 - **同步间隔**：默认每 10 分钟执行一次 git commit + push，修改 `sleep 600` 的值即可
