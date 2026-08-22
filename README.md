@@ -81,4 +81,4 @@ Fork 后进入仓库 Settings -> Secrets and variables -> Actions，配置以下
 - 所有敏感凭证（PAT、playit 认证信息）仅存在于 GitHub Secrets 中，仓库内不可见
 - RCON 密码存储在 server.properties 中，只监听 127.0.0.1，外部无法访问
 - 世界数据通过 git 同步，非实时数据库
-## © 2026 TouriCN|CC0 1.0 Universal
+###### © 2026 TouriCN|CC0 1.0 Universal
