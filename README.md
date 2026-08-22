@@ -4,9 +4,10 @@
 
 ## 主要功能
 
-- **快速部署（server.zip）**：将插件、世界数据、配置文件等打包为 `server.zip` 上传到仓库任意目录，工作流启动时会自动解压到该文件所在目录并删除。`server.zip` 已被加入 `.gitignore`，不会进入 git 历史，仅作为一次性传输容器使用。
-- **分卷快速部署（halfserver*.zip）**：当单个目录内容超过 GitHub 网页单文件 25MB 限制时，可将其拆分为多个 `halfserver1.zip`、`halfserver2.zip`、…、`halfserverN.zip` 分批上传到目标目录。工作流启动时会扫描并解压所有 `halfserver*.zip` 到各自所在目录，然后删除。例如将 `world/` 拆分为 `world/halfserver1.zip`、`world/halfserver2.zip` 等，即可绕过单文件大小限制分批传输大目录。
-- **服务端自动下载**：默认使用 [Canvas](https://canvasmc.io/) 服务端核心，运行时自动从官方下载 `canvas.jar`，不进入仓库（符合 Mojang EULA）。
+- **解压部署（blank-deploy.yml）**：将服务器文件打包为 `server.zip` 或 `halfserver*.zip` 上传到仓库任意目录，通过 Deploy 工作流手动输入包名解压到指定目录并删除。`server.zip` 和 `halfserver*.zip` 已被加入 `.gitignore`，不会进入 git 历史，仅作为一次性传输容器使用。支持以下方式：
+  - `server.zip`：将插件、世界数据、配置文件等打包为 `server.zip` 上传到目标目录，Deploy 时输入包名即可解压。
+  - `halfserver*.zip`：当单个目录内容超过 GitHub 网页单文件 25MB 限制时，可将其拆分为多个 `halfserver1.zip`、`halfserver2.zip`、…、`halfserverN.zip` 分批上传到目标目录。Deploy 时输入多个包名（空格分隔）即可依次解压。
+- **服务端自动下载**：默认使用 [Leaf](https://github.com/Winds-Studio/Leaf) 服务端核心（26.2 实验性构建），运行时通过官方 v2 API 动态获取最新构建并下载 `leaf.jar`，不进入仓库。
 - **隧道自动配置**：集成 playit.gg 隧道，首次运行交互认领，后续自动连接。
 - **优雅关停**：被 SIGTERM 关闭时通过 RCON 踢出所有在线玩家并附带说明消息，然后执行紧急保存和 git push。
 - **定时存档**：每 10 分钟自动 commit + push 世界数据，最多丢失 10 分钟进度。
@@ -30,19 +31,20 @@ Fork 后进入仓库 Settings -> Secrets and variables -> Actions，配置以下
 
 首次运行流程：
 
-1. Actions -> Minecraft Server -> Run workflow（直接点击，不勾选 debug）
-2. 查看运行日志，找到 CLAIM URL 并在浏览器中打开，完成 playit 隧道认领
-3. 认领成功后日志中会输出 playit.toml 的完整内容，复制
-4. 回到 Secrets 页面，新建 PLAYIT_SECRET 并粘贴内容
-5. 再次 Run workflow，服务器启动，玩家通过 playit 分配的地址加入
+1. Actions -> Deploy (unpack) -> 在 `packages` 输入要解压的包名（如 `server.zip` 或 `halfserver1.zip halfserver2.zip`），留空则自动扫描所有 zip -> Run workflow
+2. Actions -> Minecraft Server -> Run workflow（直接点击，不勾选 debug）
+3. 查看运行日志，找到 CLAIM URL 并在浏览器中打开，完成 playit 隧道认领
+4. 认领成功后日志中会输出 playit.toml 的完整内容，复制
+5. 回到 Secrets 页面，新建 PLAYIT_SECRET 并粘贴内容
+6. 再次 Run workflow，服务器启动，玩家通过 playit 分配的地址加入
 
 ## 服务端
 
-默认使用 [Canvas](https://canvasmc.io/) 服务端核心。工作流运行时自动从官方下载 `canvas.jar`，不进入仓库。如需更换其他服务端（如 Paper、Purpur），修改工作流中的下载链接和 Java 启动参数即可。
+默认使用 [Leaf](https://github.com/Winds-Studio/Leaf) 服务端核心。工作流运行时通过官方 v2 API 动态获取最新构建并下载 `leaf.jar`，不进入仓库。如需稳定版，将工作流中的版本线从 `26.2` 改为 `1.21.11`（最新稳定构建 #174）即可。如需更换其他服务端（如 Paper、Purpur），修改工作流中的下载链接和 Java 启动参数即可。
 
 ## 自定义
 
-工作流文件 `.github/workflows/blank.yml` 包含所有运行逻辑，可根据需求自行修改：
+工作流文件 `.github/workflows/blank.yml`（服务端运行）和 `.github/workflows/blank-deploy.yml`（解压部署）包含所有运行逻辑，可根据需求自行修改：
 
 - **JVM 参数**：调整内存分配（-Xms/-Xmx）、GC 策略、实验性 VM 选项等
 - **同步间隔**：默认每 10 分钟执行一次 git commit + push，修改 `sleep 600` 的值即可
@@ -75,10 +77,11 @@ Fork 后进入仓库 Settings -> Secrets and variables -> Actions，配置以下
 
 ## 架构说明
 
-- canvas.jar 和 playit-linux-amd64 在运行时从官方下载，不进入仓库
-- server.zip 和 halfserver*.zip 在运行时解压后删除，不进入仓库历史
-- 工作流文件 `.github/workflows/blank.yml` 本身进入仓库，受版本管理
+- leaf.jar 和 playit-linux-amd64 在运行时从官方下载，不进入仓库
+- server.zip 和 halfserver*.zip 通过 blank-deploy.yml 解压后删除，不进入仓库历史
+- 工作流文件 `.github/workflows/blank.yml` 和 `.github/workflows/blank-deploy.yml` 本身进入仓库，受版本管理
 - 所有敏感凭证（PAT、playit 认证信息）仅存在于 GitHub Secrets 中，仓库内不可见
 - RCON 密码存储在 server.properties 中，只监听 127.0.0.1，外部无法访问
 - 世界数据通过 git 同步，非实时数据库
-###### © 2026 TouriCN|CC0 1.0 Universal
+
+###### © 2026 TouriCN|MIT License
