@@ -1,0 +1,82 @@
+name: Deploy (unpack)
+
+on:
+  workflow_dispatch:
+    inputs:
+      packages:
+        description: '要解压的包，多个用空格分隔。支持 server.zip / halfserver*.zip / 任意名字.zip。留空则自动扫描所有 zip'
+        required: false
+        default: ''
+      target_dir:
+        description: '解压目标根目录（相对于仓库根）。留空则解压到每个 zip 所在目录'
+        required: false
+        default: ''
+
+jobs:
+  deploy:
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.FINE_GRAINED_PAT }}
+
+      - name: Unpack packages
+        env:
+          PACKAGES: ${{ github.event.inputs.packages }}
+          TARGET_DIR: ${{ github.event.inputs.target_dir }}
+        run: |
+          cd "$GITHUB_WORKSPACE"
+
+          # 收集要处理的 zip 文件
+          if [ -n "$PACKAGES" ]; then
+            # 用户显式指定了包名（空格分隔）
+            ZIPS=""
+            for name in $PACKAGES; do
+              # 支持带路径的写法，如 world/halfserver1.zip
+              if [ -f "$name" ]; then
+                ZIPS="$ZIPS $name"
+              else
+                # 按名字在所有目录中查找
+                FOUND=$(find . -type f -name "$name" | head -1)
+                if [ -n "$FOUND" ]; then
+                  ZIPS="$ZIPS $FOUND"
+                else
+                  echo "WARNING: package not found: $name"
+                fi
+              fi
+            done
+          else
+            # 未指定则自动扫描所有 zip（排除已被 git 忽略的）
+            ZIPS=$(find . -type f -name "*.zip" | grep -v ".git/" | tr '\n' ' ')
+          fi
+
+          if [ -z "$ZIPS" ]; then
+            echo "No zip packages found to unpack."
+            exit 0
+          fi
+
+          echo "Packages to unpack:$ZIPS"
+
+          for zipfile in $ZIPS; do
+            zdir=$(dirname "$zipfile")
+            if [ -n "$TARGET_DIR" ]; then
+              dest="$GITHUB_WORKSPACE/$TARGET_DIR"
+            else
+              dest="$GITHUB_WORKSPACE/$zdir"
+            fi
+            echo "Unpacking $zipfile -> $dest/"
+            mkdir -p "$dest"
+            unzip -o "$zipfile" -d "$dest"
+            rm -f "$zipfile"
+          done
+
+      - name: Commit and push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git reset -- "*.zip" || true
+          git commit -m "deploy: unpack packages [no ci]" || echo "nothing to commit"
+          git push || echo "push failed"
