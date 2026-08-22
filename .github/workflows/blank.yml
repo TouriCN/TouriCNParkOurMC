@@ -4,14 +4,18 @@ on:
   workflow_dispatch:
     inputs:
       debug:
-        description: "调试模式：关闭时不踢玩家、不发到期/关停提醒 Issue"
-        type: boolean
+        description: '调试模式（关闭时不踢玩家、不创建到期提醒 Issue）'
+        required: false
         default: false
+        type: boolean
 
 jobs:
-  server:
+  run-server:
     runs-on: ubuntu-24.04
-    timeout-minutes: 350
+    timeout-minutes: 360
+    permissions:
+      contents: write
+      issues: write
     steps:
       - uses: actions/checkout@v4
         with:
@@ -19,8 +23,35 @@ jobs:
 
       - uses: actions/setup-java@v4
         with:
-          java-version: '25'
           distribution: 'temurin'
+          java-version: '25'
+
+      - name: Download Leaf (latest 26.2 build via v2 API)
+        run: |
+          echo "Fetching latest Leaf 26.2 build number..."
+          LATEST_BUILD=$(curl -s "https://api.leafmc.one/v2/projects/leaf/versions/26.2/latestGroupBuildId")
+          echo "Latest build: #$LATEST_BUILD"
+          curl -L -o leaf.jar \
+            "https://api.leafmc.one/v2/projects/leaf/versions/26.2/builds/$LATEST_BUILD/downloads/leaf-26.2-$LATEST_BUILD.jar"
+          if [ ! -f leaf.jar ]; then
+            echo "ERROR: Leaf download failed"
+            exit 1
+          fi
+          chmod +x leaf.jar
+          echo "Leaf #$LATEST_BUILD downloaded."
+
+      - name: Download playit
+        run: |
+          curl -L -o playit-linux-amd64 \
+            "https://github.com/playit-cloud/playit-agent/releases/latest/download/playit-linux-amd64"
+          chmod +x playit-linux-amd64
+
+      - name: Prepare playit config
+        run: |
+          mkdir -p ~/.config/playit_gg
+          if [ -n "${{ secrets.PLAYIT_SECRET }}" ]; then
+            echo "${{ secrets.PLAYIT_SECRET }}" > ~/.config/playit_gg/playit.toml
+          fi
 
       - name: Run server
         env:
@@ -31,122 +62,61 @@ jobs:
           PLAYIT_SECRET: ${{ secrets.PLAYIT_SECRET }}
           DEBUG: ${{ github.event.inputs.debug }}
         run: |
-          cd $GITHUB_WORKSPACE
+          cd "$GITHUB_WORKSPACE"
 
-          # 解压所有 server.zip（任意目录）
-          echo "Scanning for server.zip files..."
-          while IFS= read -r zipfile; do
-            zdir=$(dirname "$zipfile")
-            echo "Extracting $zipfile into $zdir/"
-            unzip -o "$zipfile" -d "$zdir"
-            rm -f "$zipfile"
-          done < <(find . -type f -name "server.zip")
-          echo "All server.zip files extracted and removed."
+          # 首次运行接受 EULA
+          echo "eula=true" > eula.txt
 
-          # 解压所有 halfserver*.zip（任意目录，分卷）
-          echo "Scanning for halfserver*.zip files..."
-          while IFS= read -r zipfile; do
-            zdir=$(dirname "$zipfile")
-            echo "Extracting $zipfile into $zdir/"
-            unzip -o "$zipfile" -d "$zdir"
-            rm -f "$zipfile"
-          done < <(find . -type f -name "halfserver*.zip")
-          echo "All halfserver*.zip files extracted and removed."
-
-          # 安装 mcrcon
-          sudo apt-get update -qq && sudo apt-get install -y -qq mcrcon
-
-          # 下载 Canvas
-          curl -L -o canvas.jar "https://canvasmc.io/downloads/latest?project=canvas"
-          chmod +x canvas.jar
-
-          # 准备 playit
-          curl -L -o playit-linux-amd64 https://builds.playit.gg/1.0.10/playit-linux-amd64
-          chmod +x playit-linux-amd64
-          mkdir -p ~/.config/playit_gg
-
-          PLAYIT_PID=""
+          # 启动 playit（首次需交互认领，后续用 secret）
           if [ -z "$PLAYIT_SECRET" ]; then
             echo "=========================================="
             echo "NO PLAYIT_SECRET - interactive claim mode"
-            echo "After claiming, server will start automatically"
             echo "=========================================="
             ./playit-linux-amd64 > playit.log 2>&1 &
             PLAYIT_PID=$!
-            for i in $(seq 1 30); do
-              sleep 2
-              URL=$(grep -o 'https://playit.gg/claim/[A-Za-z0-9]*' playit.log | head -1)
-              if [ -n "$URL" ]; then
-                echo "CLAIM URL: $URL"
-                break
-              fi
-            done
-            echo "Waiting for claim (max 5 min)..."
+            sleep 60
+            CLAIM_URL=$(grep -o 'https://playit.gg/claim/[A-Za-z0-9]*' playit.log | head -1)
+            if [ -n "$CLAIM_URL" ]; then
+              echo "CLAIM URL: $CLAIM_URL"
+            fi
+            # 等待认领（最多 5 分钟）
             for i in $(seq 1 150); do
               sleep 2
               if grep -q "Program approved" playit.log 2>/dev/null; then
-                echo "=========================================="
-                echo "Claim successful!"
-                echo "Copy this into PLAYIT_SECRET for next runs:"
-                cat ~/.config/playit_gg/playit.toml
-                echo "=========================================="
+                echo "Claim successful! Copy playit.toml content into PLAYIT_SECRET."
+                cat ~/.config/playit_gg/playit.toml || true
                 break
               fi
             done
-            if ! grep -q "Program approved" playit.log 2>/dev/null; then
-              echo "Claim timeout - starting server anyway"
-            fi
           else
-            echo "$PLAYIT_SECRET" > ~/.config/playit_gg/playit.toml
+            ./playit-linux-amd64 2>&1 | sed '/login:/s/.*/<REDACTED>/' &
+            PLAYIT_PID=$!
           fi
 
-          # SIGTERM 被传唤时
+          # SIGTERM 处理
           trap '
             echo "Received SIGTERM - emergency save..."
-
             if [ "$DEBUG" != "true" ]; then
               RCON_PASSWORD=$(grep "^rcon.password=" server.properties | cut -d"=" -f2)
               mcrcon -H 127.0.0.1 -P 25575 -p "$RCON_PASSWORD" \
-                "kick @a 该进程的工作流持续时间已耗尽。请等待一段时间后服务器重新开启再次进入。查看运行状态: https://github.com/$REPO/actions" \
-                || true
-              echo "Waiting 5s for kick messages to deliver..."
+                "kick @a 工作流即将关闭，请等待下次手动启动。查看运行状态: https://github.com/$REPO/actions" || true
               sleep 5
-            else
-              echo "Debug mode: skip kicking players and skip issue notifications."
             fi
-
-            echo "Emergency save..."
-            git config --local user.email "github-actions[bot]@users.noreply.github.com"
-            git config --local user.name "github-actions[bot]"
+            git config user.name "github-actions[bot]"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
             git add -A
-            git reset -- canvas.jar
+            git reset -- leaf.jar
             git reset -- playit-linux-amd64
-            git reset -- playit.toml
-            git reset -- credentials.json
-            git reset -- logs/ 2>/dev/null || true
-            git reset -- server.zip 2>/dev/null || true
-            git reset -- "halfserver*.zip" 2>/dev/null || true
-            git commit -m "Emergency save before shutdown [no ci]" || true
-            git push https://x-access-token:${FINE_GRAINED_PAT}@github.com/${REPO}.git \
-              HEAD:${BRANCH} --force || true
-
-            if [ -d logs ]; then
-              tar -czf server-logs.tar.gz logs/
-              echo "Logs archived."
-            fi
-
-            curl -s -H "Authorization: token $FINE_GRAINED_PAT" \
-              "https://api.github.com/repos/$REPO/actions/runs" \
-              | jq -r ".workflow_runs[] | select(.head_commit.message | contains(\"Auto commit every 10 minutes\")) | .id" \
-              | while read -r id; do
-                  curl -s -X DELETE -H "Authorization: token $FINE_GRAINED_PAT" \
-                    "https://api.github.com/repos/$REPO/actions/runs/$id"
-                done
+            git reset -- "*.zip" || true
+            git commit -m "emergency save before shutdown [no ci]" || true
+            git push "https://x-access-token:${FINE_GRAINED_PAT}@github.com/${REPO}.git" \
+              "HEAD:${BRANCH}" --force || true
           ' SIGTERM
 
-          # 启动 Canvas
+          # 启动 Leaf
           java -Xms2G -Xmx6G \
                -server \
+               -DLeaf.enableFMA=true \
                -XX:+UseG1GC \
                -XX:+UseCompressedOops \
                -XX:+UseStringDeduplication \
@@ -157,92 +127,34 @@ jobs:
                -XX:+AlwaysPreTouch \
                -XX:G1NewSizePercent:30 \
                -XX:G1MaxNewSizePercent:40 \
-               -XX:G1HeapRegionSize=8M \
+               -XX:G1HeapRegionSize:8M \
                -XX:G1ReservePercent:20 \
-               -XX:G1HeapWastePercent=5 \
-               -XX:G1MixedGCCountTarget=4 \
+               -XX:G1HeapWastePercent:5 \
+               -XX:G1MixedGCCountTarget:4 \
                -XX:InitiatingHeapOccupancyPercent:15 \
                -XX:G1MixedGCLiveThresholdPercent:90 \
                --add-modules=jdk.incubator.vector \
-               -jar canvas.jar --nogui 2>&1 | sed '/login:/s/.*/<REDACTED>/' &
+               -jar leaf.jar --nogui 2>&1 | sed '/login:/s/.*/<REDACTED>/' &
 
-          CANVAS_PID=$!
-          echo "Canvas PID: $CANVAS_PID"
+          SERVER_PID=$!
 
-          # 启动 playit（交互模式已启动则复用）
-          if [ -z "$PLAYIT_PID" ] || ! kill -0 $PLAYIT_PID 2>/dev/null; then
-            ./playit-linux-amd64 2>&1 | sed '/login:/s/.*/<REDACTED>/' &
-            PLAYIT_PID=$!
-          fi
-          echo "playit PID: $PLAYIT_PID"
-
-          # 20 秒后清理 credentials
-          (sleep 20 && rm -f credentials.json) &
-
-          # 30 秒后取消同分支其他在跑的 runs
-          (sleep 30 && curl -s -X POST \
-            -H "Authorization: token $FINE_GRAINED_PAT" \
-            "https://api.github.com/repos/$REPO/actions/runs?branch=$BRANCH&status=in_progress" \
-            | jq -r ".workflow_runs[] | select(.id != $RUN_ID) | .id" \
-            | while read -r id; do
-                curl -s -X POST -H "Authorization: token $FINE_GRAINED_PAT" \
-                  "https://api.github.com/repos/$REPO/actions/runs/$id/cancel"
-              done) &
-
-          # 主循环
+          # 主循环：定时同步
           START_TIME=$(date +%s)
           WARNED=""
-
-          while true; do
-            git config --local user.email "github-actions[bot]@users.noreply.github.com"
-            git config --local user.name "github-actions[bot]"
+          while kill -0 $SERVER_PID 2>/dev/null; do
+            sleep 600
+            git config user.name "github-actions[bot]"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
             git add -A
-            git reset -- canvas.jar
+            git reset -- leaf.jar
             git reset -- playit-linux-amd64
-            git reset -- playit.toml
-            git reset -- credentials.json
-            git reset -- logs/ 2>/dev/null || true
-            git reset -- server.zip 2>/dev/null || true
-            git reset -- "halfserver*.zip" 2>/dev/null || true
-            git commit -m "Auto commit every 10 minutes [no ci]" || true
-            for i in 1 2 3; do
-              git push https://x-access-token:${FINE_GRAINED_PAT}@github.com/${REPO}.git \
-                HEAD:${BRANCH} --force && break
-              git pull --rebase
-            done
+            git reset -- "*.zip" || true
+            git commit -m "sync: world data [no ci]" || true
+            git push "https://x-access-token:${FINE_GRAINED_PAT}@github.com/${REPO}.git" \
+              "HEAD:${BRANCH}" --force || true
 
-            if ! kill -0 $CANVAS_PID 2>/dev/null; then
-              echo "Canvas stopped, restarting..."
-              java -Xms2G -Xmx6G \
-                   -server \
-                   -XX:+UseG1GC \
-                   -XX:+UseCompressedOops \
-                   -XX:+UseStringDeduplication \
-                   -XX:+ParallelRefProcEnabled \
-                   -XX:MaxGCPauseMillis=200 \
-                   -XX:+UnlockExperimentalVMOptions \
-                   -XX:+DisableExplicitGC \
-                   -XX:+AlwaysPreTouch \
-                   -XX:G1NewSizePercent:30 \
-                   -XX:G1MaxNewSizePercent:40 \
-                   -XX:G1HeapRegionSize=8M \
-                   -XX:G1ReservePercent:20 \
-                   -XX:G1HeapWastePercent=5 \
-                   -XX:G1MixedGCCountTarget:4 \
-                   -XX:InitiatingHeapOccupancyPercent:15 \
-                   -XX:G1MixedGCLiveThresholdPercent:90 \
-                   --add-modules=jdk.incubator.vector \
-                   -jar canvas.jar --nogui 2>&1 | sed '/login:/s/.*/<REDACTED>/' &
-              CANVAS_PID=$!
-            fi
-
-            if ! kill -0 $PLAYIT_PID 2>/dev/null; then
-              echo "playit stopped, exiting"
-              exit 0
-            fi
-
-            CURRENT_TIME=$(date +%s)
-            ELAPSED=$((CURRENT_TIME - START_TIME))
+            CURRENT=$(date +%s)
+            ELAPSED=$((CURRENT - START_TIME))
             if [ $ELAPSED -ge 20400 ] && [ -z "$WARNED" ]; then
               WARNED=1
               if [ "$DEBUG" != "true" ]; then
@@ -250,20 +162,11 @@ jobs:
                   -H "Authorization: token $FINE_GRAINED_PAT" \
                   -H "Accept: application/vnd.github.v3+json" \
                   "https://api.github.com/repos/$REPO/issues" \
-                  -d '{"title":"⏰ 服务器即将关闭 - 手动启动新实例","body":"工作流已运行约 5 小时 40 分钟，即将达到 6 小时限制。\n\n请前往 Actions 页面手动点击 **Run workflow** 启动新服务器。\n\n（此 Issue 由 workflow 自动创建，提醒你纯手点开服 🫡）"}' > /dev/null
-                echo "::warning::⏰ Server will shut down soon! Created GitHub Issue to remind you."
-              else
-                echo "::warning::⏰ Server near shutdown, but debug mode is ON - skipping issue notification."
+                  -d '{"title":"服务器即将关闭 - 手动启动新实例","body":"工作流已运行约 5 小时 40 分钟，即将达到 6 小时限制。请前往 Actions 页面手动点击 Run workflow 启动新服务器。"}' > /dev/null
               fi
             fi
-
-            sleep 600
           done
 
-      - name: Upload logs
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: server-logs
-          path: server-logs.tar.gz
-          retention-days: 7
+          # 关闭
+          kill $PLAYIT_PID 2>/dev/null || true
+          wait $PLAYIT_PID 2>/dev/null || true
