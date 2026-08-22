@@ -35,13 +35,25 @@ jobs:
         run: |
           cd $GITHUB_WORKSPACE
 
-          # 解压 server.zip（如果存在）
-          if [ -f server.zip ]; then
-            echo "Extracting server.zip..."
-            unzip -o server.zip
-            rm -f server.zip
-            echo "server.zip extracted and removed."
-          fi
+          # 解压所有 server.zip（任意目录）
+          echo "Scanning for server.zip files..."
+          while IFS= read -r zipfile; do
+            zdir=$(dirname "$zipfile")
+            echo "Extracting $zipfile into $zdir/"
+            unzip -o "$zipfile" -d "$zdir"
+            rm -f "$zipfile"
+          done < <(find . -type f -name "server.zip")
+          echo "All server.zip files extracted and removed."
+
+          # 解压所有 halfserver*.zip（任意目录，分卷）
+          echo "Scanning for halfserver*.zip files..."
+          while IFS= read -r zipfile; do
+            zdir=$(dirname "$zipfile")
+            echo "Extracting $zipfile into $zdir/"
+            unzip -o "$zipfile" -d "$zdir"
+            rm -f "$zipfile"
+          done < <(find . -type f -name "halfserver*.zip")
+          echo "All halfserver*.zip files extracted and removed."
 
           # 安装 mcrcon
           sudo apt-get update -qq && sudo apt-get install -y -qq mcrcon
@@ -115,6 +127,7 @@ jobs:
             git reset -- credentials.json
             git reset -- logs/ 2>/dev/null || true
             git reset -- server.zip 2>/dev/null || true
+            git reset -- "halfserver*.zip" 2>/dev/null || true
             git commit -m "Emergency save before shutdown [no ci]" || true
             git push https://x-access-token:${FINE_GRAINED_PAT}@github.com/${REPO}.git \
               HEAD:${BRANCH} --force || true
@@ -144,14 +157,14 @@ jobs:
                -XX:+UnlockExperimentalVMOptions \
                -XX:+DisableExplicitGC \
                -XX:+AlwaysPreTouch \
-               -XX:G1NewSizePercent=30 \
-               -XX:G1MaxNewSizePercent=40 \
+               -XX:G1NewSizePercent:30 \
+               -XX:G1MaxNewSizePercent:40 \
                -XX:G1HeapRegionSize=8M \
-               -XX:G1ReservePercent=20 \
+               -XX:G1ReservePercent:20 \
                -XX:G1HeapWastePercent=5 \
                -XX:G1MixedGCCountTarget=4 \
-               -XX:InitiatingHeapOccupancyPercent=15 \
-               -XX:G1MixedGCLiveThresholdPercent=90 \
+               -XX:InitiatingHeapOccupancyPercent:15 \
+               -XX:G1MixedGCLiveThresholdPercent:90 \
                --add-modules=jdk.incubator.vector \
                -jar canvas.jar --nogui 2>&1 | sed '/login:/s/.*/<REDACTED>/' &
 
@@ -192,6 +205,7 @@ jobs:
             git reset -- credentials.json
             git reset -- logs/ 2>/dev/null || true
             git reset -- server.zip 2>/dev/null || true
+            git reset -- "halfserver*.zip" 2>/dev/null || true
             git commit -m "Auto commit every 10 minutes [no ci]" || true
             for i in 1 2 3; do
               git push https://x-access-token:${FINE_GRAINED_PAT}@github.com/${REPO}.git \
@@ -211,14 +225,14 @@ jobs:
                    -XX:+UnlockExperimentalVMOptions \
                    -XX:+DisableExplicitGC \
                    -XX:+AlwaysPreTouch \
-                   -XX:G1NewSizePercent=30 \
-                   -XX:G1MaxNewSizePercent=40 \
+                   -XX:G1NewSizePercent:30 \
+                   -XX:G1MaxNewSizePercent:40 \
                    -XX:G1HeapRegionSize=8M \
-                   -XX:G1ReservePercent=20 \
+                   -XX:G1ReservePercent:20 \
                    -XX:G1HeapWastePercent=5 \
-                   -XX:G1MixedGCCountTarget=4 \
-                   -XX:InitiatingHeapOccupancyPercent=15 \
-                   -XX:G1MixedGCLiveThresholdPercent=90 \
+                   -XX:G1MixedGCCountTarget:4 \
+                   -XX:InitiatingHeapOccupancyPercent:15 \
+                   -XX:G1MixedGCLiveThresholdPercent:90 \
                    --add-modules=jdk.incubator.vector \
                    -jar canvas.jar --nogui 2>&1 | sed '/login:/s/.*/<REDACTED>/' &
               CANVAS_PID=$!
