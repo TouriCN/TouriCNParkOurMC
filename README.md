@@ -1,14 +1,14 @@
 # TouriCNParkOur
 
-详细请看[Modrinth详情页](https://modrinth.com/server/touricnparkour)
+详细请看[Modrinth详情页](https://modrinth.com/server/touricnparkour)。
 ## 使用插件
 
 | 插件 | 协议 | 项目地址 |
 |------|------|---------|
 | AuthMe | LGPL-3.0 | [AuthMeReloaded](https://github.com/AuthMe/AuthMeReloaded) |
 | Dimension | MIT | [modrinth.com/plugin/dimensions](https://modrinth.com/plugin/dimensions) |
-| Floodgate | MIT | [CloudburstMC/Floodgate](https://github.com/CloudburstMC/Floodgate) |
-| Geyser | MIT | [CloudburstMC/Geyser](https://github.com/CloudburstMC/Geyser) |
+| Floodgate | MIT | [GeyserMC/Floodgate](https://github.com/GeyserMC/Floodgate) |
+| Geyser | MIT | [GeyserMC/Geyser](https://github.com/GeyserMC/Geyser) |
 | KaMenu | GPL-3.0 | [Katacr/KaMenu](https://github.com/Katacr/KaMenu) |
 | Lobby Parkour | MIT | [Crumb-Network/Lobby-Parkour](https://github.com/Crumb-Network/Lobby-Parkour) |
 | MiniMOTD | MIT | [MiniMOTD](https://github.com/jpenilla/MiniMOTD) |
