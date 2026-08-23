@@ -12,15 +12,19 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Sync repo runner/ to local (first boot)
+      - name: First boot sync (GitHub → local)
         run: |
           if [ -d "$GITHUB_WORKSPACE/runner" ]; then
             mkdir -p /home/container/runner
-            rsync -av --exclude='TouriCNParkOur/' --exclude='leaf.jar' --exclude='*.zip' --exclude='logs/latest.log' \
+            rsync -av --delete \
+              --exclude='TouriCNParkOur/' \
+              --exclude='leaf.jar' \
+              --exclude='*.zip' \
+              --exclude='logs/latest.log' \
               "$GITHUB_WORKSPACE/runner/" /home/container/runner/
-            echo "First boot: synced repo runner/ → /home/container/runner/"
+            echo "First boot: synced repo runner/ → local."
           else
-            echo "No runner/ in repo, using local /home/container/runner/ as-is."
+            echo "No runner/ in repo, using local as-is."
           fi
 
       - name: Setup Java
@@ -37,6 +41,7 @@ jobs:
         run: |
           cd /home/container/runner
 
+          # 下载 Leaf（没有才下）
           if [ ! -f leaf.jar ]; then
             echo "Downloading Leaf..."
             LATEST_BUILD=$(curl -s "https://api.leafmc.one/v2/projects/leaf/versions/26.2/latestGroupBuildId")
@@ -50,8 +55,13 @@ jobs:
             echo "eula=true" > eula.txt
           fi
 
-          maybe_commit() {
-            rsync -av --exclude='TouriCNParkOur/' --exclude='leaf.jar' --exclude='*.zip' --exclude='logs/latest.log' \
+          # 本地 → GitHub 推送函数
+          push_to_repo() {
+            rsync -av --delete \
+              --exclude='TouriCNParkOur/' \
+              --exclude='leaf.jar' \
+              --exclude='*.zip' \
+              --exclude='logs/latest.log' \
               /home/container/runner/ "$GITHUB_WORKSPACE/runner/"
             cd "$GITHUB_WORKSPACE"
             git config user.name "github-actions[bot]"
@@ -67,6 +77,7 @@ jobs:
             cd /home/container/runner
           }
 
+          # SIGTERM：存档 → 推送 → 清理本地（只留世界目录）
           trap '
             echo "Received SIGTERM - emergency save..."
             RCON_PASSWORD=$(grep "^rcon.password=" server.properties | cut -d"=" -f2)
@@ -74,9 +85,12 @@ jobs:
             sleep 5
             mcrcon -H 127.0.0.1 -P 25575 -p "$RCON_PASSWORD" "save-all" || true
             sleep 5
-            maybe_commit
+            push_to_repo
+            find /home/container/runner -mindepth 1 -maxdepth 1 ! -name "TouriCNParkOur" -exec rm -rf {} +
+            echo "Local runner/ cleaned (kept TouriCNParkOur/)."
           ' SIGTERM
 
+          # 启动 Leaf
           java -Xms10G -Xmx10G \
                -server \
                -DLeaf.enableFMA=true \
@@ -102,25 +116,29 @@ jobs:
 
           SERVER_PID=$!
 
-          # 主循环：30 秒拉配置 + 10 分钟存档推送
+          # 主循环
           LOOP_COUNT=0
           while kill -0 $SERVER_PID 2>/dev/null; do
             sleep 30
             LOOP_COUNT=$((LOOP_COUNT + 1))
 
-            # 每 30 秒：从 GitHub 拉最新配置到本地
+            # 每 30 秒：GitHub → 本地
             cd "$GITHUB_WORKSPACE"
             git pull "https://x-access-token:${GITHUB_TOKEN}@github.com/${REPO}.git" "$BRANCH" || true
-            rsync -av --exclude='TouriCNParkOur/' --exclude='leaf.jar' --exclude='*.zip' --exclude='logs/latest.log' \
+            rsync -av --delete \
+              --exclude='TouriCNParkOur/' \
+              --exclude='leaf.jar' \
+              --exclude='*.zip' \
+              --exclude='logs/latest.log' \
               "$GITHUB_WORKSPACE/runner/" /home/container/runner/
             cd /home/container/runner
 
-            # 每 10 分钟（30s × 20 = 600s）：存档 + 推本地改动
+            # 每 10 分钟：存档 + 本地 → GitHub
             if [ $LOOP_COUNT -ge 20 ]; then
               LOOP_COUNT=0
               RCON_PASSWORD=$(grep "^rcon.password=" server.properties | cut -d"=" -f2)
               mcrcon -H 127.0.0.1 -P 25575 -p "$RCON_PASSWORD" "save-all" || true
               sleep 5
-              maybe_commit
+              push_to_repo
             fi
           done
