@@ -41,14 +41,17 @@ jobs:
         run: |
           cd /home/container/runner
 
-          # 下载 Leaf（没有才下）
+          # 下载 Leaf 26.2 构建 #83（从 GitHub Release 固定拉取）
           if [ ! -f leaf.jar ]; then
-            echo "Downloading Leaf..."
-            LATEST_BUILD=$(curl -s "https://api.leafmc.one/v2/projects/leaf/versions/26.2/latestGroupBuildId")
-            curl -L -o leaf.jar \
-              "https://api.leafmc.one/v2/projects/leaf/versions/26.2/builds/$LATEST_BUILD/downloads/leaf-26.2-$LATEST_BUILD.jar"
+            echo "Downloading Leaf 26.2 build #83 from GitHub Releases..."
+            curl -fL -o leaf.jar \
+              "https://github.com/Winds-Studio/Leaf/releases/download/ver-26.2/leaf-26.2-83.jar"
+            if [ $? -ne 0 ]; then
+              echo "ERROR: Failed to download Leaf from GitHub Releases."
+              exit 1
+            fi
             chmod +x leaf.jar
-            echo "Leaf #$LATEST_BUILD downloaded."
+            echo "Leaf #83 downloaded."
           fi
 
           if [ ! -f eula.txt ]; then
@@ -103,13 +106,13 @@ jobs:
                -XX:+DisableExplicitGC \
                -XX:+AlwaysPreTouch \
                -XX:G1NewSizePercent=30 \
-               -XX:G1MaxNewSizePercent:40 \
+               -XX:G1MaxNewSizePercent=40 \
                -XX:G1HeapRegionSize=16M \
-               -XX:G1ReservePercent:20 \
+               -XX:G1ReservePercent=20 \
                -XX:G1HeapWastePercent:5 \
-               -XX:G1MixedGCCountTarget:4 \
-               -XX:InitiatingHeapOccupancyPercent:15 \
-               -XX:G1MixedGCLiveThresholdPercent:90 \
+               -XX:G1MixedGCCountTarget=4 \
+               -XX:InitiatingHeapOccupancyPercent=15 \
+               -XX:G1MixedGCLiveThresholdPercent=90 \
                --add-modules=jdk.incubator.vector \
                -Dlevel-name="TouriCNParkOur" \
                -jar leaf.jar --nogui 2>&1 | sed '/login:/s/.*/<REDACTED>/' &
