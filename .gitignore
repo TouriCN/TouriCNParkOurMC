@@ -1,4 +1,9 @@
+runner/TouriCNParkOur/
 runner/leaf.jar
 runner/*.zip
-runner/TouriCNParkOur/
 runner/logs/latest.log
+.aio/
+actions-runner/
+.m2/
+.bashrc
+start.sh
