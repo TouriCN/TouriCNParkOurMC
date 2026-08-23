@@ -16,14 +16,11 @@ jobs:
           BRANCH: ${{ github.ref_name }}
         run: |
           if [ ! -d /home/container/.git ]; then
-            echo "No .git found, cloning..."
             cd /home/container
             git init
             git remote add origin "https://x-access-token:${GITHUB_TOKEN}@github.com/${REPO}.git"
             git fetch origin
             git checkout -b "$BRANCH" "origin/$BRANCH"
-          else
-            echo ".git exists, skipping init."
           fi
 
       - uses: actions/setup-java@v4
@@ -38,37 +35,31 @@ jobs:
           BRANCH: ${{ github.ref_name }}
         run: |
           cd /home/container
-
-          # 设置 pull 策略，避免"偏离分支"报错
           git config pull.rebase true
 
-          # 暂存 → 拉最新 → 恢复
           git stash
           git pull "https://x-access-token:${GITHUB_TOKEN}@github.com/${REPO}.git" "$BRANCH" || true
           git stash pop 2>/dev/null || true
 
           cd runner
 
-          # 下载 Leaf 26.2 #83
           if [ ! -f leaf.jar ]; then
-            curl -fL -o leaf.jar \
-              "https://github.com/Winds-Studio/Leaf/releases/download/ver-26.2/leaf-26.2-83.jar"
+            curl -fL -o leaf.jar "https://github.com/Winds-Studio/Leaf/releases/download/ver-26.2/leaf-26.2-83.jar"
             chmod +x leaf.jar
           fi
 
-          # 下载 mcrcon（修正：x86_64 下划线）
           if [ ! -f mcrcon ]; then
-            curl -fL -o mcrcon https://github.com/Tiiffi/mcrcon/releases/download/v0.7.2/mcrcon-0.7.2-linux-x86_64
+            curl -fL -o mcrcon.c https://raw.githubusercontent.com/Tiiffi/mcrcon/master/mcrcon.c
+            gcc -std=gnu11 -Wall -Wextra -Wpedantic -Os mcrcon.c -o mcrcon
             chmod +x mcrcon
+            rm -f mcrcon.c
           fi
 
           [ ! -f eula.txt ] && echo "eula=true" > eula.txt
 
-          # 动态读取 RCON 信息（这行之前是错的，现在修对了）
           RCON_PORT=$(grep "^rcon.port=" server.properties | cut -d"=" -f2)
           RCON_PASSWORD=$(grep "^rcon.password=" server.properties | cut -d"=" -f2)
 
-          # 推送函数
           push() {
             cd /home/container
             git config user.name "github-actions[bot]"
@@ -84,7 +75,6 @@ jobs:
             cd runner
           }
 
-          # 关停时：踢人 → 存档 → 推送 → 清理
           trap '
             ./mcrcon -H 127.0.0.1 -P "$RCON_PORT" -p "$RCON_PASSWORD" "kick @a 服务器即将关闭。" || true
             sleep 5
@@ -94,7 +84,6 @@ jobs:
             find . -mindepth 1 -maxdepth 1 ! -name "TouriCNParkOur" -exec rm -rf {} +
           ' SIGTERM
 
-          # 启动 Leaf
           java -Xms10G -Xmx10G \
                -server \
                -DLeaf.enableFMA=true \
@@ -119,7 +108,6 @@ jobs:
                -jar leaf.jar --nogui &
           SERVER_PID=$!
 
-          # 主循环
           COUNT=0
           while kill -0 $SERVER_PID 2>/dev/null; do
             sleep 30
