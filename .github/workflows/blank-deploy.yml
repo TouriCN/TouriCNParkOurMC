@@ -4,13 +4,18 @@ on:
   workflow_dispatch:
     inputs:
       packages:
-        description: '要解压的包，多个用空格分隔。支持 server.zip / halfserver*.zip / 任意名字.zip。留空则自动扫描所有 zip'
+        description: '要解压的包，多个用空格分隔。留空则仅扫描 server.zip 和 halfserver*.zip'
         required: false
         default: ''
       target_dir:
         description: '解压目标根目录（相对于仓库根）。留空则解压到每个 zip 所在目录'
         required: false
         default: ''
+      delete_after_unpack:
+        description: '解压后是否删除原 zip（仅当你明确传了 packages 时才有意义）'
+        required: false
+        default: false
+        type: boolean
 
 jobs:
   deploy:
@@ -19,26 +24,22 @@ jobs:
       contents: write
     steps:
       - uses: actions/checkout@v4
-        with:
-          token: ${{ secrets.FINE_GRAINED_PAT }}
 
       - name: Unpack packages
         env:
           PACKAGES: ${{ github.event.inputs.packages }}
           TARGET_DIR: ${{ github.event.inputs.target_dir }}
+          DELETE_AFTER: ${{ github.event.inputs.delete_after_unpack }}
         run: |
           cd "$GITHUB_WORKSPACE"
 
           # 收集要处理的 zip 文件
           if [ -n "$PACKAGES" ]; then
-            # 用户显式指定了包名（空格分隔）
             ZIPS=""
             for name in $PACKAGES; do
-              # 支持带路径的写法，如 world/halfserver1.zip
               if [ -f "$name" ]; then
                 ZIPS="$ZIPS $name"
               else
-                # 按名字在所有目录中查找
                 FOUND=$(find . -type f -name "$name" | head -1)
                 if [ -n "$FOUND" ]; then
                   ZIPS="$ZIPS $FOUND"
@@ -48,8 +49,8 @@ jobs:
               fi
             done
           else
-            # 未指定则自动扫描所有 zip（排除已被 git 忽略的）
-            ZIPS=$(find . -type f -name "*.zip" | grep -v ".git/" | tr '\n' ' ')
+            # 默认只处理 server.zip 和 halfserver*.zip
+            ZIPS=$(find . -type f \( -name "server.zip" -o -name "halfserver*.zip" \) | grep -v ".git/" | tr '\n' ' ')
           fi
 
           if [ -z "$ZIPS" ]; then
@@ -69,14 +70,22 @@ jobs:
             echo "Unpacking $zipfile -> $dest/"
             mkdir -p "$dest"
             unzip -o "$zipfile" -d "$dest"
-            rm -f "$zipfile"
+            # 只有显式要求时才删除原 zip
+            if [ "$DELETE_AFTER" = "true" ]; then
+              rm -f "$zipfile"
+              echo "Deleted: $zipfile"
+            fi
           done
 
       - name: Commit and push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add -A
+          # 确保 zip 不进仓库历史（双重保险，即使 .gitignore 漏了）
           git reset -- "*.zip" || true
           git commit -m "deploy: unpack packages [no ci]" || echo "nothing to commit"
-          git push || echo "push failed"
+          git push "https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}.git" \
+            "HEAD:${{ github.ref_name }}" --force || echo "push failed"
