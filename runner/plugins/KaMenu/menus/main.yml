@@ -1,0 +1,38 @@
+Title: 'TouriCNParkOur｜主菜单'
+
+Settings:
+  can_escape: true
+  after_action: CLOSE
+  need_placeholder:
+    - player
+
+Body:
+  info:
+    type: message
+    text: 欢迎来到TouriCNParkOur
+  info2:
+    type: message
+    text: "%player_name%，请在以下列表中选择你想使用的功能！"
+
+Bottom:
+  type: multi
+  columns: 1
+  buttons:
+    game:
+      text: 所有小游戏
+      tooltip:
+        - '游玩所有的小游戏'
+      actions:
+        - close
+        - open:game
+    hub:
+      text: 回到大厅
+      tooltip:
+        - '迷路了又或是逃逸？'
+      actions:
+        - close
+        - command:hub
+  exit:
+    text: 关闭菜单
+    actions:
+      - close

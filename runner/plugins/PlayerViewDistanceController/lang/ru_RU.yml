@@ -1,0 +1,66 @@
+# To prevent a specific message from being sent, set it to "none"
+
+messages:
+  join: Ваша максимальная дальность прорисовки установлена на {chunks} чанков
+  
+  not-max: Your view distance is set to {chunks}. Use /pvdc <chunks> to alter this to
+    a max of {maxChunks} for this world! Use /pvdc reset to max your view distance globally.
+  
+  no-permission: У вас нет прав для использования этой команды!
+  
+  incorrect-args: Некорректные аргументы - используйте /pvdc help для помощи
+  
+  afk: Вы AFK, поэтому ваша дальность прорисовки была ограничена до {chunks} чанков!
+  afk-return: Ваша дальность прорисовки вернулась к нормальной!
+  
+  chunks-too-high: Вы можете установить свою дальность прорисовки только на значение
+    меньше или равное {chunks} чанкам!
+  
+  self-view-distance-change: Вы изменили свою максимальную дальность прорисовки на {chunks}
+    чанков
+  
+  # Сообщение, отображаемое отправителю команды, когда он меняет максимальную дальность обзора другого игрока
+  sender-view-distance-change: Максимальная дальность прорисовки игрока {target-player}
+    теперь {chunks} чанков
+  
+  # Сообщение, отображаемое игроку, когда его максимальная дальность обзора была изменена
+  target-view-distance-change: Ваша максимальная дальность прорисовки теперь {chunks}
+    чанков
+  
+  reset: Вы сбросили сохраненную дальность прорисовки {target-player}!
+  self-reset: Вы сбросили свою сохраненную дальность прорисовки!
+  
+  all-online-change: Максимальная дальность прорисовки всех онлайн игроков теперь {chunks}
+    чанков
+  
+  view-distance-get: Максимальная дальность прорисовки {target-player} - {chunks} чанков
+  self-view-distance-get: Ваша максимальная дальность прорисовки - {chunks} чанков
+  
+  ping-mode-change-self: You turned {mode} ping mode!
+  ping-mode-change-others: The player's ping mode is now {mode}!
+  ping-mode-change: Your ping mode is now {mode}!
+  ping-optimised: Your view distance has been optimised for ping!
+  ping-info: Ping mode is turned {mode} for you!
+  ping-mode-disabled: Ping mode is disabled on this server!
+  
+  dynamic-mode-change: Dynamic mode is now {mode}!
+  dynamic-info: Dynamic mode is turned {mode}!
+  dynamic-mode-reduced: Your view distance has been reduced due to dynamic mode!
+  
+  not-player: You must be a player to do this!
+  not-offline-cmd: This command does not currently support offline players!
+  
+  no-keys-ping: There are missing config keys for ping mode. Please contact the server
+    admin!
+  no-keys-dynamic: There are missing config keys for dynamic mode. Please contact the
+    server admin!
+
+
+commands:
+  get: Displays a player's max view distance, excluding AFK and performance mode effects
+  help: Отображает справочное сообщение плагина
+  reset: Сбрасывает максимальную дальность прорисовки игрока
+  set: Устанавливает максимальную дальность прорисовки для вас или для другого игрока
+  setonline: Устанавливает максимальную дальность прорисовки всех онлайн игроков
+  ping: Toggles ping mode
+  dynamic: Toggles dynamic mode

@@ -1,0 +1,199 @@
+# ╔════════════════════════════════════════════════════════════════╗
+# ║              Dimension — Messages Configuration                  ║
+# ║   All messages support MiniMessage format (full RGB, gradients)  ║
+# ║   Placeholders: {world} {player} {value} {property} {page} etc. ║
+# ╚════════════════════════════════════════════════════════════════╝
+
+# ─── General ───────────────────────────────────────────────────────────────────
+no-permission: "<red>✗ <dark_red>You don't have permission to do that."
+unknown-command: "<red>✗ <dark_red>Unknown subcommand. Use <yellow>/dim help<dark_red> for a list."
+player-only: "<red>✗ <dark_red>This command can only be run by a player."
+player-not-found: "<red>✗ <dark_red>Player <yellow>{player}<dark_red> is not online."
+invalid-arguments: "<red>✗ <dark_red>Invalid usage. Try: <yellow>{usage}"
+console-sender: "<gray>[ Console ]"
+confirm-required: "<yellow>⚠ Type <green>/dim confirm<yellow> within 30 seconds to confirm."
+action-confirmed: "<green>✔ Action confirmed."
+action-cancelled: "<yellow>✗ Action timed out and was cancelled."
+action-nothing: "<yellow>✗ No pending action to confirm."
+reload-success: "<green>✔ Configuration reloaded successfully."
+
+# ─── World not found ──────────────────────────────────────────────────────────
+world-not-found: "<red>✗ <dark_red>World <yellow>{world}<dark_red> does not exist."
+world-not-loaded: "<red>✗ <dark_red>World <yellow>{world}<dark_red> is not loaded."
+world-already-loaded: "<yellow>⚠ World <yellow>{world}<yellow> is already loaded."
+world-already-exists: "<red>✗ <dark_red>A world named <yellow>{world}<dark_red> already exists."
+world-is-default: "<red>✗ <dark_red>You cannot perform this action on the default world."
+
+# ─── World lifecycle ──────────────────────────────────────────────────────────
+world-creating: "<gray>⏳ Creating world <yellow>{world}<gray>..."
+world-created: "<green>✔ World <yellow>{world}<green> created successfully."
+world-create-failed: "<red>✗ <dark_red>Failed to create world <yellow>{world}<dark_red>. Check console for details."
+
+world-importing: "<gray>⏳ Importing world <yellow>{world}<gray>..."
+world-imported: "<green>✔ World <yellow>{world}<green> imported successfully."
+world-import-failed: "<red>✗ <dark_red>Failed to import world <yellow>{world}<dark_red>. Does the folder exist?"
+
+world-cloning: "<gray>⏳ Cloning world <yellow>{world}<gray> to <yellow>{newworld}<gray>..."
+world-cloned: "<green>✔ World <yellow>{world}<green> cloned to <yellow>{newworld}<green>."
+world-clone-failed: "<red>✗ <dark_red>Failed to clone world <yellow>{world}<dark_red>."
+
+world-loading: "<gray>⏳ Loading world <yellow>{world}<gray>..."
+world-loaded: "<green>✔ World <yellow>{world}<green> loaded."
+world-load-failed: "<red>✗ <dark_red>Failed to load world <yellow>{world}<dark_red>."
+
+world-unloading: "<gray>⏳ Unloading world <yellow>{world}<gray>..."
+world-unloaded: "<green>✔ World <yellow>{world}<green> unloaded."
+world-unload-players: "<yellow>⚠ Teleporting {count} player(s) out of <yellow>{world}<yellow> before unloading."
+world-unload-failed: "<red>✗ <dark_red>Failed to unload world <yellow>{world}<dark_red>."
+
+world-deleted: "<green>✔ World <yellow>{world}<green> deleted."
+world-delete-failed: "<red>✗ <dark_red>Failed to delete world <yellow>{world}<dark_red>."
+
+world-removed: "<green>✔ World <yellow>{world}<green> removed from tracking."
+
+world-regenerating: "<yellow>⚠ Regenerating world <yellow>{world}<yellow>. All data will be lost!"
+world-regenerated: "<green>✔ World <yellow>{world}<green> has been regenerated."
+
+# ─── Teleportation ────────────────────────────────────────────────────────────
+teleport-self: "<green>✔ Teleported to <yellow>{world}<green>."
+teleport-other: "<green>✔ Teleported <yellow>{player}<green> to <yellow>{world}<green>."
+teleport-by-other: "<green>✔ You were teleported to <yellow>{world}<green> by <yellow>{sender}<green>."
+teleport-unsafe: "<red>✗ <dark_red>Could not find a safe location in <yellow>{world}<dark_red>."
+teleport-no-access: "<red>✗ <dark_red>You don't have access to world <yellow>{world}<dark_red>."
+teleport-blacklisted: "<red>✗ <dark_red>You cannot travel to <yellow>{world}<dark_red> from here."
+teleport-player-limit: "<red>✗ <dark_red>World <yellow>{world}<dark_red> has reached its player limit."
+
+# ─── Spawn ────────────────────────────────────────────────────────────────────
+spawn-set: "<green>✔ Spawn for <yellow>{world}<green> set to your current location."
+spawn-teleport-self: "<green>✔ Teleported to spawn of <yellow>{world}<green>."
+spawn-teleport-other: "<green>✔ Teleported <yellow>{player}<green> to spawn of <yellow>{world}<green>."
+
+# ─── World properties ─────────────────────────────────────────────────────────
+property-set: "<green>✔ Property <aqua>{property}<green> set to <yellow>{value}<green> in <yellow>{world}<green>."
+property-added: "<green>✔ Added <yellow>{value}<green> to <aqua>{property}<green> in <yellow>{world}<green>."
+property-removed: "<green>✔ Removed <yellow>{value}<green> from <aqua>{property}<green> in <yellow>{world}<green>."
+property-cleared: "<green>✔ Cleared <aqua>{property}<green> in <yellow>{world}<green>."
+property-invalid-value: "<red>✗ <dark_red>Invalid value <yellow>{value}<dark_red> for property <aqua>{property}<dark_red>."
+property-not-found: "<red>✗ <dark_red>Unknown property <aqua>{property}<dark_red>."
+
+# ─── Game rules ───────────────────────────────────────────────────────────────
+gamerule-set: "<green>✔ Game rule <aqua>{rule}<green> set to <yellow>{value}<green> in <yellow>{world}<green>."
+gamerule-reset: "<green>✔ Game rule <aqua>{rule}<green> reset in <yellow>{world}<green>."
+gamerule-not-found: "<red>✗ <dark_red>Unknown game rule <aqua>{rule}<dark_red>."
+
+# ─── Anchors ──────────────────────────────────────────────────────────────────
+anchor-created: "<green>✔ Anchor <yellow>{name}<green> created at your location."
+anchor-deleted: "<green>✔ Anchor <yellow>{name}<green> deleted."
+anchor-not-found: "<red>✗ <dark_red>Anchor <yellow>{name}<dark_red> does not exist."
+anchor-already-exists: "<yellow>⚠ Anchor <yellow>{name}<yellow> already exists. Use <green>/dim anchor delete {name}<yellow> first."
+anchor-teleport: "<green>✔ Teleported to anchor <yellow>{name}<green>."
+
+# ─── Purge ────────────────────────────────────────────────────────────────────
+purge-complete: "<green>✔ Purged <yellow>{count}<green> entity/entities of type <aqua>{type}<green> from <yellow>{world}<green>."
+purge-invalid-type: "<red>✗ <dark_red>Unknown entity type <yellow>{type}<dark_red>."
+
+# ─── List ─────────────────────────────────────────────────────────────────────
+list-header: "<dark_aqua>━━━━━━━━━━ <aqua><bold>Dimension Worlds</bold><dark_aqua> ━━━━━━━━━━"
+list-entry-loaded: "  <green>● <yellow>{world} <dark_gray>│ <gray>{env} <dark_gray>│ <white>{players} players"
+list-entry-unloaded: "  <dark_gray>○ <gray>{world} <dark_gray>│ <dark_gray>{env} │ <red>[unloaded]"
+list-entry-hidden: "  <dark_gray>○ <gray>{world} <dark_gray>│ <dark_gray>{env} │ <gold>[hidden]"
+list-footer: "<dark_aqua>━━━━ <gray>Page <white>{page}<gray>/<white>{total} <dark_aqua>━━━━"
+list-no-worlds: "<yellow>No worlds are currently tracked by Dimension."
+
+# ─── Info ─────────────────────────────────────────────────────────────────────
+info-header: "<dark_aqua>━━━━━━━━━━ <aqua><bold>World Info: {world}</bold><dark_aqua> ━━━━━━━━━━"
+info-alias: "  <gray>Alias: <white>{value}"
+info-environment: "  <gray>Environment: <white>{value}"
+info-generator: "  <gray>Generator: <white>{value}"
+info-seed: "  <gray>Seed: <white>{value}"
+info-gamemode: "  <gray>Gamemode: <white>{value}"
+info-difficulty: "  <gray>Difficulty: <white>{value}"
+info-pvp: "  <gray>PvP: <white>{value}"
+info-animals: "  <gray>Animals: <white>{value}"
+info-monsters: "  <gray>Monsters: <white>{value}"
+info-players: "  <gray>Players: <white>{value}"
+info-spawn: "  <gray>Spawn: <white>{value}"
+info-footer: "<dark_aqua>━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+
+# ─── Who ──────────────────────────────────────────────────────────────────────
+who-header: "<dark_aqua>━━━━━━━━━━ <aqua><bold>Players by World</bold><dark_aqua> ━━━━━━━━━━"
+who-entry: "  <yellow>{world} <dark_gray>(<gray>{count}<dark_gray>): <white>{players}"
+who-empty: "  <yellow>{world} <dark_gray>(<gray>0<dark_gray>): <dark_gray>empty"
+who-footer: "<dark_aqua>━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+
+# ─── Coordinates ──────────────────────────────────────────────────────────────
+coord-info: "<dark_aqua>━ <gray>World: <yellow>{world} <dark_aqua>│ <gray>X: <white>{x} <gray>Y: <white>{y} <gray>Z: <white>{z} <dark_aqua>│ <gray>Biome: <white>{biome}"
+
+# ─── Generators ───────────────────────────────────────────────────────────────
+generators-header: "<dark_aqua>━━━━━━━━━━ <aqua><bold>Available Generators</bold><dark_aqua> ━━━━━━━━━━"
+generators-entry: "  <yellow>• <white>{generator}"
+generators-none: "<yellow>No custom generators found (using vanilla only)."
+
+# ─── About ────────────────────────────────────────────────────────────────────
+about-line-1: "<dark_aqua>━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+about-line-2: "  <aqua><bold>Dimension</bold> <gray>v{version}"
+about-line-3: "  <gray>The modern replacement for <red>Multiverse-Core<gray>."
+about-line-4: "  <gray>Author: <white>SneakyWrld"
+about-line-5: "  <gray>Platform: <white>{platform}"
+about-line-6: "  <gray>Server: <white>{server}"
+about-line-7: "  <gray>Worlds tracked: <white>{worlds}"
+about-line-8: "<dark_aqua>━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+
+# ─── Migration ────────────────────────────────────────────────────────────────
+migrate-not-found: "<red>✗ <dark_red>Could not find Multiverse-Core's worlds.yml. Is Multiverse-Core installed?"
+migrate-starting: "<gray>⏳ Reading Multiverse-Core configuration and importing worlds..."
+migrate-no-worlds: "<yellow>⚠ Multiverse-Core's worlds.yml exists but contains no worlds."
+migrate-complete: "<green>✔ Migration complete. <white>{imported}<green> world(s) imported, <white>{skipped}<green> skipped (already tracked)."
+migrate-failed: "<red>✗ <dark_red>Migration failed. Check the console for details."
+
+# ─── Help ─────────────────────────────────────────────────────────────────────
+help-title: "<dark_aqua>━━━━━━━━━━ <aqua><bold>Dimension</bold> <gray>— World Management by <white>SneakyWrld<dark_aqua> ━━━━━━━━━━"
+help-subcommands-header: "<gray>Subcommands:"
+help-entry: "  <yellow>/dim {cmd} <dark_gray>— <white>{desc}"
+
+# ─── Anchor list ──────────────────────────────────────────────────────────────
+anchor-list-entry: "  <yellow>• <white>{name}"
+
+# ─── Gamerule list ────────────────────────────────────────────────────────────
+gamerule-list-header: "<dark_aqua>━━━━━━━━━━ <aqua><bold>Game Rules: {world}</bold><dark_aqua> ━━━━━━━━━━"
+gamerule-list-entry: "  <aqua>{rule} <dark_gray>= <white>{value}"
+
+# ─── Portals ──────────────────────────────────────────────────────────────────
+portal-wand-given: "<green>✔ Portal wand given. <gray>Right-click to set Position 1, left-click to set Position 2."
+portal-wand-pos1: "<green>✔ Position 1 set at <white>{x}, {y}, {z}<green>."
+portal-wand-pos2: "<green>✔ Position 2 set at <white>{x}, {y}, {z}<green>."
+portal-wand-ready: "<green>✔ Both positions set! Use <yellow>/dim portal create <name><green> to save."
+portal-wand-diff-world: "<red>✗ <dark_red>Both positions must be in the same world."
+portal-created: "<green>✔ Portal <yellow>{portal}<green> created. <gray>Dest: <yellow>{dest}<gray>, Size: <white>{size}<gray>."
+portal-deleted: "<green>✔ Portal <yellow>{portal}<green> deleted."
+portal-not-found: "<red>✗ <dark_red>Portal <yellow>{portal}<dark_red> does not exist."
+portal-already-exists: "<red>✗ <dark_red>A portal named <yellow>{portal}<dark_red> already exists."
+portal-no-selection: "<red>✗ <dark_red>You have no region selected. Use <yellow>/dim portal wand<dark_red> to select one."
+portal-list-header: "<dark_aqua>━━━━━━━━━━ <aqua><bold>Portals</bold><dark_aqua> ━━━━━━━━━━"
+portal-list-entry: "  <yellow>● <white>{portal} <dark_gray>│ <gray>{world} <dark_gray>│ <yellow>{dest}"
+portal-list-empty: "<yellow>No portals have been created yet. Use <green>/dim portal wand<yellow> to get started."
+portal-info-header: "<dark_aqua>━━━━━━━━━━ <aqua><bold>Portal: {portal}</bold><dark_aqua> ━━━━━━━━━━"
+portal-info-world: "  <gray>World: <white>{value}"
+portal-info-size: "  <gray>Size: <white>{value}"
+portal-info-dest: "  <gray>Destination: <white>{value}"
+portal-info-permission: "  <gray>Permission: <white>{value}"
+portal-info-fee: "  <gray>Entry fee: <white>{value}"
+portal-info-safe: "  <gray>Safe teleport: <white>{value}"
+portal-info-enabled: "  <gray>Enabled: <white>{value}"
+portal-modified: "<green>✔ Portal <yellow>{portal}<green> property <aqua>{property}<green> set to <yellow>{value}<green>."
+portal-enabled: "<green>✔ Portal <yellow>{portal}<green> enabled."
+portal-disabled: "<yellow>⏸ Portal <yellow>{portal}<yellow> disabled."
+portal-tp: "<green>✔ Teleported to destination of portal <yellow>{portal}<green>."
+portal-no-destination: "<red>✗ <dark_red>Portal <yellow>{portal}<dark_red> has no destination set."
+portal-destination-invalid: "<red>✗ <dark_red>Could not resolve destination <yellow>{dest}<dark_red> for portal <yellow>{portal}<dark_red>."
+portal-no-permission: "<red>✗ <dark_red>You don't have permission to use portal <yellow>{portal}<dark_red>."
+portal-gui-create-hint: "<gray>You have been given a portal wand. <yellow>Right-click<gray> to set corner 1, <yellow>left-click<gray> for corner 2, then type <green>/dim portal create <name><gray>."
+
+# ─── Version ──────────────────────────────────────────────────────────────────
+version-info: |-
+  <dark_aqua>━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  <aqua><bold>Dimension</bold> <gray>v{version}
+  <gray>Author: <white>SneakyWrld
+  <gray>Platform: <white>{server}
+  <gray>Worlds tracked: <white>{worlds}
+  <dark_aqua>━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━

@@ -1,0 +1,12 @@
+# === Skript's variable storage ===
+# Please do not modify this file manually!
+#
+# version: 2.15.3
+
+hub.pitch, float, C0DA25C0
+hub.world, world, 81046E616D6520801B546F757269434E5061726B4F75722F687562267061726B6F757231
+hub.x, double, C06F100000000000
+hub.y, long, 0000000000000093
+hub.yaw, float, 4333A76E
+hub.z, double, C047400000000000
+

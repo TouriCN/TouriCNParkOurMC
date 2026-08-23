@@ -1,0 +1,1151 @@
+[08-17 10:59:57]: [INFO] Created column 'regdate' and set the current timestamp, 1786935597673, to all 0 rows
+[08-17 10:59:57]: [INFO] SQLite Setup finished
+[08-17 10:59:57]: [INFO] No supported permissions system found! Permissions are disabled!
+[08-17 10:59:57]: [INFO] Downloading GEO IP database, because the old database is older than 30 days or doesn't exist
+[08-17 10:59:57]: [WARN] No MaxMind credentials found in the configuration file! GeoIp protections will be disabled.
+[08-17 10:59:57]: [INFO] There is no newer GEO IP database uploaded to MaxMind. Using the old one for now.
+[08-17 10:59:57]: [WARN] Could not download GeoLiteAPI database [FileNotFoundException]: plugins/AuthMe/GeoLite2-Country.mmdb (没有那个文件或目录)
+[08-17 10:59:57]: java.io.FileNotFoundException: plugins/AuthMe/GeoLite2-Country.mmdb (没有那个文件或目录)
+	at java.base/java.io.RandomAccessFile.open0(Native Method)
+	at java.base/java.io.RandomAccessFile.open(RandomAccessFile.java:356)
+	at java.base/java.io.RandomAccessFile.<init>(RandomAccessFile.java:273)
+	at java.base/java.io.RandomAccessFile.<init>(RandomAccessFile.java:223)
+	at com.maxmind.db.BufferHolder.<init>(BufferHolder.java:19)
+	at com.maxmind.db.Reader.<init>(Reader.java:119)
+	at com.maxmind.geoip2.DatabaseReader.<init>(DatabaseReader.java:106)
+	at com.maxmind.geoip2.DatabaseReader$Builder.build(DatabaseReader.java:238)
+	at AuthMe-6.0.0-Folia.jar//fr.xephi.authme.service.GeoIpService.startReading(GeoIpService.java:183)
+	at AuthMe-6.0.0-Folia.jar//fr.xephi.authme.service.GeoIpService.updateDatabase(GeoIpService.java:150)
+	at AuthMe-6.0.0-Folia.jar//fr.xephi.authme.platform.FoliaPlatformAdapter.lambda$runAsyncTask$0(FoliaPlatformAdapter.java:70)
+	at io.papermc.paper.threadedregions.scheduler.FoliaAsyncScheduler$AsyncScheduledTask.run(FoliaAsyncScheduler.java:216)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+
+[08-17 10:59:57]: [WARN] WARNING! The protectInventory feature requires PacketEvents! Disabling it...
+[08-17 10:59:58]: [INFO] AuthMe 6.0.0 build n.2734 successfully enabled!
+[08-17 11:28:11]: [INFO] SQLite Setup finished
+[08-17 11:28:11]: [INFO] Unhooked from Permissions!
+[08-17 11:28:11]: [INFO] No supported permissions system found! Permissions are disabled!
+[08-17 11:28:11]: [WARN] WARNING! The protectInventory feature requires PacketEvents! Disabling it...
+[08-17 11:28:11]: [WARN] WARNING! The denyTabComplete feature requires PacketEvents! Disabling it...
+[08-17 12:16:05]: [INFO] SQLite Setup finished
+[08-17 12:16:05]: [INFO] Unhooked from Permissions!
+[08-17 12:16:05]: [INFO] No supported permissions system found! Permissions are disabled!
+[08-17 12:16:05]: [WARN] WARNING! The protectInventory feature requires PacketEvents! Disabling it...
+[08-17 12:16:05]: [WARN] WARNING! The denyTabComplete feature requires PacketEvents! Disabling it...
+[08-17 12:17:30]: [FINE] .LinYaOVO2014486 logged in 203.168.24.239
+[08-17 12:17:30]: [FINE] .LinYaOVO2014486 registered 203.168.24.239
+[08-17 13:21:57]: [FINE] .LinYaOVO2014486 logged in 203.168.24.239
+[08-17 13:35:30]: [INFO] AuthMe 6.0.0-b2734 disabled!
+[08-17 13:36:02]: [INFO] SQLite Setup finished
+[08-17 13:36:03]: [INFO] No supported permissions system found! Permissions are disabled!
+[08-17 13:36:03]: [INFO] Downloading GEO IP database, because the old database is older than 30 days or doesn't exist
+[08-17 13:36:03]: [WARN] No MaxMind credentials found in the configuration file! GeoIp protections will be disabled.
+[08-17 13:36:03]: [INFO] There is no newer GEO IP database uploaded to MaxMind. Using the old one for now.
+[08-17 13:36:03]: [WARN] Could not download GeoLiteAPI database [FileNotFoundException]: plugins/AuthMe/GeoLite2-Country.mmdb (没有那个文件或目录)
+[08-17 13:36:03]: java.io.FileNotFoundException: plugins/AuthMe/GeoLite2-Country.mmdb (没有那个文件或目录)
+	at java.base/java.io.RandomAccessFile.open0(Native Method)
+	at java.base/java.io.RandomAccessFile.open(RandomAccessFile.java:356)
+	at java.base/java.io.RandomAccessFile.<init>(RandomAccessFile.java:273)
+	at java.base/java.io.RandomAccessFile.<init>(RandomAccessFile.java:223)
+	at com.maxmind.db.BufferHolder.<init>(BufferHolder.java:19)
+	at com.maxmind.db.Reader.<init>(Reader.java:119)
+	at com.maxmind.geoip2.DatabaseReader.<init>(DatabaseReader.java:106)
+	at com.maxmind.geoip2.DatabaseReader$Builder.build(DatabaseReader.java:238)
+	at AuthMe-6.0.0-Folia.jar//fr.xephi.authme.service.GeoIpService.startReading(GeoIpService.java:183)
+	at AuthMe-6.0.0-Folia.jar//fr.xephi.authme.service.GeoIpService.updateDatabase(GeoIpService.java:150)
+	at AuthMe-6.0.0-Folia.jar//fr.xephi.authme.platform.FoliaPlatformAdapter.lambda$runAsyncTask$0(FoliaPlatformAdapter.java:70)
+	at io.papermc.paper.threadedregions.scheduler.FoliaAsyncScheduler$AsyncScheduledTask.run(FoliaAsyncScheduler.java:216)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+
+[08-17 13:36:03]: [WARN] WARNING! The protectInventory feature requires PacketEvents! Disabling it...
+[08-17 13:36:03]: [WARN] WARNING! The denyTabComplete feature requires PacketEvents! Disabling it...
+[08-17 13:36:03]: [INFO] AuthMe 6.0.0 build n.2734 successfully enabled!
+[08-17 13:41:17]: [INFO] AuthMe 6.0.0-b2734 disabled!
+[08-17 13:41:46]: [INFO] SQLite Setup finished
+[08-17 13:41:46]: [INFO] No supported permissions system found! Permissions are disabled!
+[08-17 13:41:46]: [INFO] Downloading GEO IP database, because the old database is older than 30 days or doesn't exist
+[08-17 13:41:46]: [WARN] No MaxMind credentials found in the configuration file! GeoIp protections will be disabled.
+[08-17 13:41:46]: [INFO] There is no newer GEO IP database uploaded to MaxMind. Using the old one for now.
+[08-17 13:41:46]: [WARN] Could not download GeoLiteAPI database [FileNotFoundException]: plugins/AuthMe/GeoLite2-Country.mmdb (没有那个文件或目录)
+[08-17 13:41:46]: java.io.FileNotFoundException: plugins/AuthMe/GeoLite2-Country.mmdb (没有那个文件或目录)
+	at java.base/java.io.RandomAccessFile.open0(Native Method)
+	at java.base/java.io.RandomAccessFile.open(RandomAccessFile.java:356)
+	at java.base/java.io.RandomAccessFile.<init>(RandomAccessFile.java:273)
+	at java.base/java.io.RandomAccessFile.<init>(RandomAccessFile.java:223)
+	at com.maxmind.db.BufferHolder.<init>(BufferHolder.java:19)
+	at com.maxmind.db.Reader.<init>(Reader.java:119)
+	at com.maxmind.geoip2.DatabaseReader.<init>(DatabaseReader.java:106)
+	at com.maxmind.geoip2.DatabaseReader$Builder.build(DatabaseReader.java:238)
+	at AuthMe-6.0.0-Folia.jar//fr.xephi.authme.service.GeoIpService.startReading(GeoIpService.java:183)
+	at AuthMe-6.0.0-Folia.jar//fr.xephi.authme.service.GeoIpService.updateDatabase(GeoIpService.java:150)
+	at AuthMe-6.0.0-Folia.jar//fr.xephi.authme.platform.FoliaPlatformAdapter.lambda$runAsyncTask$0(FoliaPlatformAdapter.java:70)
+	at io.papermc.paper.threadedregions.scheduler.FoliaAsyncScheduler$AsyncScheduledTask.run(FoliaAsyncScheduler.java:216)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+
+[08-17 13:41:46]: [WARN] WARNING! The protectInventory feature requires PacketEvents! Disabling it...
+[08-17 13:41:46]: [WARN] WARNING! The denyTabComplete feature requires PacketEvents! Disabling it...
+[08-17 13:41:46]: [INFO] AuthMe 6.0.0 build n.2734 successfully enabled!
+[08-17 13:53:13]: [FINE] .LinYaOVO2014486 logged in 203.168.24.239
+[08-17 14:06:16]: [FINE] .LinYaOVO2014486 logged in 203.168.24.239
+[08-17 14:09:52]: [FINE] .LinYaOVO2014486 logged in 203.168.24.239
+[08-17 14:11:41]: [FINE] .LinYaOVO2014486 logged in 203.168.24.239
+[08-17 14:18:12]: [FINE] .LinYaOVO2014486 logged in 203.168.24.239
+[08-17 14:24:35]: [FINE] .LinYaOVO2014486 logged in 203.168.24.239
+[08-17 14:33:40]: [INFO] AuthMe 6.0.0-b2734 disabled!
+[08-17 14:34:09]: [INFO] SQLite Setup finished
+[08-17 14:34:09]: [INFO] No supported permissions system found! Permissions are disabled!
+[08-17 14:34:09]: [INFO] Downloading GEO IP database, because the old database is older than 30 days or doesn't exist
+[08-17 14:34:09]: [WARN] No MaxMind credentials found in the configuration file! GeoIp protections will be disabled.
+[08-17 14:34:09]: [INFO] There is no newer GEO IP database uploaded to MaxMind. Using the old one for now.
+[08-17 14:34:09]: [WARN] Could not download GeoLiteAPI database [FileNotFoundException]: plugins/AuthMe/GeoLite2-Country.mmdb (没有那个文件或目录)
+[08-17 14:34:09]: java.io.FileNotFoundException: plugins/AuthMe/GeoLite2-Country.mmdb (没有那个文件或目录)
+	at java.base/java.io.RandomAccessFile.open0(Native Method)
+	at java.base/java.io.RandomAccessFile.open(RandomAccessFile.java:356)
+	at java.base/java.io.RandomAccessFile.<init>(RandomAccessFile.java:273)
+	at java.base/java.io.RandomAccessFile.<init>(RandomAccessFile.java:223)
+	at com.maxmind.db.BufferHolder.<init>(BufferHolder.java:19)
+	at com.maxmind.db.Reader.<init>(Reader.java:119)
+	at com.maxmind.geoip2.DatabaseReader.<init>(DatabaseReader.java:106)
+	at com.maxmind.geoip2.DatabaseReader$Builder.build(DatabaseReader.java:238)
+	at AuthMe-6.0.0-Folia.jar//fr.xephi.authme.service.GeoIpService.startReading(GeoIpService.java:183)
+	at AuthMe-6.0.0-Folia.jar//fr.xephi.authme.service.GeoIpService.updateDatabase(GeoIpService.java:150)
+	at AuthMe-6.0.0-Folia.jar//fr.xephi.authme.platform.FoliaPlatformAdapter.lambda$runAsyncTask$0(FoliaPlatformAdapter.java:70)
+	at io.papermc.paper.threadedregions.scheduler.FoliaAsyncScheduler$AsyncScheduledTask.run(FoliaAsyncScheduler.java:216)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+
+[08-17 14:34:10]: [WARN] WARNING! The protectInventory feature requires PacketEvents! Disabling it...
+[08-17 14:34:10]: [WARN] WARNING! The denyTabComplete feature requires PacketEvents! Disabling it...
+[08-17 14:34:10]: [INFO] AuthMe 6.0.0 build n.2734 successfully enabled!
+[08-17 21:21:31]: [INFO] Unhooked from Permissions!
+[08-17 21:21:31]: [INFO] No supported permissions system found! Permissions are disabled!
+[08-17 21:21:31]: [INFO] SQLite Setup finished
+[08-17 21:21:31]: [WARN] WARNING! The protectInventory feature requires PacketEvents! Disabling it...
+[08-17 21:21:31]: [WARN] WARNING! The denyTabComplete feature requires PacketEvents! Disabling it...
+[08-17 23:11:49]: [INFO] AuthMe 6.0.0-b2734 disabled!
+[08-17 23:13:15]: [INFO] SQLite Setup finished
+[08-17 23:13:15]: [INFO] No supported permissions system found! Permissions are disabled!
+[08-17 23:13:15]: [INFO] Downloading GEO IP database, because the old database is older than 30 days or doesn't exist
+[08-17 23:13:15]: [WARN] No MaxMind credentials found in the configuration file! GeoIp protections will be disabled.
+[08-17 23:13:15]: [INFO] There is no newer GEO IP database uploaded to MaxMind. Using the old one for now.
+[08-17 23:13:15]: [WARN] Could not download GeoLiteAPI database [FileNotFoundException]: plugins/AuthMe/GeoLite2-Country.mmdb (没有那个文件或目录)
+[08-17 23:13:15]: java.io.FileNotFoundException: plugins/AuthMe/GeoLite2-Country.mmdb (没有那个文件或目录)
+	at java.base/java.io.RandomAccessFile.open0(Native Method)
+	at java.base/java.io.RandomAccessFile.open(RandomAccessFile.java:356)
+	at java.base/java.io.RandomAccessFile.<init>(RandomAccessFile.java:273)
+	at java.base/java.io.RandomAccessFile.<init>(RandomAccessFile.java:223)
+	at com.maxmind.db.BufferHolder.<init>(BufferHolder.java:19)
+	at com.maxmind.db.Reader.<init>(Reader.java:119)
+	at com.maxmind.geoip2.DatabaseReader.<init>(DatabaseReader.java:106)
+	at com.maxmind.geoip2.DatabaseReader$Builder.build(DatabaseReader.java:238)
+	at AuthMe-6.0.0-Folia.jar//fr.xephi.authme.service.GeoIpService.startReading(GeoIpService.java:183)
+	at AuthMe-6.0.0-Folia.jar//fr.xephi.authme.service.GeoIpService.updateDatabase(GeoIpService.java:150)
+	at AuthMe-6.0.0-Folia.jar//fr.xephi.authme.platform.FoliaPlatformAdapter.lambda$runAsyncTask$0(FoliaPlatformAdapter.java:70)
+	at io.papermc.paper.threadedregions.scheduler.FoliaAsyncScheduler$AsyncScheduledTask.run(FoliaAsyncScheduler.java:216)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+
+[08-17 23:13:16]: [WARN] WARNING! The protectInventory feature requires PacketEvents! Disabling it...
+[08-17 23:13:16]: [WARN] WARNING! The denyTabComplete feature requires PacketEvents! Disabling it...
+[08-17 23:13:16]: [INFO] AuthMe 6.0.0 build n.2734 successfully enabled!
+[08-17 23:17:28]: [INFO] AuthMe 6.0.0-b2734 disabled!
+[08-17 23:18:13]: [INFO] SQLite Setup finished
+[08-17 23:18:13]: [INFO] No supported permissions system found! Permissions are disabled!
+[08-17 23:18:13]: [INFO] Downloading GEO IP database, because the old database is older than 30 days or doesn't exist
+[08-17 23:18:13]: [WARN] No MaxMind credentials found in the configuration file! GeoIp protections will be disabled.
+[08-17 23:18:13]: [INFO] There is no newer GEO IP database uploaded to MaxMind. Using the old one for now.
+[08-17 23:18:13]: [WARN] Could not download GeoLiteAPI database [FileNotFoundException]: plugins/AuthMe/GeoLite2-Country.mmdb (没有那个文件或目录)
+[08-17 23:18:13]: java.io.FileNotFoundException: plugins/AuthMe/GeoLite2-Country.mmdb (没有那个文件或目录)
+	at java.base/java.io.RandomAccessFile.open0(Native Method)
+	at java.base/java.io.RandomAccessFile.open(RandomAccessFile.java:356)
+	at java.base/java.io.RandomAccessFile.<init>(RandomAccessFile.java:273)
+	at java.base/java.io.RandomAccessFile.<init>(RandomAccessFile.java:223)
+	at com.maxmind.db.BufferHolder.<init>(BufferHolder.java:19)
+	at com.maxmind.db.Reader.<init>(Reader.java:119)
+	at com.maxmind.geoip2.DatabaseReader.<init>(DatabaseReader.java:106)
+	at com.maxmind.geoip2.DatabaseReader$Builder.build(DatabaseReader.java:238)
+	at AuthMe-6.0.0-Folia.jar//fr.xephi.authme.service.GeoIpService.startReading(GeoIpService.java:183)
+	at AuthMe-6.0.0-Folia.jar//fr.xephi.authme.service.GeoIpService.updateDatabase(GeoIpService.java:150)
+	at AuthMe-6.0.0-Folia.jar//fr.xephi.authme.platform.FoliaPlatformAdapter.lambda$runAsyncTask$0(FoliaPlatformAdapter.java:70)
+	at io.papermc.paper.threadedregions.scheduler.FoliaAsyncScheduler$AsyncScheduledTask.run(FoliaAsyncScheduler.java:216)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+
+[08-17 23:18:13]: [WARN] WARNING! The protectInventory feature requires PacketEvents! Disabling it...
+[08-17 23:18:13]: [WARN] WARNING! The denyTabComplete feature requires PacketEvents! Disabling it...
+[08-17 23:18:13]: [INFO] AuthMe 6.0.0 build n.2734 successfully enabled!
+[08-17 23:21:47]: [INFO] AuthMe 6.0.0-b2734 disabled!
+[08-17 23:38:08]: [INFO] SQLite Setup finished
+[08-17 23:38:08]: [INFO] No supported permissions system found! Permissions are disabled!
+[08-17 23:38:09]: [INFO] Downloading GEO IP database, because the old database is older than 30 days or doesn't exist
+[08-17 23:38:09]: [WARN] No MaxMind credentials found in the configuration file! GeoIp protections will be disabled.
+[08-17 23:38:09]: [INFO] There is no newer GEO IP database uploaded to MaxMind. Using the old one for now.
+[08-17 23:38:09]: [WARN] Could not download GeoLiteAPI database [FileNotFoundException]: plugins/AuthMe/GeoLite2-Country.mmdb (没有那个文件或目录)
+[08-17 23:38:09]: java.io.FileNotFoundException: plugins/AuthMe/GeoLite2-Country.mmdb (没有那个文件或目录)
+	at java.base/java.io.RandomAccessFile.open0(Native Method)
+	at java.base/java.io.RandomAccessFile.open(RandomAccessFile.java:356)
+	at java.base/java.io.RandomAccessFile.<init>(RandomAccessFile.java:273)
+	at java.base/java.io.RandomAccessFile.<init>(RandomAccessFile.java:223)
+	at com.maxmind.db.BufferHolder.<init>(BufferHolder.java:19)
+	at com.maxmind.db.Reader.<init>(Reader.java:119)
+	at com.maxmind.geoip2.DatabaseReader.<init>(DatabaseReader.java:106)
+	at com.maxmind.geoip2.DatabaseReader$Builder.build(DatabaseReader.java:238)
+	at AuthMe-6.0.0-Folia.jar//fr.xephi.authme.service.GeoIpService.startReading(GeoIpService.java:183)
+	at AuthMe-6.0.0-Folia.jar//fr.xephi.authme.service.GeoIpService.updateDatabase(GeoIpService.java:150)
+	at AuthMe-6.0.0-Folia.jar//fr.xephi.authme.platform.FoliaPlatformAdapter.lambda$runAsyncTask$0(FoliaPlatformAdapter.java:70)
+	at io.papermc.paper.threadedregions.scheduler.FoliaAsyncScheduler$AsyncScheduledTask.run(FoliaAsyncScheduler.java:216)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+
+[08-17 23:38:09]: [WARN] WARNING! The protectInventory feature requires PacketEvents! Disabling it...
+[08-17 23:38:09]: [WARN] WARNING! The denyTabComplete feature requires PacketEvents! Disabling it...
+[08-17 23:38:09]: [INFO] AuthMe 6.0.0 build n.2734 successfully enabled!
+[08-18 08:12:04]: [INFO] AuthMe 6.0.0-b2734 disabled!
+[08-18 08:12:39]: [INFO] SQLite Setup finished
+[08-18 08:12:39]: [INFO] No supported permissions system found! Permissions are disabled!
+[08-18 08:12:39]: [INFO] Downloading GEO IP database, because the old database is older than 30 days or doesn't exist
+[08-18 08:12:39]: [WARN] No MaxMind credentials found in the configuration file! GeoIp protections will be disabled.
+[08-18 08:12:39]: [INFO] There is no newer GEO IP database uploaded to MaxMind. Using the old one for now.
+[08-18 08:12:39]: [WARN] Could not download GeoLiteAPI database [FileNotFoundException]: plugins/AuthMe/GeoLite2-Country.mmdb (没有那个文件或目录)
+[08-18 08:12:39]: java.io.FileNotFoundException: plugins/AuthMe/GeoLite2-Country.mmdb (没有那个文件或目录)
+	at java.base/java.io.RandomAccessFile.open0(Native Method)
+	at java.base/java.io.RandomAccessFile.open(RandomAccessFile.java:356)
+	at java.base/java.io.RandomAccessFile.<init>(RandomAccessFile.java:273)
+	at java.base/java.io.RandomAccessFile.<init>(RandomAccessFile.java:223)
+	at com.maxmind.db.BufferHolder.<init>(BufferHolder.java:19)
+	at com.maxmind.db.Reader.<init>(Reader.java:119)
+	at com.maxmind.geoip2.DatabaseReader.<init>(DatabaseReader.java:106)
+	at com.maxmind.geoip2.DatabaseReader$Builder.build(DatabaseReader.java:238)
+	at AuthMe-6.0.0-Folia.jar//fr.xephi.authme.service.GeoIpService.startReading(GeoIpService.java:183)
+	at AuthMe-6.0.0-Folia.jar//fr.xephi.authme.service.GeoIpService.updateDatabase(GeoIpService.java:150)
+	at AuthMe-6.0.0-Folia.jar//fr.xephi.authme.platform.FoliaPlatformAdapter.lambda$runAsyncTask$0(FoliaPlatformAdapter.java:70)
+	at io.papermc.paper.threadedregions.scheduler.FoliaAsyncScheduler$AsyncScheduledTask.run(FoliaAsyncScheduler.java:216)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+
+[08-18 08:12:39]: [WARN] WARNING! The protectInventory feature requires PacketEvents! Disabling it...
+[08-18 08:12:39]: [WARN] WARNING! The denyTabComplete feature requires PacketEvents! Disabling it...
+[08-18 08:12:39]: [INFO] AuthMe 6.0.0 build n.2734 successfully enabled!
+[08-18 08:13:54]: [FINE] .LinYaOVO2014486 logged in 203.168.24.239
+[08-18 08:36:50]: [FINE] .LinYaOVO2014486 logged in 203.168.24.239
+[08-18 08:40:07]: [INFO] AuthMe 6.0.0-b2734 disabled!
+[08-18 12:38:49]: [INFO] SQLite Setup finished
+[08-18 12:38:49]: [INFO] No supported permissions system found! Permissions are disabled!
+[08-18 12:38:49]: [INFO] Downloading GEO IP database, because the old database is older than 30 days or doesn't exist
+[08-18 12:38:49]: [WARN] No MaxMind credentials found in the configuration file! GeoIp protections will be disabled.
+[08-18 12:38:49]: [INFO] There is no newer GEO IP database uploaded to MaxMind. Using the old one for now.
+[08-18 12:38:49]: [WARN] Could not download GeoLiteAPI database [FileNotFoundException]: plugins/AuthMe/GeoLite2-Country.mmdb (没有那个文件或目录)
+[08-18 12:38:49]: java.io.FileNotFoundException: plugins/AuthMe/GeoLite2-Country.mmdb (没有那个文件或目录)
+	at java.base/java.io.RandomAccessFile.open0(Native Method)
+	at java.base/java.io.RandomAccessFile.open(RandomAccessFile.java:356)
+	at java.base/java.io.RandomAccessFile.<init>(RandomAccessFile.java:273)
+	at java.base/java.io.RandomAccessFile.<init>(RandomAccessFile.java:223)
+	at com.maxmind.db.BufferHolder.<init>(BufferHolder.java:19)
+	at com.maxmind.db.Reader.<init>(Reader.java:119)
+	at com.maxmind.geoip2.DatabaseReader.<init>(DatabaseReader.java:106)
+	at com.maxmind.geoip2.DatabaseReader$Builder.build(DatabaseReader.java:238)
+	at AuthMe-6.0.0-Folia.jar//fr.xephi.authme.service.GeoIpService.startReading(GeoIpService.java:183)
+	at AuthMe-6.0.0-Folia.jar//fr.xephi.authme.service.GeoIpService.updateDatabase(GeoIpService.java:150)
+	at AuthMe-6.0.0-Folia.jar//fr.xephi.authme.platform.FoliaPlatformAdapter.lambda$runAsyncTask$0(FoliaPlatformAdapter.java:70)
+	at io.papermc.paper.threadedregions.scheduler.FoliaAsyncScheduler$AsyncScheduledTask.run(FoliaAsyncScheduler.java:216)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+
+[08-18 12:38:49]: [WARN] WARNING! The protectInventory feature requires PacketEvents! Disabling it...
+[08-18 12:38:49]: [WARN] WARNING! The denyTabComplete feature requires PacketEvents! Disabling it...
+[08-18 12:38:49]: [INFO] AuthMe 6.0.0 build n.2734 successfully enabled!
+[08-18 13:20:40]: [INFO] AuthMe 6.0.0-b2734 disabled!
+[08-18 13:21:17]: [INFO] SQLite Setup finished
+[08-18 13:21:17]: [INFO] No supported permissions system found! Permissions are disabled!
+[08-18 13:21:17]: [INFO] Downloading GEO IP database, because the old database is older than 30 days or doesn't exist
+[08-18 13:21:17]: [WARN] No MaxMind credentials found in the configuration file! GeoIp protections will be disabled.
+[08-18 13:21:17]: [INFO] There is no newer GEO IP database uploaded to MaxMind. Using the old one for now.
+[08-18 13:21:17]: [WARN] Could not download GeoLiteAPI database [FileNotFoundException]: plugins/AuthMe/GeoLite2-Country.mmdb (没有那个文件或目录)
+[08-18 13:21:17]: java.io.FileNotFoundException: plugins/AuthMe/GeoLite2-Country.mmdb (没有那个文件或目录)
+	at java.base/java.io.RandomAccessFile.open0(Native Method)
+	at java.base/java.io.RandomAccessFile.open(RandomAccessFile.java:356)
+	at java.base/java.io.RandomAccessFile.<init>(RandomAccessFile.java:273)
+	at java.base/java.io.RandomAccessFile.<init>(RandomAccessFile.java:223)
+	at com.maxmind.db.BufferHolder.<init>(BufferHolder.java:19)
+	at com.maxmind.db.Reader.<init>(Reader.java:119)
+	at com.maxmind.geoip2.DatabaseReader.<init>(DatabaseReader.java:106)
+	at com.maxmind.geoip2.DatabaseReader$Builder.build(DatabaseReader.java:238)
+	at AuthMe-6.0.0-Folia.jar//fr.xephi.authme.service.GeoIpService.startReading(GeoIpService.java:183)
+	at AuthMe-6.0.0-Folia.jar//fr.xephi.authme.service.GeoIpService.updateDatabase(GeoIpService.java:150)
+	at AuthMe-6.0.0-Folia.jar//fr.xephi.authme.platform.FoliaPlatformAdapter.lambda$runAsyncTask$0(FoliaPlatformAdapter.java:70)
+	at io.papermc.paper.threadedregions.scheduler.FoliaAsyncScheduler$AsyncScheduledTask.run(FoliaAsyncScheduler.java:216)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+
+[08-18 13:21:17]: [WARN] WARNING! The protectInventory feature requires PacketEvents! Disabling it...
+[08-18 13:21:17]: [WARN] WARNING! The denyTabComplete feature requires PacketEvents! Disabling it...
+[08-18 13:21:17]: [INFO] AuthMe 6.0.0 build n.2734 successfully enabled!
+[08-18 13:28:16]: [FINE] CYY logged in 182.90.200.241
+[08-18 13:28:16]: [FINE] CYY registered 182.90.200.241
+[08-18 13:36:03]: [FINE] CYY logged in 182.90.200.241
+[08-18 13:58:08]: [INFO] AuthMe 6.0.0-b2734 disabled!
+[08-18 13:58:42]: [INFO] SQLite Setup finished
+[08-18 13:58:42]: [INFO] No supported permissions system found! Permissions are disabled!
+[08-18 13:58:42]: [INFO] Downloading GEO IP database, because the old database is older than 30 days or doesn't exist
+[08-18 13:58:42]: [WARN] No MaxMind credentials found in the configuration file! GeoIp protections will be disabled.
+[08-18 13:58:42]: [INFO] There is no newer GEO IP database uploaded to MaxMind. Using the old one for now.
+[08-18 13:58:42]: [WARN] Could not download GeoLiteAPI database [FileNotFoundException]: plugins/AuthMe/GeoLite2-Country.mmdb (没有那个文件或目录)
+[08-18 13:58:42]: java.io.FileNotFoundException: plugins/AuthMe/GeoLite2-Country.mmdb (没有那个文件或目录)
+	at java.base/java.io.RandomAccessFile.open0(Native Method)
+	at java.base/java.io.RandomAccessFile.open(RandomAccessFile.java:356)
+	at java.base/java.io.RandomAccessFile.<init>(RandomAccessFile.java:273)
+	at java.base/java.io.RandomAccessFile.<init>(RandomAccessFile.java:223)
+	at com.maxmind.db.BufferHolder.<init>(BufferHolder.java:19)
+	at com.maxmind.db.Reader.<init>(Reader.java:119)
+	at com.maxmind.geoip2.DatabaseReader.<init>(DatabaseReader.java:106)
+	at com.maxmind.geoip2.DatabaseReader$Builder.build(DatabaseReader.java:238)
+	at AuthMe-6.0.0-Folia.jar//fr.xephi.authme.service.GeoIpService.startReading(GeoIpService.java:183)
+	at AuthMe-6.0.0-Folia.jar//fr.xephi.authme.service.GeoIpService.updateDatabase(GeoIpService.java:150)
+	at AuthMe-6.0.0-Folia.jar//fr.xephi.authme.platform.FoliaPlatformAdapter.lambda$runAsyncTask$0(FoliaPlatformAdapter.java:70)
+	at io.papermc.paper.threadedregions.scheduler.FoliaAsyncScheduler$AsyncScheduledTask.run(FoliaAsyncScheduler.java:216)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+
+[08-18 13:58:42]: [WARN] WARNING! The protectInventory feature requires PacketEvents! Disabling it...
+[08-18 13:58:42]: [WARN] WARNING! The denyTabComplete feature requires PacketEvents! Disabling it...
+[08-18 13:58:42]: [INFO] AuthMe 6.0.0 build n.2734 successfully enabled!
+[08-18 14:12:04]: [INFO] AuthMe 6.0.0-b2734 disabled!
+[08-18 14:12:38]: [INFO] SQLite Setup finished
+[08-18 14:12:38]: [INFO] No supported permissions system found! Permissions are disabled!
+[08-18 14:12:38]: [INFO] Downloading GEO IP database, because the old database is older than 30 days or doesn't exist
+[08-18 14:12:38]: [WARN] No MaxMind credentials found in the configuration file! GeoIp protections will be disabled.
+[08-18 14:12:38]: [INFO] There is no newer GEO IP database uploaded to MaxMind. Using the old one for now.
+[08-18 14:12:38]: [WARN] Could not download GeoLiteAPI database [FileNotFoundException]: plugins/AuthMe/GeoLite2-Country.mmdb (没有那个文件或目录)
+[08-18 14:12:38]: java.io.FileNotFoundException: plugins/AuthMe/GeoLite2-Country.mmdb (没有那个文件或目录)
+	at java.base/java.io.RandomAccessFile.open0(Native Method)
+	at java.base/java.io.RandomAccessFile.open(RandomAccessFile.java:356)
+	at java.base/java.io.RandomAccessFile.<init>(RandomAccessFile.java:273)
+	at java.base/java.io.RandomAccessFile.<init>(RandomAccessFile.java:223)
+	at com.maxmind.db.BufferHolder.<init>(BufferHolder.java:19)
+	at com.maxmind.db.Reader.<init>(Reader.java:119)
+	at com.maxmind.geoip2.DatabaseReader.<init>(DatabaseReader.java:106)
+	at com.maxmind.geoip2.DatabaseReader$Builder.build(DatabaseReader.java:238)
+	at AuthMe-6.0.0-Folia.jar//fr.xephi.authme.service.GeoIpService.startReading(GeoIpService.java:183)
+	at AuthMe-6.0.0-Folia.jar//fr.xephi.authme.service.GeoIpService.updateDatabase(GeoIpService.java:150)
+	at AuthMe-6.0.0-Folia.jar//fr.xephi.authme.platform.FoliaPlatformAdapter.lambda$runAsyncTask$0(FoliaPlatformAdapter.java:70)
+	at io.papermc.paper.threadedregions.scheduler.FoliaAsyncScheduler$AsyncScheduledTask.run(FoliaAsyncScheduler.java:216)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+
+[08-18 14:12:38]: [WARN] WARNING! The protectInventory feature requires PacketEvents! Disabling it...
+[08-18 14:12:38]: [WARN] WARNING! The denyTabComplete feature requires PacketEvents! Disabling it...
+[08-18 14:12:38]: [INFO] AuthMe 6.0.0 build n.2734 successfully enabled!
+[08-18 14:30:44]: [INFO] AuthMe 6.0.0-b2734 disabled!
+[08-18 14:37:34]: [INFO] SQLite Setup finished
+[08-18 14:37:34]: [INFO] No supported permissions system found! Permissions are disabled!
+[08-18 14:37:34]: [INFO] Downloading GEO IP database, because the old database is older than 30 days or doesn't exist
+[08-18 14:37:34]: [WARN] No MaxMind credentials found in the configuration file! GeoIp protections will be disabled.
+[08-18 14:37:34]: [INFO] There is no newer GEO IP database uploaded to MaxMind. Using the old one for now.
+[08-18 14:37:34]: [WARN] Could not download GeoLiteAPI database [FileNotFoundException]: plugins/AuthMe/GeoLite2-Country.mmdb (没有那个文件或目录)
+[08-18 14:37:34]: java.io.FileNotFoundException: plugins/AuthMe/GeoLite2-Country.mmdb (没有那个文件或目录)
+	at java.base/java.io.RandomAccessFile.open0(Native Method)
+	at java.base/java.io.RandomAccessFile.open(RandomAccessFile.java:356)
+	at java.base/java.io.RandomAccessFile.<init>(RandomAccessFile.java:273)
+	at java.base/java.io.RandomAccessFile.<init>(RandomAccessFile.java:223)
+	at com.maxmind.db.BufferHolder.<init>(BufferHolder.java:19)
+	at com.maxmind.db.Reader.<init>(Reader.java:119)
+	at com.maxmind.geoip2.DatabaseReader.<init>(DatabaseReader.java:106)
+	at com.maxmind.geoip2.DatabaseReader$Builder.build(DatabaseReader.java:238)
+	at AuthMe-6.0.0-Folia.jar//fr.xephi.authme.service.GeoIpService.startReading(GeoIpService.java:183)
+	at AuthMe-6.0.0-Folia.jar//fr.xephi.authme.service.GeoIpService.updateDatabase(GeoIpService.java:150)
+	at AuthMe-6.0.0-Folia.jar//fr.xephi.authme.platform.FoliaPlatformAdapter.lambda$runAsyncTask$0(FoliaPlatformAdapter.java:70)
+	at io.papermc.paper.threadedregions.scheduler.FoliaAsyncScheduler$AsyncScheduledTask.run(FoliaAsyncScheduler.java:216)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+
+[08-18 14:37:35]: [WARN] WARNING! The protectInventory feature requires PacketEvents! Disabling it...
+[08-18 14:37:35]: [WARN] WARNING! The denyTabComplete feature requires PacketEvents! Disabling it...
+[08-18 14:37:35]: [INFO] AuthMe 6.0.0 build n.2734 successfully enabled!
+[08-18 15:02:14]: [INFO] SQLite Setup finished
+[08-18 15:02:15]: [INFO] No supported permissions system found! Permissions are disabled!
+[08-18 15:02:15]: [INFO] Downloading GEO IP database, because the old database is older than 30 days or doesn't exist
+[08-18 15:02:15]: [WARN] No MaxMind credentials found in the configuration file! GeoIp protections will be disabled.
+[08-18 15:02:15]: [INFO] There is no newer GEO IP database uploaded to MaxMind. Using the old one for now.
+[08-18 15:02:15]: [WARN] Could not download GeoLiteAPI database [FileNotFoundException]: plugins/AuthMe/GeoLite2-Country.mmdb (没有那个文件或目录)
+[08-18 15:02:15]: java.io.FileNotFoundException: plugins/AuthMe/GeoLite2-Country.mmdb (没有那个文件或目录)
+	at java.base/java.io.RandomAccessFile.open0(Native Method)
+	at java.base/java.io.RandomAccessFile.open(RandomAccessFile.java:356)
+	at java.base/java.io.RandomAccessFile.<init>(RandomAccessFile.java:273)
+	at java.base/java.io.RandomAccessFile.<init>(RandomAccessFile.java:223)
+	at com.maxmind.db.BufferHolder.<init>(BufferHolder.java:19)
+	at com.maxmind.db.Reader.<init>(Reader.java:119)
+	at com.maxmind.geoip2.DatabaseReader.<init>(DatabaseReader.java:106)
+	at com.maxmind.geoip2.DatabaseReader$Builder.build(DatabaseReader.java:238)
+	at AuthMe-6.0.0-Folia.jar//fr.xephi.authme.service.GeoIpService.startReading(GeoIpService.java:183)
+	at AuthMe-6.0.0-Folia.jar//fr.xephi.authme.service.GeoIpService.updateDatabase(GeoIpService.java:150)
+	at AuthMe-6.0.0-Folia.jar//fr.xephi.authme.platform.FoliaPlatformAdapter.lambda$runAsyncTask$0(FoliaPlatformAdapter.java:70)
+	at io.papermc.paper.threadedregions.scheduler.FoliaAsyncScheduler$AsyncScheduledTask.run(FoliaAsyncScheduler.java:216)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+
+[08-18 15:02:15]: [WARN] WARNING! The protectInventory feature requires PacketEvents! Disabling it...
+[08-18 15:02:15]: [WARN] WARNING! The denyTabComplete feature requires PacketEvents! Disabling it...
+[08-18 15:02:15]: [INFO] AuthMe 6.0.0 build n.2734 successfully enabled!
+[08-18 15:12:14]: [INFO] SQLite Setup finished
+[08-18 15:12:14]: [INFO] No supported permissions system found! Permissions are disabled!
+[08-18 15:12:14]: [INFO] Downloading GEO IP database, because the old database is older than 30 days or doesn't exist
+[08-18 15:12:14]: [WARN] No MaxMind credentials found in the configuration file! GeoIp protections will be disabled.
+[08-18 15:12:14]: [INFO] There is no newer GEO IP database uploaded to MaxMind. Using the old one for now.
+[08-18 15:12:14]: [WARN] Could not download GeoLiteAPI database [FileNotFoundException]: plugins/AuthMe/GeoLite2-Country.mmdb (没有那个文件或目录)
+[08-18 15:12:14]: java.io.FileNotFoundException: plugins/AuthMe/GeoLite2-Country.mmdb (没有那个文件或目录)
+	at java.base/java.io.RandomAccessFile.open0(Native Method)
+	at java.base/java.io.RandomAccessFile.open(RandomAccessFile.java:356)
+	at java.base/java.io.RandomAccessFile.<init>(RandomAccessFile.java:273)
+	at java.base/java.io.RandomAccessFile.<init>(RandomAccessFile.java:223)
+	at com.maxmind.db.BufferHolder.<init>(BufferHolder.java:19)
+	at com.maxmind.db.Reader.<init>(Reader.java:119)
+	at com.maxmind.geoip2.DatabaseReader.<init>(DatabaseReader.java:106)
+	at com.maxmind.geoip2.DatabaseReader$Builder.build(DatabaseReader.java:238)
+	at AuthMe-6.0.0-Folia.jar//fr.xephi.authme.service.GeoIpService.startReading(GeoIpService.java:183)
+	at AuthMe-6.0.0-Folia.jar//fr.xephi.authme.service.GeoIpService.updateDatabase(GeoIpService.java:150)
+	at AuthMe-6.0.0-Folia.jar//fr.xephi.authme.platform.FoliaPlatformAdapter.lambda$runAsyncTask$0(FoliaPlatformAdapter.java:70)
+	at io.papermc.paper.threadedregions.scheduler.FoliaAsyncScheduler$AsyncScheduledTask.run(FoliaAsyncScheduler.java:216)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+
+[08-18 15:12:14]: [WARN] WARNING! The protectInventory feature requires PacketEvents! Disabling it...
+[08-18 15:12:14]: [WARN] WARNING! The denyTabComplete feature requires PacketEvents! Disabling it...
+[08-18 15:12:14]: [INFO] AuthMe 6.0.0 build n.2734 successfully enabled!
+[08-18 15:13:46]: [INFO] SQLite Setup finished
+[08-18 15:13:46]: [INFO] No supported permissions system found! Permissions are disabled!
+[08-18 15:13:46]: [INFO] Downloading GEO IP database, because the old database is older than 30 days or doesn't exist
+[08-18 15:13:46]: [WARN] No MaxMind credentials found in the configuration file! GeoIp protections will be disabled.
+[08-18 15:13:46]: [INFO] There is no newer GEO IP database uploaded to MaxMind. Using the old one for now.
+[08-18 15:13:46]: [WARN] Could not download GeoLiteAPI database [FileNotFoundException]: plugins/AuthMe/GeoLite2-Country.mmdb (没有那个文件或目录)
+[08-18 15:13:46]: java.io.FileNotFoundException: plugins/AuthMe/GeoLite2-Country.mmdb (没有那个文件或目录)
+	at java.base/java.io.RandomAccessFile.open0(Native Method)
+	at java.base/java.io.RandomAccessFile.open(RandomAccessFile.java:356)
+	at java.base/java.io.RandomAccessFile.<init>(RandomAccessFile.java:273)
+	at java.base/java.io.RandomAccessFile.<init>(RandomAccessFile.java:223)
+	at com.maxmind.db.BufferHolder.<init>(BufferHolder.java:19)
+	at com.maxmind.db.Reader.<init>(Reader.java:119)
+	at com.maxmind.geoip2.DatabaseReader.<init>(DatabaseReader.java:106)
+	at com.maxmind.geoip2.DatabaseReader$Builder.build(DatabaseReader.java:238)
+	at AuthMe-6.0.0-Folia.jar//fr.xephi.authme.service.GeoIpService.startReading(GeoIpService.java:183)
+	at AuthMe-6.0.0-Folia.jar//fr.xephi.authme.service.GeoIpService.updateDatabase(GeoIpService.java:150)
+	at AuthMe-6.0.0-Folia.jar//fr.xephi.authme.platform.FoliaPlatformAdapter.lambda$runAsyncTask$0(FoliaPlatformAdapter.java:70)
+	at io.papermc.paper.threadedregions.scheduler.FoliaAsyncScheduler$AsyncScheduledTask.run(FoliaAsyncScheduler.java:216)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+
+[08-18 15:13:46]: [WARN] WARNING! The protectInventory feature requires PacketEvents! Disabling it...
+[08-18 15:13:46]: [WARN] WARNING! The denyTabComplete feature requires PacketEvents! Disabling it...
+[08-18 15:13:47]: [INFO] AuthMe 6.0.0 build n.2734 successfully enabled!
+[08-18 15:16:46]: [INFO] SQLite Setup finished
+[08-18 15:16:46]: [INFO] No supported permissions system found! Permissions are disabled!
+[08-18 15:16:46]: [INFO] Downloading GEO IP database, because the old database is older than 30 days or doesn't exist
+[08-18 15:16:46]: [WARN] No MaxMind credentials found in the configuration file! GeoIp protections will be disabled.
+[08-18 15:16:46]: [INFO] There is no newer GEO IP database uploaded to MaxMind. Using the old one for now.
+[08-18 15:16:46]: [WARN] Could not download GeoLiteAPI database [FileNotFoundException]: plugins/AuthMe/GeoLite2-Country.mmdb (没有那个文件或目录)
+[08-18 15:16:46]: java.io.FileNotFoundException: plugins/AuthMe/GeoLite2-Country.mmdb (没有那个文件或目录)
+	at java.base/java.io.RandomAccessFile.open0(Native Method)
+	at java.base/java.io.RandomAccessFile.open(RandomAccessFile.java:356)
+	at java.base/java.io.RandomAccessFile.<init>(RandomAccessFile.java:273)
+	at java.base/java.io.RandomAccessFile.<init>(RandomAccessFile.java:223)
+	at com.maxmind.db.BufferHolder.<init>(BufferHolder.java:19)
+	at com.maxmind.db.Reader.<init>(Reader.java:119)
+	at com.maxmind.geoip2.DatabaseReader.<init>(DatabaseReader.java:106)
+	at com.maxmind.geoip2.DatabaseReader$Builder.build(DatabaseReader.java:238)
+	at AuthMe-6.0.0-Folia.jar//fr.xephi.authme.service.GeoIpService.startReading(GeoIpService.java:183)
+	at AuthMe-6.0.0-Folia.jar//fr.xephi.authme.service.GeoIpService.updateDatabase(GeoIpService.java:150)
+	at AuthMe-6.0.0-Folia.jar//fr.xephi.authme.platform.FoliaPlatformAdapter.lambda$runAsyncTask$0(FoliaPlatformAdapter.java:70)
+	at io.papermc.paper.threadedregions.scheduler.FoliaAsyncScheduler$AsyncScheduledTask.run(FoliaAsyncScheduler.java:216)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+
+[08-18 15:16:46]: [WARN] WARNING! The protectInventory feature requires PacketEvents! Disabling it...
+[08-18 15:16:46]: [WARN] WARNING! The denyTabComplete feature requires PacketEvents! Disabling it...
+[08-18 15:16:46]: [INFO] AuthMe 6.0.0 build n.2734 successfully enabled!
+[08-18 15:33:40]: [INFO] SQLite Setup finished
+[08-18 15:33:40]: [INFO] No supported permissions system found! Permissions are disabled!
+[08-18 15:33:40]: [INFO] Downloading GEO IP database, because the old database is older than 30 days or doesn't exist
+[08-18 15:33:40]: [WARN] No MaxMind credentials found in the configuration file! GeoIp protections will be disabled.
+[08-18 15:33:40]: [INFO] There is no newer GEO IP database uploaded to MaxMind. Using the old one for now.
+[08-18 15:33:40]: [WARN] Could not download GeoLiteAPI database [FileNotFoundException]: plugins/AuthMe/GeoLite2-Country.mmdb (没有那个文件或目录)
+[08-18 15:33:40]: java.io.FileNotFoundException: plugins/AuthMe/GeoLite2-Country.mmdb (没有那个文件或目录)
+	at java.base/java.io.RandomAccessFile.open0(Native Method)
+	at java.base/java.io.RandomAccessFile.open(RandomAccessFile.java:356)
+	at java.base/java.io.RandomAccessFile.<init>(RandomAccessFile.java:273)
+	at java.base/java.io.RandomAccessFile.<init>(RandomAccessFile.java:223)
+	at com.maxmind.db.BufferHolder.<init>(BufferHolder.java:19)
+	at com.maxmind.db.Reader.<init>(Reader.java:119)
+	at com.maxmind.geoip2.DatabaseReader.<init>(DatabaseReader.java:106)
+	at com.maxmind.geoip2.DatabaseReader$Builder.build(DatabaseReader.java:238)
+	at AuthMe-6.0.0-Folia.jar//fr.xephi.authme.service.GeoIpService.startReading(GeoIpService.java:183)
+	at AuthMe-6.0.0-Folia.jar//fr.xephi.authme.service.GeoIpService.updateDatabase(GeoIpService.java:150)
+	at AuthMe-6.0.0-Folia.jar//fr.xephi.authme.platform.FoliaPlatformAdapter.lambda$runAsyncTask$0(FoliaPlatformAdapter.java:70)
+	at io.papermc.paper.threadedregions.scheduler.FoliaAsyncScheduler$AsyncScheduledTask.run(FoliaAsyncScheduler.java:216)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+
+[08-18 15:33:40]: [WARN] WARNING! The protectInventory feature requires PacketEvents! Disabling it...
+[08-18 15:33:40]: [WARN] WARNING! The denyTabComplete feature requires PacketEvents! Disabling it...
+[08-18 15:33:40]: [INFO] AuthMe 6.0.0 build n.2734 successfully enabled!
+[08-18 15:36:17]: [INFO] AuthMe 6.0.0-b2734 disabled!
+[08-18 15:36:50]: [INFO] SQLite Setup finished
+[08-18 15:36:50]: [INFO] No supported permissions system found! Permissions are disabled!
+[08-18 15:36:50]: [INFO] Downloading GEO IP database, because the old database is older than 30 days or doesn't exist
+[08-18 15:36:50]: [WARN] No MaxMind credentials found in the configuration file! GeoIp protections will be disabled.
+[08-18 15:36:50]: [INFO] There is no newer GEO IP database uploaded to MaxMind. Using the old one for now.
+[08-18 15:36:50]: [WARN] Could not download GeoLiteAPI database [FileNotFoundException]: plugins/AuthMe/GeoLite2-Country.mmdb (没有那个文件或目录)
+[08-18 15:36:50]: java.io.FileNotFoundException: plugins/AuthMe/GeoLite2-Country.mmdb (没有那个文件或目录)
+	at java.base/java.io.RandomAccessFile.open0(Native Method)
+	at java.base/java.io.RandomAccessFile.open(RandomAccessFile.java:356)
+	at java.base/java.io.RandomAccessFile.<init>(RandomAccessFile.java:273)
+	at java.base/java.io.RandomAccessFile.<init>(RandomAccessFile.java:223)
+	at com.maxmind.db.BufferHolder.<init>(BufferHolder.java:19)
+	at com.maxmind.db.Reader.<init>(Reader.java:119)
+	at com.maxmind.geoip2.DatabaseReader.<init>(DatabaseReader.java:106)
+	at com.maxmind.geoip2.DatabaseReader$Builder.build(DatabaseReader.java:238)
+	at AuthMe-6.0.0-Folia.jar//fr.xephi.authme.service.GeoIpService.startReading(GeoIpService.java:183)
+	at AuthMe-6.0.0-Folia.jar//fr.xephi.authme.service.GeoIpService.updateDatabase(GeoIpService.java:150)
+	at AuthMe-6.0.0-Folia.jar//fr.xephi.authme.platform.FoliaPlatformAdapter.lambda$runAsyncTask$0(FoliaPlatformAdapter.java:70)
+	at io.papermc.paper.threadedregions.scheduler.FoliaAsyncScheduler$AsyncScheduledTask.run(FoliaAsyncScheduler.java:216)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+
+[08-18 15:36:50]: [WARN] WARNING! The protectInventory feature requires PacketEvents! Disabling it...
+[08-18 15:36:50]: [WARN] WARNING! The denyTabComplete feature requires PacketEvents! Disabling it...
+[08-18 15:36:50]: [INFO] AuthMe 6.0.0 build n.2734 successfully enabled!
+[08-18 16:01:56]: [INFO] AuthMe 6.0.0-b2734 disabled!
+[08-18 16:02:31]: [INFO] SQLite Setup finished
+[08-18 16:02:32]: [INFO] No supported permissions system found! Permissions are disabled!
+[08-18 16:02:32]: [INFO] Downloading GEO IP database, because the old database is older than 30 days or doesn't exist
+[08-18 16:02:32]: [WARN] No MaxMind credentials found in the configuration file! GeoIp protections will be disabled.
+[08-18 16:02:32]: [INFO] There is no newer GEO IP database uploaded to MaxMind. Using the old one for now.
+[08-18 16:02:32]: [WARN] Could not download GeoLiteAPI database [FileNotFoundException]: plugins/AuthMe/GeoLite2-Country.mmdb (没有那个文件或目录)
+[08-18 16:02:32]: java.io.FileNotFoundException: plugins/AuthMe/GeoLite2-Country.mmdb (没有那个文件或目录)
+	at java.base/java.io.RandomAccessFile.open0(Native Method)
+	at java.base/java.io.RandomAccessFile.open(RandomAccessFile.java:356)
+	at java.base/java.io.RandomAccessFile.<init>(RandomAccessFile.java:273)
+	at java.base/java.io.RandomAccessFile.<init>(RandomAccessFile.java:223)
+	at com.maxmind.db.BufferHolder.<init>(BufferHolder.java:19)
+	at com.maxmind.db.Reader.<init>(Reader.java:119)
+	at com.maxmind.geoip2.DatabaseReader.<init>(DatabaseReader.java:106)
+	at com.maxmind.geoip2.DatabaseReader$Builder.build(DatabaseReader.java:238)
+	at AuthMe-6.0.0-Folia.jar//fr.xephi.authme.service.GeoIpService.startReading(GeoIpService.java:183)
+	at AuthMe-6.0.0-Folia.jar//fr.xephi.authme.service.GeoIpService.updateDatabase(GeoIpService.java:150)
+	at AuthMe-6.0.0-Folia.jar//fr.xephi.authme.platform.FoliaPlatformAdapter.lambda$runAsyncTask$0(FoliaPlatformAdapter.java:70)
+	at io.papermc.paper.threadedregions.scheduler.FoliaAsyncScheduler$AsyncScheduledTask.run(FoliaAsyncScheduler.java:216)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+
+[08-18 16:02:32]: [WARN] WARNING! The protectInventory feature requires PacketEvents! Disabling it...
+[08-18 16:02:32]: [WARN] WARNING! The denyTabComplete feature requires PacketEvents! Disabling it...
+[08-18 16:02:32]: [INFO] AuthMe 6.0.0 build n.2734 successfully enabled!
+[08-18 16:27:46]: [FINE] .LinYaOVO2014486 logged in 14.151.32.71
+[08-18 19:56:58]: [INFO] AuthMe 6.0.0-b2734 disabled!
+[08-18 19:58:03]: [INFO] SQLite Setup finished
+[08-18 19:58:03]: [INFO] No supported permissions system found! Permissions are disabled!
+[08-18 19:58:04]: [INFO] Downloading GEO IP database, because the old database is older than 30 days or doesn't exist
+[08-18 19:58:04]: [WARN] No MaxMind credentials found in the configuration file! GeoIp protections will be disabled.
+[08-18 19:58:04]: [INFO] There is no newer GEO IP database uploaded to MaxMind. Using the old one for now.
+[08-18 19:58:04]: [WARN] Could not download GeoLiteAPI database [FileNotFoundException]: plugins/AuthMe/GeoLite2-Country.mmdb (没有那个文件或目录)
+[08-18 19:58:04]: java.io.FileNotFoundException: plugins/AuthMe/GeoLite2-Country.mmdb (没有那个文件或目录)
+	at java.base/java.io.RandomAccessFile.open0(Native Method)
+	at java.base/java.io.RandomAccessFile.open(RandomAccessFile.java:356)
+	at java.base/java.io.RandomAccessFile.<init>(RandomAccessFile.java:273)
+	at java.base/java.io.RandomAccessFile.<init>(RandomAccessFile.java:223)
+	at com.maxmind.db.BufferHolder.<init>(BufferHolder.java:19)
+	at com.maxmind.db.Reader.<init>(Reader.java:119)
+	at com.maxmind.geoip2.DatabaseReader.<init>(DatabaseReader.java:106)
+	at com.maxmind.geoip2.DatabaseReader$Builder.build(DatabaseReader.java:238)
+	at AuthMe-6.0.0-Folia.jar//fr.xephi.authme.service.GeoIpService.startReading(GeoIpService.java:183)
+	at AuthMe-6.0.0-Folia.jar//fr.xephi.authme.service.GeoIpService.updateDatabase(GeoIpService.java:150)
+	at AuthMe-6.0.0-Folia.jar//fr.xephi.authme.platform.FoliaPlatformAdapter.lambda$runAsyncTask$0(FoliaPlatformAdapter.java:70)
+	at io.papermc.paper.threadedregions.scheduler.FoliaAsyncScheduler$AsyncScheduledTask.run(FoliaAsyncScheduler.java:216)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+
+[08-18 19:58:04]: [WARN] WARNING! The protectInventory feature requires PacketEvents! Disabling it...
+[08-18 19:58:04]: [WARN] WARNING! The denyTabComplete feature requires PacketEvents! Disabling it...
+[08-18 19:58:04]: [INFO] AuthMe 6.0.0 build n.2734 successfully enabled!
+[08-18 20:01:20]: [INFO] AuthMe 6.0.0-b2734 disabled!
+[08-18 21:04:55]: [INFO] SQLite Setup finished
+[08-18 21:04:56]: [INFO] No supported permissions system found! Permissions are disabled!
+[08-18 21:04:56]: [INFO] Downloading GEO IP database, because the old database is older than 30 days or doesn't exist
+[08-18 21:04:56]: [WARN] No MaxMind credentials found in the configuration file! GeoIp protections will be disabled.
+[08-18 21:04:56]: [INFO] There is no newer GEO IP database uploaded to MaxMind. Using the old one for now.
+[08-18 21:04:56]: [WARN] Could not download GeoLiteAPI database [FileNotFoundException]: plugins/AuthMe/GeoLite2-Country.mmdb (没有那个文件或目录)
+[08-18 21:04:56]: java.io.FileNotFoundException: plugins/AuthMe/GeoLite2-Country.mmdb (没有那个文件或目录)
+	at java.base/java.io.RandomAccessFile.open0(Native Method)
+	at java.base/java.io.RandomAccessFile.open(RandomAccessFile.java:338)
+	at java.base/java.io.RandomAccessFile.<init>(RandomAccessFile.java:257)
+	at java.base/java.io.RandomAccessFile.<init>(RandomAccessFile.java:211)
+	at com.maxmind.db.BufferHolder.<init>(BufferHolder.java:19)
+	at com.maxmind.db.Reader.<init>(Reader.java:119)
+	at com.maxmind.geoip2.DatabaseReader.<init>(DatabaseReader.java:106)
+	at com.maxmind.geoip2.DatabaseReader$Builder.build(DatabaseReader.java:238)
+	at AuthMe-6.0.0-Folia.jar//fr.xephi.authme.service.GeoIpService.startReading(GeoIpService.java:183)
+	at AuthMe-6.0.0-Folia.jar//fr.xephi.authme.service.GeoIpService.updateDatabase(GeoIpService.java:150)
+	at AuthMe-6.0.0-Folia.jar//fr.xephi.authme.platform.FoliaPlatformAdapter.lambda$runAsyncTask$0(FoliaPlatformAdapter.java:70)
+	at io.papermc.paper.threadedregions.scheduler.FoliaAsyncScheduler$AsyncScheduledTask.run(FoliaAsyncScheduler.java:216)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1090)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:614)
+	at java.base/java.lang.Thread.run(Thread.java:1474)
+
+[08-18 21:04:56]: [WARN] WARNING! The protectInventory feature requires PacketEvents! Disabling it...
+[08-18 21:04:56]: [WARN] WARNING! The denyTabComplete feature requires PacketEvents! Disabling it...
+[08-18 21:04:56]: [INFO] AuthMe 6.0.0 build n.2734 successfully enabled!
+[08-18 21:48:24]: [INFO] AuthMe 6.0.0-b2734 disabled!
+[08-18 21:48:56]: [INFO] SQLite Setup finished
+[08-18 21:48:56]: [INFO] No supported permissions system found! Permissions are disabled!
+[08-18 21:48:56]: [INFO] Downloading GEO IP database, because the old database is older than 30 days or doesn't exist
+[08-18 21:48:56]: [WARN] No MaxMind credentials found in the configuration file! GeoIp protections will be disabled.
+[08-18 21:48:56]: [INFO] There is no newer GEO IP database uploaded to MaxMind. Using the old one for now.
+[08-18 21:48:56]: [WARN] Could not download GeoLiteAPI database [FileNotFoundException]: plugins/AuthMe/GeoLite2-Country.mmdb (没有那个文件或目录)
+[08-18 21:48:56]: java.io.FileNotFoundException: plugins/AuthMe/GeoLite2-Country.mmdb (没有那个文件或目录)
+	at java.base/java.io.RandomAccessFile.open0(Native Method)
+	at java.base/java.io.RandomAccessFile.open(RandomAccessFile.java:338)
+	at java.base/java.io.RandomAccessFile.<init>(RandomAccessFile.java:257)
+	at java.base/java.io.RandomAccessFile.<init>(RandomAccessFile.java:211)
+	at com.maxmind.db.BufferHolder.<init>(BufferHolder.java:19)
+	at com.maxmind.db.Reader.<init>(Reader.java:119)
+	at com.maxmind.geoip2.DatabaseReader.<init>(DatabaseReader.java:106)
+	at com.maxmind.geoip2.DatabaseReader$Builder.build(DatabaseReader.java:238)
+	at AuthMe-6.0.0-Folia.jar//fr.xephi.authme.service.GeoIpService.startReading(GeoIpService.java:183)
+	at AuthMe-6.0.0-Folia.jar//fr.xephi.authme.service.GeoIpService.updateDatabase(GeoIpService.java:150)
+	at AuthMe-6.0.0-Folia.jar//fr.xephi.authme.platform.FoliaPlatformAdapter.lambda$runAsyncTask$0(FoliaPlatformAdapter.java:70)
+	at io.papermc.paper.threadedregions.scheduler.FoliaAsyncScheduler$AsyncScheduledTask.run(FoliaAsyncScheduler.java:216)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1090)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:614)
+	at java.base/java.lang.Thread.run(Thread.java:1474)
+
+[08-18 21:48:56]: [WARN] WARNING! The protectInventory feature requires PacketEvents! Disabling it...
+[08-18 21:48:56]: [WARN] WARNING! The denyTabComplete feature requires PacketEvents! Disabling it...
+[08-18 21:48:57]: [INFO] AuthMe 6.0.0 build n.2734 successfully enabled!
+[08-18 22:15:38]: [INFO] AuthMe 6.0.0-b2734 disabled!
+[08-18 22:16:12]: [INFO] SQLite Setup finished
+[08-18 22:16:12]: [INFO] No supported permissions system found! Permissions are disabled!
+[08-18 22:16:13]: [INFO] Downloading GEO IP database, because the old database is older than 30 days or doesn't exist
+[08-18 22:16:13]: [WARN] No MaxMind credentials found in the configuration file! GeoIp protections will be disabled.
+[08-18 22:16:13]: [INFO] There is no newer GEO IP database uploaded to MaxMind. Using the old one for now.
+[08-18 22:16:13]: [WARN] Could not download GeoLiteAPI database [FileNotFoundException]: plugins/AuthMe/GeoLite2-Country.mmdb (没有那个文件或目录)
+[08-18 22:16:13]: java.io.FileNotFoundException: plugins/AuthMe/GeoLite2-Country.mmdb (没有那个文件或目录)
+	at java.base/java.io.RandomAccessFile.open0(Native Method)
+	at java.base/java.io.RandomAccessFile.open(RandomAccessFile.java:338)
+	at java.base/java.io.RandomAccessFile.<init>(RandomAccessFile.java:257)
+	at java.base/java.io.RandomAccessFile.<init>(RandomAccessFile.java:211)
+	at com.maxmind.db.BufferHolder.<init>(BufferHolder.java:19)
+	at com.maxmind.db.Reader.<init>(Reader.java:119)
+	at com.maxmind.geoip2.DatabaseReader.<init>(DatabaseReader.java:106)
+	at com.maxmind.geoip2.DatabaseReader$Builder.build(DatabaseReader.java:238)
+	at AuthMe-6.0.0-Folia.jar//fr.xephi.authme.service.GeoIpService.startReading(GeoIpService.java:183)
+	at AuthMe-6.0.0-Folia.jar//fr.xephi.authme.service.GeoIpService.updateDatabase(GeoIpService.java:150)
+	at AuthMe-6.0.0-Folia.jar//fr.xephi.authme.platform.FoliaPlatformAdapter.lambda$runAsyncTask$0(FoliaPlatformAdapter.java:70)
+	at io.papermc.paper.threadedregions.scheduler.FoliaAsyncScheduler$AsyncScheduledTask.run(FoliaAsyncScheduler.java:216)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1090)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:614)
+	at java.base/java.lang.Thread.run(Thread.java:1474)
+
+[08-18 22:16:13]: [WARN] WARNING! The protectInventory feature requires PacketEvents! Disabling it...
+[08-18 22:16:13]: [WARN] WARNING! The denyTabComplete feature requires PacketEvents! Disabling it...
+[08-18 22:16:13]: [INFO] AuthMe 6.0.0 build n.2734 successfully enabled!
+[08-18 22:58:25]: [INFO] AuthMe 6.0.0-b2734 disabled!
+[08-19 00:19:55]: [INFO] SQLite Setup finished
+[08-19 00:19:55]: [INFO] No supported permissions system found! Permissions are disabled!
+[08-19 00:19:55]: [WARN] WARNING! The protectInventory feature requires PacketEvents! Disabling it...
+[08-19 00:19:55]: [WARN] WARNING! The denyTabComplete feature requires PacketEvents! Disabling it...
+[08-19 00:19:55]: [INFO] AuthMe 6.0.0 build n.2734 successfully enabled!
+[08-19 00:20:01]: [INFO] Downloading GEO IP database, because the old database is older than 30 days or doesn't exist
+[08-19 00:20:01]: [WARN] No MaxMind credentials found in the configuration file! GeoIp protections will be disabled.
+[08-19 00:20:01]: [INFO] There is no newer GEO IP database uploaded to MaxMind. Using the old one for now.
+[08-19 00:20:01]: [WARN] Could not download GeoLiteAPI database [FileNotFoundException]: plugins/AuthMe/GeoLite2-Country.mmdb (没有那个文件或目录)
+[08-19 00:20:01]: java.io.FileNotFoundException: plugins/AuthMe/GeoLite2-Country.mmdb (没有那个文件或目录)
+	at java.base/java.io.RandomAccessFile.open0(Native Method)
+	at java.base/java.io.RandomAccessFile.open(RandomAccessFile.java:338)
+	at java.base/java.io.RandomAccessFile.<init>(RandomAccessFile.java:257)
+	at java.base/java.io.RandomAccessFile.<init>(RandomAccessFile.java:211)
+	at com.maxmind.db.BufferHolder.<init>(BufferHolder.java:19)
+	at com.maxmind.db.Reader.<init>(Reader.java:119)
+	at com.maxmind.geoip2.DatabaseReader.<init>(DatabaseReader.java:106)
+	at com.maxmind.geoip2.DatabaseReader$Builder.build(DatabaseReader.java:238)
+	at AuthMe-6.0.0-Paper.jar//fr.xephi.authme.service.GeoIpService.startReading(GeoIpService.java:183)
+	at AuthMe-6.0.0-Paper.jar//fr.xephi.authme.service.GeoIpService.updateDatabase(GeoIpService.java:150)
+	at org.bukkit.craftbukkit.scheduler.CraftTask.run(CraftTask.java:78)
+	at org.bukkit.craftbukkit.scheduler.CraftAsyncTask.run(CraftAsyncTask.java:57)
+	at com.destroystokyo.paper.ServerSchedulerReportingWrapper.run(ServerSchedulerReportingWrapper.java:22)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1090)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:614)
+	at java.base/java.lang.Thread.run(Thread.java:1474)
+
+[08-19 00:23:16]: [FINE] .LinYaOVO2014486 logged in 14.151.32.71
+[08-19 00:32:04]: [INFO] AuthMe 6.0.0-b2734 disabled!
+[08-19 00:32:35]: [INFO] SQLite Setup finished
+[08-19 00:32:35]: [INFO] No supported permissions system found! Permissions are disabled!
+[08-19 00:32:35]: [WARN] WARNING! The protectInventory feature requires PacketEvents! Disabling it...
+[08-19 00:32:35]: [WARN] WARNING! The denyTabComplete feature requires PacketEvents! Disabling it...
+[08-19 00:32:35]: [INFO] AuthMe 6.0.0 build n.2734 successfully enabled!
+[08-19 00:32:41]: [INFO] Downloading GEO IP database, because the old database is older than 30 days or doesn't exist
+[08-19 00:32:41]: [WARN] No MaxMind credentials found in the configuration file! GeoIp protections will be disabled.
+[08-19 00:32:41]: [INFO] There is no newer GEO IP database uploaded to MaxMind. Using the old one for now.
+[08-19 00:32:41]: [WARN] Could not download GeoLiteAPI database [FileNotFoundException]: plugins/AuthMe/GeoLite2-Country.mmdb (没有那个文件或目录)
+[08-19 00:32:41]: java.io.FileNotFoundException: plugins/AuthMe/GeoLite2-Country.mmdb (没有那个文件或目录)
+	at java.base/java.io.RandomAccessFile.open0(Native Method)
+	at java.base/java.io.RandomAccessFile.open(RandomAccessFile.java:338)
+	at java.base/java.io.RandomAccessFile.<init>(RandomAccessFile.java:257)
+	at java.base/java.io.RandomAccessFile.<init>(RandomAccessFile.java:211)
+	at com.maxmind.db.BufferHolder.<init>(BufferHolder.java:19)
+	at com.maxmind.db.Reader.<init>(Reader.java:119)
+	at com.maxmind.geoip2.DatabaseReader.<init>(DatabaseReader.java:106)
+	at com.maxmind.geoip2.DatabaseReader$Builder.build(DatabaseReader.java:238)
+	at AuthMe-6.0.0-Paper.jar//fr.xephi.authme.service.GeoIpService.startReading(GeoIpService.java:183)
+	at AuthMe-6.0.0-Paper.jar//fr.xephi.authme.service.GeoIpService.updateDatabase(GeoIpService.java:150)
+	at org.bukkit.craftbukkit.scheduler.CraftTask.run(CraftTask.java:78)
+	at org.bukkit.craftbukkit.scheduler.CraftAsyncTask.run(CraftAsyncTask.java:57)
+	at com.destroystokyo.paper.ServerSchedulerReportingWrapper.run(ServerSchedulerReportingWrapper.java:22)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1090)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:614)
+	at java.base/java.lang.Thread.run(Thread.java:1474)
+
+[08-19 09:46:00]: [FINE] qwer registered 39.154.170.124
+[08-19 09:46:00]: [FINE] qwer logged in 39.154.170.124
+[08-19 10:57:11]: [INFO] AuthMe 6.0.0-b2734 disabled!
+[08-19 11:45:57]: [INFO] SQLite Setup finished
+[08-19 11:45:57]: [INFO] No supported permissions system found! Permissions are disabled!
+[08-19 11:45:58]: [WARN] WARNING! The protectInventory feature requires PacketEvents! Disabling it...
+[08-19 11:45:58]: [WARN] WARNING! The denyTabComplete feature requires PacketEvents! Disabling it...
+[08-19 11:45:58]: [INFO] AuthMe 6.0.0 build n.2734 successfully enabled!
+[08-19 11:46:05]: [INFO] Downloading GEO IP database, because the old database is older than 30 days or doesn't exist
+[08-19 11:46:05]: [WARN] No MaxMind credentials found in the configuration file! GeoIp protections will be disabled.
+[08-19 11:46:05]: [INFO] There is no newer GEO IP database uploaded to MaxMind. Using the old one for now.
+[08-19 11:46:05]: [WARN] Could not download GeoLiteAPI database [FileNotFoundException]: plugins/AuthMe/GeoLite2-Country.mmdb (没有那个文件或目录)
+[08-19 11:46:05]: java.io.FileNotFoundException: plugins/AuthMe/GeoLite2-Country.mmdb (没有那个文件或目录)
+	at java.base/java.io.RandomAccessFile.open0(Native Method)
+	at java.base/java.io.RandomAccessFile.open(RandomAccessFile.java:338)
+	at java.base/java.io.RandomAccessFile.<init>(RandomAccessFile.java:257)
+	at java.base/java.io.RandomAccessFile.<init>(RandomAccessFile.java:211)
+	at com.maxmind.db.BufferHolder.<init>(BufferHolder.java:19)
+	at com.maxmind.db.Reader.<init>(Reader.java:119)
+	at com.maxmind.geoip2.DatabaseReader.<init>(DatabaseReader.java:106)
+	at com.maxmind.geoip2.DatabaseReader$Builder.build(DatabaseReader.java:238)
+	at AuthMe-6.0.0-Paper.jar//fr.xephi.authme.service.GeoIpService.startReading(GeoIpService.java:183)
+	at AuthMe-6.0.0-Paper.jar//fr.xephi.authme.service.GeoIpService.updateDatabase(GeoIpService.java:150)
+	at org.bukkit.craftbukkit.scheduler.CraftTask.run(CraftTask.java:78)
+	at org.bukkit.craftbukkit.scheduler.CraftAsyncTask.run(CraftAsyncTask.java:57)
+	at com.destroystokyo.paper.ServerSchedulerReportingWrapper.run(ServerSchedulerReportingWrapper.java:22)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1090)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:614)
+	at java.base/java.lang.Thread.run(Thread.java:1474)
+
+[08-19 17:24:54]: [INFO] AuthMe 6.0.0-b2734 disabled!
+[08-19 17:25:31]: [INFO] SQLite Setup finished
+[08-19 17:25:31]: [INFO] No supported permissions system found! Permissions are disabled!
+[08-19 17:25:31]: [WARN] WARNING! The protectInventory feature requires PacketEvents! Disabling it...
+[08-19 17:25:31]: [WARN] WARNING! The denyTabComplete feature requires PacketEvents! Disabling it...
+[08-19 17:25:31]: [INFO] AuthMe 6.0.0 build n.2734 successfully enabled!
+[08-19 17:25:38]: [INFO] Downloading GEO IP database, because the old database is older than 30 days or doesn't exist
+[08-19 17:25:38]: [WARN] No MaxMind credentials found in the configuration file! GeoIp protections will be disabled.
+[08-19 17:25:38]: [INFO] There is no newer GEO IP database uploaded to MaxMind. Using the old one for now.
+[08-19 17:25:38]: [WARN] Could not download GeoLiteAPI database [FileNotFoundException]: plugins/AuthMe/GeoLite2-Country.mmdb (没有那个文件或目录)
+[08-19 17:25:38]: java.io.FileNotFoundException: plugins/AuthMe/GeoLite2-Country.mmdb (没有那个文件或目录)
+	at java.base/java.io.RandomAccessFile.open0(Native Method)
+	at java.base/java.io.RandomAccessFile.open(RandomAccessFile.java:338)
+	at java.base/java.io.RandomAccessFile.<init>(RandomAccessFile.java:257)
+	at java.base/java.io.RandomAccessFile.<init>(RandomAccessFile.java:211)
+	at com.maxmind.db.BufferHolder.<init>(BufferHolder.java:19)
+	at com.maxmind.db.Reader.<init>(Reader.java:119)
+	at com.maxmind.geoip2.DatabaseReader.<init>(DatabaseReader.java:106)
+	at com.maxmind.geoip2.DatabaseReader$Builder.build(DatabaseReader.java:238)
+	at AuthMe-6.0.0-Paper.jar//fr.xephi.authme.service.GeoIpService.startReading(GeoIpService.java:183)
+	at AuthMe-6.0.0-Paper.jar//fr.xephi.authme.service.GeoIpService.updateDatabase(GeoIpService.java:150)
+	at org.bukkit.craftbukkit.scheduler.CraftTask.run(CraftTask.java:78)
+	at org.bukkit.craftbukkit.scheduler.CraftAsyncTask.run(CraftAsyncTask.java:57)
+	at com.destroystokyo.paper.ServerSchedulerReportingWrapper.run(ServerSchedulerReportingWrapper.java:22)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1090)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:614)
+	at java.base/java.lang.Thread.run(Thread.java:1474)
+
+[08-19 17:30:06]: [FINE] .LinYaOVO2014486 logged in 14.151.32.71
+[08-19 17:47:51]: [FINE] .LinYaOVO2014486 logged in 14.151.32.71
+[08-20 00:05:13]: [INFO] AuthMe 6.0.0-b2734 disabled!
+[08-20 00:06:12]: [INFO] SQLite Setup finished
+[08-20 00:06:12]: [INFO] No supported permissions system found! Permissions are disabled!
+[08-20 00:06:12]: [WARN] WARNING! The protectInventory feature requires PacketEvents! Disabling it...
+[08-20 00:06:12]: [WARN] WARNING! The denyTabComplete feature requires PacketEvents! Disabling it...
+[08-20 00:06:12]: [INFO] AuthMe 6.0.0 build n.2734 successfully enabled!
+[08-20 00:06:18]: [INFO] Downloading GEO IP database, because the old database is older than 30 days or doesn't exist
+[08-20 00:06:18]: [WARN] No MaxMind credentials found in the configuration file! GeoIp protections will be disabled.
+[08-20 00:06:18]: [INFO] There is no newer GEO IP database uploaded to MaxMind. Using the old one for now.
+[08-20 00:06:18]: [WARN] Could not download GeoLiteAPI database [FileNotFoundException]: plugins/AuthMe/GeoLite2-Country.mmdb (没有那个文件或目录)
+[08-20 00:06:18]: java.io.FileNotFoundException: plugins/AuthMe/GeoLite2-Country.mmdb (没有那个文件或目录)
+	at java.base/java.io.RandomAccessFile.open0(Native Method)
+	at java.base/java.io.RandomAccessFile.open(RandomAccessFile.java:338)
+	at java.base/java.io.RandomAccessFile.<init>(RandomAccessFile.java:257)
+	at java.base/java.io.RandomAccessFile.<init>(RandomAccessFile.java:211)
+	at com.maxmind.db.BufferHolder.<init>(BufferHolder.java:19)
+	at com.maxmind.db.Reader.<init>(Reader.java:119)
+	at com.maxmind.geoip2.DatabaseReader.<init>(DatabaseReader.java:106)
+	at com.maxmind.geoip2.DatabaseReader$Builder.build(DatabaseReader.java:238)
+	at AuthMe-6.0.0-Paper.jar//fr.xephi.authme.service.GeoIpService.startReading(GeoIpService.java:183)
+	at AuthMe-6.0.0-Paper.jar//fr.xephi.authme.service.GeoIpService.updateDatabase(GeoIpService.java:150)
+	at org.bukkit.craftbukkit.scheduler.CraftTask.run(CraftTask.java:78)
+	at org.bukkit.craftbukkit.scheduler.CraftAsyncTask.run(CraftAsyncTask.java:57)
+	at com.destroystokyo.paper.ServerSchedulerReportingWrapper.run(ServerSchedulerReportingWrapper.java:22)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1090)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:614)
+	at java.base/java.lang.Thread.run(Thread.java:1474)
+
+[08-20 02:39:33]: [FINE] .LinYaOVO2014486 logged in 14.151.32.71
+[08-20 03:12:03]: [INFO] AuthMe 6.0.0-b2734 disabled!
+[08-20 03:21:16]: [INFO] SQLite Setup finished
+[08-20 03:21:16]: [INFO] No supported permissions system found! Permissions are disabled!
+[08-20 03:21:16]: [INFO] Downloading GEO IP database, because the old database is older than 30 days or doesn't exist
+[08-20 03:21:16]: [WARN] No MaxMind credentials found in the configuration file! GeoIp protections will be disabled.
+[08-20 03:21:16]: [INFO] There is no newer GEO IP database uploaded to MaxMind. Using the old one for now.
+[08-20 03:21:16]: [WARN] Could not download GeoLiteAPI database [FileNotFoundException]: plugins/AuthMe/GeoLite2-Country.mmdb (没有那个文件或目录)
+[08-20 03:21:16]: java.io.FileNotFoundException: plugins/AuthMe/GeoLite2-Country.mmdb (没有那个文件或目录)
+	at java.base/java.io.RandomAccessFile.open0(Native Method)
+	at java.base/java.io.RandomAccessFile.open(RandomAccessFile.java:338)
+	at java.base/java.io.RandomAccessFile.<init>(RandomAccessFile.java:257)
+	at java.base/java.io.RandomAccessFile.<init>(RandomAccessFile.java:211)
+	at com.maxmind.db.BufferHolder.<init>(BufferHolder.java:19)
+	at com.maxmind.db.Reader.<init>(Reader.java:119)
+	at com.maxmind.geoip2.DatabaseReader.<init>(DatabaseReader.java:106)
+	at com.maxmind.geoip2.DatabaseReader$Builder.build(DatabaseReader.java:238)
+	at AuthMe-6.0.0-Folia.jar//fr.xephi.authme.service.GeoIpService.startReading(GeoIpService.java:183)
+	at AuthMe-6.0.0-Folia.jar//fr.xephi.authme.service.GeoIpService.updateDatabase(GeoIpService.java:150)
+	at AuthMe-6.0.0-Folia.jar//fr.xephi.authme.platform.FoliaPlatformAdapter.lambda$runAsyncTask$0(FoliaPlatformAdapter.java:70)
+	at io.papermc.paper.threadedregions.scheduler.FoliaAsyncScheduler$AsyncScheduledTask.run(FoliaAsyncScheduler.java:216)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1090)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:614)
+	at java.base/java.lang.Thread.run(Thread.java:1474)
+
+[08-20 03:21:16]: [WARN] WARNING! The protectInventory feature requires PacketEvents! Disabling it...
+[08-20 03:21:16]: [WARN] WARNING! The denyTabComplete feature requires PacketEvents! Disabling it...
+[08-20 03:21:16]: [INFO] AuthMe 6.0.0 build n.2734 successfully enabled!
+[08-20 04:03:29]: [INFO] AuthMe 6.0.0-b2734 disabled!
+[08-20 04:03:53]: [INFO] SQLite Setup finished
+[08-20 04:03:53]: [INFO] No supported permissions system found! Permissions are disabled!
+[08-20 04:03:53]: [INFO] Downloading GEO IP database, because the old database is older than 30 days or doesn't exist
+[08-20 04:03:53]: [WARN] No MaxMind credentials found in the configuration file! GeoIp protections will be disabled.
+[08-20 04:03:53]: [INFO] There is no newer GEO IP database uploaded to MaxMind. Using the old one for now.
+[08-20 04:03:53]: [WARN] Could not download GeoLiteAPI database [FileNotFoundException]: plugins/AuthMe/GeoLite2-Country.mmdb (没有那个文件或目录)
+[08-20 04:03:53]: java.io.FileNotFoundException: plugins/AuthMe/GeoLite2-Country.mmdb (没有那个文件或目录)
+	at java.base/java.io.RandomAccessFile.open0(Native Method)
+	at java.base/java.io.RandomAccessFile.open(RandomAccessFile.java:338)
+	at java.base/java.io.RandomAccessFile.<init>(RandomAccessFile.java:257)
+	at java.base/java.io.RandomAccessFile.<init>(RandomAccessFile.java:211)
+	at com.maxmind.db.BufferHolder.<init>(BufferHolder.java:19)
+	at com.maxmind.db.Reader.<init>(Reader.java:119)
+	at com.maxmind.geoip2.DatabaseReader.<init>(DatabaseReader.java:106)
+	at com.maxmind.geoip2.DatabaseReader$Builder.build(DatabaseReader.java:238)
+	at AuthMe-6.0.0-Folia.jar//fr.xephi.authme.service.GeoIpService.startReading(GeoIpService.java:183)
+	at AuthMe-6.0.0-Folia.jar//fr.xephi.authme.service.GeoIpService.updateDatabase(GeoIpService.java:150)
+	at AuthMe-6.0.0-Folia.jar//fr.xephi.authme.platform.FoliaPlatformAdapter.lambda$runAsyncTask$0(FoliaPlatformAdapter.java:70)
+	at io.papermc.paper.threadedregions.scheduler.FoliaAsyncScheduler$AsyncScheduledTask.run(FoliaAsyncScheduler.java:216)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1090)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:614)
+	at java.base/java.lang.Thread.run(Thread.java:1474)
+
+[08-20 04:03:53]: [WARN] WARNING! The protectInventory feature requires PacketEvents! Disabling it...
+[08-20 04:03:53]: [WARN] WARNING! The denyTabComplete feature requires PacketEvents! Disabling it...
+[08-20 04:03:54]: [INFO] AuthMe 6.0.0 build n.2734 successfully enabled!
+[08-20 04:24:35]: [INFO] SQLite Setup finished
+[08-20 04:24:35]: [INFO] No supported permissions system found! Permissions are disabled!
+[08-20 04:24:35]: [INFO] Downloading GEO IP database, because the old database is older than 30 days or doesn't exist
+[08-20 04:24:35]: [WARN] No MaxMind credentials found in the configuration file! GeoIp protections will be disabled.
+[08-20 04:24:35]: [INFO] There is no newer GEO IP database uploaded to MaxMind. Using the old one for now.
+[08-20 04:24:35]: [WARN] Could not download GeoLiteAPI database [FileNotFoundException]: plugins/AuthMe/GeoLite2-Country.mmdb (没有那个文件或目录)
+[08-20 04:24:35]: java.io.FileNotFoundException: plugins/AuthMe/GeoLite2-Country.mmdb (没有那个文件或目录)
+	at java.base/java.io.RandomAccessFile.open0(Native Method)
+	at java.base/java.io.RandomAccessFile.open(RandomAccessFile.java:338)
+	at java.base/java.io.RandomAccessFile.<init>(RandomAccessFile.java:257)
+	at java.base/java.io.RandomAccessFile.<init>(RandomAccessFile.java:211)
+	at com.maxmind.db.BufferHolder.<init>(BufferHolder.java:19)
+	at com.maxmind.db.Reader.<init>(Reader.java:119)
+	at com.maxmind.geoip2.DatabaseReader.<init>(DatabaseReader.java:106)
+	at com.maxmind.geoip2.DatabaseReader$Builder.build(DatabaseReader.java:238)
+	at AuthMe-6.0.0-Folia.jar//fr.xephi.authme.service.GeoIpService.startReading(GeoIpService.java:183)
+	at AuthMe-6.0.0-Folia.jar//fr.xephi.authme.service.GeoIpService.updateDatabase(GeoIpService.java:150)
+	at AuthMe-6.0.0-Folia.jar//fr.xephi.authme.platform.FoliaPlatformAdapter.lambda$runAsyncTask$0(FoliaPlatformAdapter.java:70)
+	at io.papermc.paper.threadedregions.scheduler.FoliaAsyncScheduler$AsyncScheduledTask.run(FoliaAsyncScheduler.java:216)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1090)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:614)
+	at java.base/java.lang.Thread.run(Thread.java:1474)
+
+[08-20 04:24:35]: [WARN] WARNING! The protectInventory feature requires PacketEvents! Disabling it...
+[08-20 04:24:35]: [WARN] WARNING! The denyTabComplete feature requires PacketEvents! Disabling it...
+[08-20 04:24:35]: [INFO] AuthMe 6.0.0 build n.2734 successfully enabled!
+[08-20 04:34:59]: [INFO] AuthMe 6.0.0-b2734 disabled!
+[08-20 04:35:53]: [INFO] SQLite Setup finished
+[08-20 04:35:53]: [INFO] No supported permissions system found! Permissions are disabled!
+[08-20 04:35:53]: [INFO] Downloading GEO IP database, because the old database is older than 30 days or doesn't exist
+[08-20 04:35:53]: [WARN] No MaxMind credentials found in the configuration file! GeoIp protections will be disabled.
+[08-20 04:35:53]: [INFO] There is no newer GEO IP database uploaded to MaxMind. Using the old one for now.
+[08-20 04:35:53]: [WARN] Could not download GeoLiteAPI database [FileNotFoundException]: plugins/AuthMe/GeoLite2-Country.mmdb (没有那个文件或目录)
+[08-20 04:35:53]: java.io.FileNotFoundException: plugins/AuthMe/GeoLite2-Country.mmdb (没有那个文件或目录)
+	at java.base/java.io.RandomAccessFile.open0(Native Method)
+	at java.base/java.io.RandomAccessFile.open(RandomAccessFile.java:338)
+	at java.base/java.io.RandomAccessFile.<init>(RandomAccessFile.java:257)
+	at java.base/java.io.RandomAccessFile.<init>(RandomAccessFile.java:211)
+	at com.maxmind.db.BufferHolder.<init>(BufferHolder.java:19)
+	at com.maxmind.db.Reader.<init>(Reader.java:119)
+	at com.maxmind.geoip2.DatabaseReader.<init>(DatabaseReader.java:106)
+	at com.maxmind.geoip2.DatabaseReader$Builder.build(DatabaseReader.java:238)
+	at AuthMe-6.0.0-Folia.jar//fr.xephi.authme.service.GeoIpService.startReading(GeoIpService.java:183)
+	at AuthMe-6.0.0-Folia.jar//fr.xephi.authme.service.GeoIpService.updateDatabase(GeoIpService.java:150)
+	at AuthMe-6.0.0-Folia.jar//fr.xephi.authme.platform.FoliaPlatformAdapter.lambda$runAsyncTask$0(FoliaPlatformAdapter.java:70)
+	at io.papermc.paper.threadedregions.scheduler.FoliaAsyncScheduler$AsyncScheduledTask.run(FoliaAsyncScheduler.java:216)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1090)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:614)
+	at java.base/java.lang.Thread.run(Thread.java:1474)
+
+[08-20 04:35:53]: [WARN] WARNING! The protectInventory feature requires PacketEvents! Disabling it...
+[08-20 04:35:53]: [WARN] WARNING! The denyTabComplete feature requires PacketEvents! Disabling it...
+[08-20 04:35:53]: [INFO] AuthMe 6.0.0 build n.2734 successfully enabled!
+[08-20 04:39:43]: [INFO] AuthMe 6.0.0-b2734 disabled!
+[08-20 04:40:06]: [INFO] SQLite Setup finished
+[08-20 04:40:06]: [INFO] No supported permissions system found! Permissions are disabled!
+[08-20 04:40:06]: [INFO] Downloading GEO IP database, because the old database is older than 30 days or doesn't exist
+[08-20 04:40:06]: [WARN] No MaxMind credentials found in the configuration file! GeoIp protections will be disabled.
+[08-20 04:40:06]: [INFO] There is no newer GEO IP database uploaded to MaxMind. Using the old one for now.
+[08-20 04:40:06]: [WARN] Could not download GeoLiteAPI database [FileNotFoundException]: plugins/AuthMe/GeoLite2-Country.mmdb (没有那个文件或目录)
+[08-20 04:40:06]: java.io.FileNotFoundException: plugins/AuthMe/GeoLite2-Country.mmdb (没有那个文件或目录)
+	at java.base/java.io.RandomAccessFile.open0(Native Method)
+	at java.base/java.io.RandomAccessFile.open(RandomAccessFile.java:338)
+	at java.base/java.io.RandomAccessFile.<init>(RandomAccessFile.java:257)
+	at java.base/java.io.RandomAccessFile.<init>(RandomAccessFile.java:211)
+	at com.maxmind.db.BufferHolder.<init>(BufferHolder.java:19)
+	at com.maxmind.db.Reader.<init>(Reader.java:119)
+	at com.maxmind.geoip2.DatabaseReader.<init>(DatabaseReader.java:106)
+	at com.maxmind.geoip2.DatabaseReader$Builder.build(DatabaseReader.java:238)
+	at AuthMe-6.0.0-Folia.jar//fr.xephi.authme.service.GeoIpService.startReading(GeoIpService.java:183)
+	at AuthMe-6.0.0-Folia.jar//fr.xephi.authme.service.GeoIpService.updateDatabase(GeoIpService.java:150)
+	at AuthMe-6.0.0-Folia.jar//fr.xephi.authme.platform.FoliaPlatformAdapter.lambda$runAsyncTask$0(FoliaPlatformAdapter.java:70)
+	at io.papermc.paper.threadedregions.scheduler.FoliaAsyncScheduler$AsyncScheduledTask.run(FoliaAsyncScheduler.java:216)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1090)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:614)
+	at java.base/java.lang.Thread.run(Thread.java:1474)
+
+[08-20 04:40:06]: [WARN] WARNING! The protectInventory feature requires PacketEvents! Disabling it...
+[08-20 04:40:06]: [WARN] WARNING! The denyTabComplete feature requires PacketEvents! Disabling it...
+[08-20 04:40:06]: [INFO] AuthMe 6.0.0 build n.2734 successfully enabled!
+[08-20 07:54:26]: [INFO] AuthMe 6.0.0-b2734 disabled!
+[08-20 07:54:51]: [INFO] SQLite Setup finished
+[08-20 07:54:51]: [INFO] No supported permissions system found! Permissions are disabled!
+[08-20 07:54:51]: [INFO] Downloading GEO IP database, because the old database is older than 30 days or doesn't exist
+[08-20 07:54:51]: [WARN] No MaxMind credentials found in the configuration file! GeoIp protections will be disabled.
+[08-20 07:54:51]: [INFO] There is no newer GEO IP database uploaded to MaxMind. Using the old one for now.
+[08-20 07:54:51]: [WARN] Could not download GeoLiteAPI database [FileNotFoundException]: plugins/AuthMe/GeoLite2-Country.mmdb (没有那个文件或目录)
+[08-20 07:54:51]: java.io.FileNotFoundException: plugins/AuthMe/GeoLite2-Country.mmdb (没有那个文件或目录)
+	at java.base/java.io.RandomAccessFile.open0(Native Method)
+	at java.base/java.io.RandomAccessFile.open(RandomAccessFile.java:338)
+	at java.base/java.io.RandomAccessFile.<init>(RandomAccessFile.java:257)
+	at java.base/java.io.RandomAccessFile.<init>(RandomAccessFile.java:211)
+	at com.maxmind.db.BufferHolder.<init>(BufferHolder.java:19)
+	at com.maxmind.db.Reader.<init>(Reader.java:119)
+	at com.maxmind.geoip2.DatabaseReader.<init>(DatabaseReader.java:106)
+	at com.maxmind.geoip2.DatabaseReader$Builder.build(DatabaseReader.java:238)
+	at AuthMe-6.0.0-Folia.jar//fr.xephi.authme.service.GeoIpService.startReading(GeoIpService.java:183)
+	at AuthMe-6.0.0-Folia.jar//fr.xephi.authme.service.GeoIpService.updateDatabase(GeoIpService.java:150)
+	at AuthMe-6.0.0-Folia.jar//fr.xephi.authme.platform.FoliaPlatformAdapter.lambda$runAsyncTask$0(FoliaPlatformAdapter.java:70)
+	at io.papermc.paper.threadedregions.scheduler.FoliaAsyncScheduler$AsyncScheduledTask.run(FoliaAsyncScheduler.java:216)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1090)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:614)
+	at java.base/java.lang.Thread.run(Thread.java:1474)
+
+[08-20 07:54:51]: [WARN] WARNING! The protectInventory feature requires PacketEvents! Disabling it...
+[08-20 07:54:51]: [WARN] WARNING! The denyTabComplete feature requires PacketEvents! Disabling it...
+[08-20 07:54:51]: [INFO] AuthMe 6.0.0 build n.2734 successfully enabled!
+[08-20 08:13:52]: [INFO] SQLite Setup finished
+[08-20 08:13:52]: [INFO] No supported permissions system found! Permissions are disabled!
+[08-20 08:13:52]: [INFO] Downloading GEO IP database, because the old database is older than 30 days or doesn't exist
+[08-20 08:13:52]: [WARN] No MaxMind credentials found in the configuration file! GeoIp protections will be disabled.
+[08-20 08:13:52]: [INFO] There is no newer GEO IP database uploaded to MaxMind. Using the old one for now.
+[08-20 08:13:52]: [WARN] Could not download GeoLiteAPI database [FileNotFoundException]: plugins/AuthMe/GeoLite2-Country.mmdb (没有那个文件或目录)
+[08-20 08:13:52]: java.io.FileNotFoundException: plugins/AuthMe/GeoLite2-Country.mmdb (没有那个文件或目录)
+	at java.base/java.io.RandomAccessFile.open0(Native Method)
+	at java.base/java.io.RandomAccessFile.open(RandomAccessFile.java:338)
+	at java.base/java.io.RandomAccessFile.<init>(RandomAccessFile.java:257)
+	at java.base/java.io.RandomAccessFile.<init>(RandomAccessFile.java:211)
+	at com.maxmind.db.BufferHolder.<init>(BufferHolder.java:19)
+	at com.maxmind.db.Reader.<init>(Reader.java:119)
+	at com.maxmind.geoip2.DatabaseReader.<init>(DatabaseReader.java:106)
+	at com.maxmind.geoip2.DatabaseReader$Builder.build(DatabaseReader.java:238)
+	at AuthMe-6.0.0-Folia.jar//fr.xephi.authme.service.GeoIpService.startReading(GeoIpService.java:183)
+	at AuthMe-6.0.0-Folia.jar//fr.xephi.authme.service.GeoIpService.updateDatabase(GeoIpService.java:150)
+	at AuthMe-6.0.0-Folia.jar//fr.xephi.authme.platform.FoliaPlatformAdapter.lambda$runAsyncTask$0(FoliaPlatformAdapter.java:70)
+	at io.papermc.paper.threadedregions.scheduler.FoliaAsyncScheduler$AsyncScheduledTask.run(FoliaAsyncScheduler.java:216)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1090)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:614)
+	at java.base/java.lang.Thread.run(Thread.java:1474)
+
+[08-20 08:13:52]: [WARN] WARNING! The protectInventory feature requires PacketEvents! Disabling it...
+[08-20 08:13:52]: [WARN] WARNING! The denyTabComplete feature requires PacketEvents! Disabling it...
+[08-20 08:13:52]: [INFO] AuthMe 6.0.0 build n.2734 successfully enabled!
+[08-20 12:40:40]: [FINE] .LinYaOVO2014486 logged in 14.151.33.116
+[08-20 13:01:25]: [FINE] .LinYaOVO2014486 logged in 14.151.33.116
+[08-20 13:02:44]: [FINE] .LinYaOVO2014486 logged in 14.151.33.116
+[08-20 13:05:41]: [FINE] .LinYaOVO2014486 logged in 14.151.33.116
+[08-20 13:07:09]: [FINE] .LinYaOVO2014486 logged in 14.151.33.116
+[08-20 13:13:12]: [FINE] .LinYaOVO2014486 logged in 14.151.33.116
+[08-20 13:17:39]: [FINE] .LinYaOVO2014486 logged in 14.151.33.116
+[08-20 13:19:11]: [FINE] .LinYaOVO2014486 logged in 14.151.33.116
+[08-20 13:36:52]: [INFO] AuthMe 6.0.0-b2734 disabled!
+[08-20 13:37:21]: [INFO] SQLite Setup finished
+[08-20 13:37:21]: [INFO] No supported permissions system found! Permissions are disabled!
+[08-20 13:37:21]: [INFO] Downloading GEO IP database, because the old database is older than 30 days or doesn't exist
+[08-20 13:37:21]: [WARN] No MaxMind credentials found in the configuration file! GeoIp protections will be disabled.
+[08-20 13:37:21]: [INFO] There is no newer GEO IP database uploaded to MaxMind. Using the old one for now.
+[08-20 13:37:21]: [WARN] Could not download GeoLiteAPI database [FileNotFoundException]: plugins/AuthMe/GeoLite2-Country.mmdb (没有那个文件或目录)
+[08-20 13:37:21]: java.io.FileNotFoundException: plugins/AuthMe/GeoLite2-Country.mmdb (没有那个文件或目录)
+	at java.base/java.io.RandomAccessFile.open0(Native Method)
+	at java.base/java.io.RandomAccessFile.open(RandomAccessFile.java:338)
+	at java.base/java.io.RandomAccessFile.<init>(RandomAccessFile.java:257)
+	at java.base/java.io.RandomAccessFile.<init>(RandomAccessFile.java:211)
+	at com.maxmind.db.BufferHolder.<init>(BufferHolder.java:19)
+	at com.maxmind.db.Reader.<init>(Reader.java:119)
+	at com.maxmind.geoip2.DatabaseReader.<init>(DatabaseReader.java:106)
+	at com.maxmind.geoip2.DatabaseReader$Builder.build(DatabaseReader.java:238)
+	at AuthMe-6.0.0-Folia.jar//fr.xephi.authme.service.GeoIpService.startReading(GeoIpService.java:183)
+	at AuthMe-6.0.0-Folia.jar//fr.xephi.authme.service.GeoIpService.updateDatabase(GeoIpService.java:150)
+	at AuthMe-6.0.0-Folia.jar//fr.xephi.authme.platform.FoliaPlatformAdapter.lambda$runAsyncTask$0(FoliaPlatformAdapter.java:70)
+	at io.papermc.paper.threadedregions.scheduler.FoliaAsyncScheduler$AsyncScheduledTask.run(FoliaAsyncScheduler.java:216)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1090)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:614)
+	at java.base/java.lang.Thread.run(Thread.java:1474)
+
+[08-20 13:37:21]: [WARN] WARNING! The protectInventory feature requires PacketEvents! Disabling it...
+[08-20 13:37:21]: [WARN] WARNING! The denyTabComplete feature requires PacketEvents! Disabling it...
+[08-20 13:37:21]: [INFO] AuthMe 6.0.0 build n.2734 successfully enabled!
+[08-20 13:38:55]: [INFO] AuthMe 6.0.0-b2734 disabled!
+[08-20 13:46:45]: [INFO] SQLite Setup finished
+[08-20 13:46:45]: [INFO] No supported permissions system found! Permissions are disabled!
+[08-20 13:46:45]: [INFO] Downloading GEO IP database, because the old database is older than 30 days or doesn't exist
+[08-20 13:46:45]: [WARN] No MaxMind credentials found in the configuration file! GeoIp protections will be disabled.
+[08-20 13:46:45]: [INFO] There is no newer GEO IP database uploaded to MaxMind. Using the old one for now.
+[08-20 13:46:45]: [WARN] Could not download GeoLiteAPI database [FileNotFoundException]: plugins/AuthMe/GeoLite2-Country.mmdb (没有那个文件或目录)
+[08-20 13:46:45]: java.io.FileNotFoundException: plugins/AuthMe/GeoLite2-Country.mmdb (没有那个文件或目录)
+	at java.base/java.io.RandomAccessFile.open0(Native Method)
+	at java.base/java.io.RandomAccessFile.open(RandomAccessFile.java:338)
+	at java.base/java.io.RandomAccessFile.<init>(RandomAccessFile.java:257)
+	at java.base/java.io.RandomAccessFile.<init>(RandomAccessFile.java:211)
+	at com.maxmind.db.BufferHolder.<init>(BufferHolder.java:19)
+	at com.maxmind.db.Reader.<init>(Reader.java:119)
+	at com.maxmind.geoip2.DatabaseReader.<init>(DatabaseReader.java:106)
+	at com.maxmind.geoip2.DatabaseReader$Builder.build(DatabaseReader.java:238)
+	at AuthMe-6.0.0-Folia.jar//fr.xephi.authme.service.GeoIpService.startReading(GeoIpService.java:183)
+	at AuthMe-6.0.0-Folia.jar//fr.xephi.authme.service.GeoIpService.updateDatabase(GeoIpService.java:150)
+	at AuthMe-6.0.0-Folia.jar//fr.xephi.authme.platform.FoliaPlatformAdapter.lambda$runAsyncTask$0(FoliaPlatformAdapter.java:70)
+	at io.papermc.paper.threadedregions.scheduler.FoliaAsyncScheduler$AsyncScheduledTask.run(FoliaAsyncScheduler.java:216)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1090)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:614)
+	at java.base/java.lang.Thread.run(Thread.java:1474)
+
+[08-20 13:46:45]: [WARN] WARNING! The protectInventory feature requires PacketEvents! Disabling it...
+[08-20 13:46:45]: [WARN] WARNING! The denyTabComplete feature requires PacketEvents! Disabling it...
+[08-20 13:46:46]: [INFO] AuthMe 6.0.0 build n.2734 successfully enabled!
+[08-20 13:52:56]: [FINE] .LinYaOVO2014486 logged in 14.151.33.116
+[08-20 13:56:40]: [INFO] AuthMe 6.0.0-b2734 disabled!
+[08-20 13:58:44]: [INFO] SQLite Setup finished
+[08-20 13:58:44]: [INFO] No supported permissions system found! Permissions are disabled!
+[08-20 13:58:44]: [INFO] Downloading GEO IP database, because the old database is older than 30 days or doesn't exist
+[08-20 13:58:44]: [WARN] No MaxMind credentials found in the configuration file! GeoIp protections will be disabled.
+[08-20 13:58:44]: [INFO] There is no newer GEO IP database uploaded to MaxMind. Using the old one for now.
+[08-20 13:58:44]: [WARN] Could not download GeoLiteAPI database [FileNotFoundException]: plugins/AuthMe/GeoLite2-Country.mmdb (没有那个文件或目录)
+[08-20 13:58:44]: java.io.FileNotFoundException: plugins/AuthMe/GeoLite2-Country.mmdb (没有那个文件或目录)
+	at java.base/java.io.RandomAccessFile.open0(Native Method)
+	at java.base/java.io.RandomAccessFile.open(RandomAccessFile.java:338)
+	at java.base/java.io.RandomAccessFile.<init>(RandomAccessFile.java:257)
+	at java.base/java.io.RandomAccessFile.<init>(RandomAccessFile.java:211)
+	at com.maxmind.db.BufferHolder.<init>(BufferHolder.java:19)
+	at com.maxmind.db.Reader.<init>(Reader.java:119)
+	at com.maxmind.geoip2.DatabaseReader.<init>(DatabaseReader.java:106)
+	at com.maxmind.geoip2.DatabaseReader$Builder.build(DatabaseReader.java:238)
+	at AuthMe-6.0.0-Folia.jar//fr.xephi.authme.service.GeoIpService.startReading(GeoIpService.java:183)
+	at AuthMe-6.0.0-Folia.jar//fr.xephi.authme.service.GeoIpService.updateDatabase(GeoIpService.java:150)
+	at AuthMe-6.0.0-Folia.jar//fr.xephi.authme.platform.FoliaPlatformAdapter.lambda$runAsyncTask$0(FoliaPlatformAdapter.java:70)
+	at io.papermc.paper.threadedregions.scheduler.FoliaAsyncScheduler$AsyncScheduledTask.run(FoliaAsyncScheduler.java:216)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1090)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:614)
+	at java.base/java.lang.Thread.run(Thread.java:1474)
+
+[08-20 13:58:44]: [WARN] WARNING! The protectInventory feature requires PacketEvents! Disabling it...
+[08-20 13:58:44]: [WARN] WARNING! The denyTabComplete feature requires PacketEvents! Disabling it...
+[08-20 13:58:44]: [INFO] AuthMe 6.0.0 build n.2734 successfully enabled!
+[08-20 17:48:48]: [INFO] AuthMe 6.0.0-b2734 disabled!
+[08-20 17:49:23]: [INFO] SQLite Setup finished
+[08-20 17:49:23]: [INFO] No supported permissions system found! Permissions are disabled!
+[08-20 17:49:23]: [INFO] Downloading GEO IP database, because the old database is older than 30 days or doesn't exist
+[08-20 17:49:23]: [WARN] No MaxMind credentials found in the configuration file! GeoIp protections will be disabled.
+[08-20 17:49:23]: [INFO] There is no newer GEO IP database uploaded to MaxMind. Using the old one for now.
+[08-20 17:49:23]: [WARN] Could not download GeoLiteAPI database [FileNotFoundException]: plugins/AuthMe/GeoLite2-Country.mmdb (没有那个文件或目录)
+[08-20 17:49:23]: java.io.FileNotFoundException: plugins/AuthMe/GeoLite2-Country.mmdb (没有那个文件或目录)
+	at java.base/java.io.RandomAccessFile.open0(Native Method)
+	at java.base/java.io.RandomAccessFile.open(RandomAccessFile.java:338)
+	at java.base/java.io.RandomAccessFile.<init>(RandomAccessFile.java:257)
+	at java.base/java.io.RandomAccessFile.<init>(RandomAccessFile.java:211)
+	at com.maxmind.db.BufferHolder.<init>(BufferHolder.java:19)
+	at com.maxmind.db.Reader.<init>(Reader.java:119)
+	at com.maxmind.geoip2.DatabaseReader.<init>(DatabaseReader.java:106)
+	at com.maxmind.geoip2.DatabaseReader$Builder.build(DatabaseReader.java:238)
+	at AuthMe-6.0.0-Folia.jar//fr.xephi.authme.service.GeoIpService.startReading(GeoIpService.java:183)
+	at AuthMe-6.0.0-Folia.jar//fr.xephi.authme.service.GeoIpService.updateDatabase(GeoIpService.java:150)
+	at AuthMe-6.0.0-Folia.jar//fr.xephi.authme.platform.FoliaPlatformAdapter.lambda$runAsyncTask$0(FoliaPlatformAdapter.java:70)
+	at io.papermc.paper.threadedregions.scheduler.FoliaAsyncScheduler$AsyncScheduledTask.run(FoliaAsyncScheduler.java:216)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1090)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:614)
+	at java.base/java.lang.Thread.run(Thread.java:1474)
+
+[08-20 17:49:23]: [WARN] WARNING! The protectInventory feature requires PacketEvents! Disabling it...
+[08-20 17:49:23]: [WARN] WARNING! The denyTabComplete feature requires PacketEvents! Disabling it...
+[08-20 17:49:23]: [INFO] AuthMe 6.0.0 build n.2734 successfully enabled!
+[08-20 17:56:50]: [FINE] .LinYaOVO2014486 logged in 14.151.33.116
+[08-20 21:24:11]: [INFO] AuthMe 6.0.0-b2734 disabled!
+[08-23 20:19:30]: [INFO] SQLite Setup finished
+[08-23 20:19:30]: [INFO] No supported permissions system found! Permissions are disabled!
+[08-23 20:19:30]: [WARN] WARNING! The protectInventory feature requires PacketEvents! Disabling it...
+[08-23 20:19:30]: [WARN] WARNING! The denyTabComplete feature requires PacketEvents! Disabling it...
+[08-23 20:19:30]: [INFO] AuthMe 6.0.0 build n.2734 successfully enabled!
+[08-23 20:19:40]: [INFO] Downloading GEO IP database, because the old database is older than 30 days or doesn't exist
+[08-23 20:19:40]: [WARN] No MaxMind credentials found in the configuration file! GeoIp protections will be disabled.
+[08-23 20:19:40]: [INFO] There is no newer GEO IP database uploaded to MaxMind. Using the old one for now.
+[08-23 20:19:40]: [WARN] Could not download GeoLiteAPI database [FileNotFoundException]: plugins/AuthMe/GeoLite2-Country.mmdb (没有那个文件或目录)
+[08-23 20:19:40]: java.io.FileNotFoundException: plugins/AuthMe/GeoLite2-Country.mmdb (没有那个文件或目录)
+	at java.base/java.io.RandomAccessFile.open0(Native Method)
+	at java.base/java.io.RandomAccessFile.open(RandomAccessFile.java:338)
+	at java.base/java.io.RandomAccessFile.<init>(RandomAccessFile.java:257)
+	at java.base/java.io.RandomAccessFile.<init>(RandomAccessFile.java:211)
+	at com.maxmind.db.BufferHolder.<init>(BufferHolder.java:19)
+	at com.maxmind.db.Reader.<init>(Reader.java:119)
+	at com.maxmind.geoip2.DatabaseReader.<init>(DatabaseReader.java:106)
+	at com.maxmind.geoip2.DatabaseReader$Builder.build(DatabaseReader.java:238)
+	at AuthMe-6.0.0-Paper.jar//fr.xephi.authme.service.GeoIpService.startReading(GeoIpService.java:183)
+	at AuthMe-6.0.0-Paper.jar//fr.xephi.authme.service.GeoIpService.updateDatabase(GeoIpService.java:150)
+	at org.bukkit.craftbukkit.scheduler.CraftTask.run(CraftTask.java:78)
+	at org.bukkit.craftbukkit.scheduler.CraftAsyncTask.run(CraftAsyncTask.java:57)
+	at com.destroystokyo.paper.ServerSchedulerReportingWrapper.run(ServerSchedulerReportingWrapper.java:22)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1090)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:614)
+	at java.base/java.lang.Thread.run(Thread.java:1474)
+

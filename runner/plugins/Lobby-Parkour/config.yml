@@ -1,0 +1,102 @@
+# ==============================================================================
+#
+#                           LOBBY PARKOUR - BY CRUMB
+#
+# 本配置文件支持 PlaceholderAPI 和 MiniMessage。
+# 自定义占位符写在可以使用它们的字段之前。
+#
+# 注意：目前并非所有设置都支持 PlaceholderAPI。
+#
+# 许可证：MIT License
+#          版权所有 (c) 2025 Crumb Network
+#          详见 LICENSE 文件或 https://opensource.org/licenses/MIT
+#
+# ==============================================================================
+
+disable-holograms: false # 如果启用，将不会生成全息文字。这可以修复与 DecentHolograms 等插件的冲突，但也会禁用跑酷的所有全息文字。
+
+# 开始跑酷时给玩家的物品
+items:
+  last-checkpoint:  # 回到上一个检查点
+    item: "minecraft:heavy_weighted_pressure_plate"  # 金压力板
+    amount: 1
+    name: "<green>上一个检查点"
+  reset:  # 重置跑酷
+    item: "minecraft:oak_door"  # 橡木门
+    amount: 1
+    name: "<red>重置"
+  leave:  # 离开跑酷
+    item: "minecraft:red_bed"  # 红床
+    amount: 1
+    name: "<red>离开"
+
+formatting:
+  # %parkour_name% -> 跑酷名称
+  start-plate: "<green>⚑</green> <white>%parkour_name%</white>"  # 起点压力板显示名
+  end-plate: "<red>⚑</red> <white>%parkour_name%</white>"  # 终点压力板显示名
+  # %checkpoint% -> 当前检查点编号
+  # %checkpoint_total% -> 检查点总数（不含起点和终点）
+  checkpoint-plate: "<blue>⚑</blue> <gray>(%checkpoint%/%checkpoint_total%) <white>%parkour_name%</white>"  # 检查点压力板显示名
+
+  # %m% -> 分钟
+  # %s% -> 秒
+  # %ms% -> 毫秒
+  timer: "%m%:%s%:%ms%"  # 计时器格式
+
+  # %parkour_name% -> 跑酷名称
+  # %player_name% -> 玩家名
+  start-message: "<color:#ff9c40>☄</color> <color:#474747>»</color> <color:#ffed8a>你已开始跑酷 <white>%parkour_name%</white>。祝你好运！</color>"
+  cancel-message: "<color:#ff9c40>☄</color> <color:#474747>»</color> <color:#ffed8a>你已取消本次跑酷。下次再试！</color>"
+  # %timer% -> 当前计时（上面定义的格式）
+  end-message: "<color:#ff9c40>☄</color> <color:#474747>»</color> <color:#ffed8a>你以 <white>%timer%</white> 完成了跑酷。<color:#ffc157><b>GG！</b></color></color>"
+  reset-message: "<color:#ff9c40>☄</color> <color:#474747>»</color> <color:#ffed8a>你已重置 <white>%parkour_name%</white> 的跑酷。祝你好运！</color>"
+  # %checkpoint% -> 检查点编号
+  tp-message: "<color:#ff9c40>☄</color> <color:#474747>»</color> <color:#ffed8a>你已被传送到上一个检查点。</color>"
+  checkpoint-message: "<color:#ff9c40>☄</color> <color:#474747>»</color> <color:#ffed8a>你在 <white>%timer%</white> 时到达了 <white>检查点 #%checkpoint%</white>。</color>"
+  # 不支持占位符
+  checkpoint-skip-message: "<color:#ff9c40>☄</color> <color:#474747>»</color> <color:#ffed8a>你跳过了某个检查点！</color>"
+
+  flight-cancel-message: "<red>你因飞行而结束了跑酷。</red>"
+  flight-start-cancel-message: "<red>飞行时不能开始跑酷。</red>"
+
+  # 玩家进行跑酷时显示的动作栏（屏幕上方物品栏下方的提示文字）
+  # %parkour_name% -> 跑酷名称
+  # %player_name% -> 玩家名
+  # %timer% -> 当前计时（上面定义的格式）
+  # %checkpoint% -> 当前检查点编号
+  # %checkpoint_total% -> 检查点总数（不含起点和终点）
+  action-bar: "<color:#7ae0ff>%timer%</color> <color:#39aacc>⌚</color>   <dark_gray>|</dark_gray>   <color:#54ff7f><color:#57ff65>%checkpoint%</color></color><color:#b8b8b8>/%checkpoint_total%</color> <green>⚑</green>"
+
+  leaderboard:  # 排行榜设置
+    # %parkour_name% -> 跑酷名称
+    title: "<yellow><bold>%parkour_name%"  # 排行榜标题
+
+    # 如果启用，标题上方会显示一个旋转的物品（像掉落物一样旋转）
+    display-item:
+      enabled: true  # 是否启用
+      item: "minecraft:clock"  # 显示的物品（时钟）
+      enchant-glint: false  # 是否有附魔光效
+      spin-enabled: true  # 是否旋转
+
+    maximum-displayed: 10  # 最多显示多少条记录
+    # 个人最佳成绩会显示在排行榜下方
+    personal-best-enabled: false  # 是否显示个人最佳
+
+    # %position% -> 排行榜上的名次（不含 # 号）
+    # %player_name% -> 玩家名
+    # %timer% -> 完成时间（上面定义的格式）
+    default-line-style: "#%position% - %player_name%: %timer%"  # 默认每行样式
+    personal-best-style: ""  # 个人最佳样式（空=不显示）
+
+    empty-line-style: "-"  # 没有记录时的占位符
+
+    # 高级设置 - 可以覆盖特定行的默认样式（不想改的行留空）
+    lines:
+      -  # 第1行（留空=用默认）
+      -  # 第2行
+      -  # 第3行
+
+settings:  # 其他设置
+  # 如果启用，玩家传送到上一个检查点时，会恢复到首次激活该检查点时的视角方向（pitch/yaw）
+  last-checkpoint-rotation: true
+  allow-fly: false  # 是否允许飞行（false=飞行会取消跑酷）

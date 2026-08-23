@@ -1,0 +1,61 @@
+# To prevent a specific message from being sent, set it to "none"
+
+messages:
+  join: 您当前的最大视距设置为 {chunks} 区块
+  
+  not-max: Your view distance is set to {chunks}. Use /pvdc <chunks> to alter this to
+    a max of {maxChunks} for this world! Use /pvdc reset to max your view distance globally.
+  
+  no-permission: 您没有权限执行此命令！
+  
+  incorrect-args: 参数错误 - 使用 /pvdc help 查看帮助
+  
+  afk: 您现在处于离开状态，视距已限制为 {chunks} 区块！
+  afk-return: 您的视距已恢复正常！
+  
+  chunks-too-high: 您只能将视距设置为小于或等于 {chunks} 区块的值！
+  
+  self-view-distance-change: 您已将最大视距更改为 {chunks} 区块
+  
+  # 当指令输入者更改其他玩家的最大视距时显示的消息
+  sender-view-distance-change: 已将 {target-player} 的最大视距更改为 {chunks} 区块
+  
+  # 当玩家的最大视距被更改时显示的消息
+  target-view-distance-change: 您的最大视距已被更改为 {chunks} 区块
+  
+  reset: 您已重置 {target-player} 的视距！
+  self-reset: 重置自己的视距！
+  
+  all-online-change: 所有在线玩家的最大视距已设置为 {chunks} 区块
+  
+  view-distance-get: '{target-player} 的最大视距当前设置为 {chunks} 区块'
+  self-view-distance-get: 您的最大视距当前设置为 {chunks} 区块
+  
+  ping-mode-change-self: You turned {mode} ping mode!
+  ping-mode-change-others: The player's ping mode is now {mode}!
+  ping-mode-change: Your ping mode is now {mode}!
+  ping-optimised: Your view distance has been optimised for ping!
+  ping-info: Ping mode is turned {mode} for you!
+  ping-mode-disabled: Ping mode is disabled on this server!
+  
+  dynamic-mode-change: Dynamic mode is now {mode}!
+  dynamic-info: Dynamic mode is turned {mode}!
+  dynamic-mode-reduced: Your view distance has been reduced due to dynamic mode!
+  
+  not-player: You must be a player to do this!
+  not-offline-cmd: This command does not currently support offline players!
+  
+  no-keys-ping: There are missing config keys for ping mode. Please contact the server
+    admin!
+  no-keys-dynamic: There are missing config keys for dynamic mode. Please contact the
+    server admin!
+
+
+commands:
+  get: Displays a player's max view distance, excluding AFK and performance mode effects
+  help: 显示插件的帮助信息
+  reset: 重置某个玩家的最大视距
+  set: 设置自己的最大视距或其他玩家的最大视距
+  setonline: 设置所有在线玩家的最大视距
+  ping: Toggles ping mode
+  dynamic: Toggles dynamic mode

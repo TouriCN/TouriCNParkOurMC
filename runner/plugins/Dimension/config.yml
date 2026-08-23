@@ -1,0 +1,54 @@
+# ╔════════════════════════════════════════════╗
+# ║         Dimension Plugin Configuration      ║
+# ║              Author: SneakyWrld             ║
+# ╚════════════════════════════════════════════╝
+
+settings:
+  # Debug mode — logs verbose info to console
+  debug: false
+
+  # Page size for paginated command output (/dim list, /dim who, etc.)
+  page-size: 10
+
+  # Plugin prefix for all messages (MiniMessage format)
+  prefix: "<dark_aqua>[<aqua><bold>Dimension</bold><dark_aqua>]<reset>"
+
+  # Default gamemode enforced when no world-specific gamemode is set
+  default-gamemode: SURVIVAL
+
+  # Enforce gamemode on world entry (overridden per-world in worlds.yml)
+  enforce-gamemode: true
+
+  # Safe teleportation — find a safe block before teleporting players
+  safe-teleport: true
+
+  # Auto-load all worlds tracked in worlds.yml on startup
+  auto-load-worlds: true
+
+  # World to send brand-new players to on first join (leave empty to disable)
+  first-join-world: ""
+
+  # Attempt to handle vanilla nether portal linking between Dimension worlds
+  handle-nether-portals: true
+
+  # Attempt to handle vanilla end portal linking between Dimension worlds
+  handle-end-portals: true
+
+  # Built-in per-world inventory separation (separates inventory, health, XP, etc.)
+  inventory-separation: false
+
+  # Hook into PlaceholderAPI if it is present
+  placeholderapi: true
+
+performance:
+  # Cache world metadata in memory for faster lookups
+  cache-world-metadata: true
+
+  # Save configuration files asynchronously to avoid main-thread blocking
+  async-config-save: true
+
+  # Maximum milliseconds to wait for a world to load before timing out
+  world-load-timeout: 30000
+
+  # Interval in ticks at which world metadata is auto-saved (0 = only on unload/disable)
+  auto-save-interval: 6000

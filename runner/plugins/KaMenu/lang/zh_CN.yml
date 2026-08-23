@@ -1,0 +1,319 @@
+# KaMenu 中文语言文件
+# Language: zh_CN
+
+# 插件消息
+plugin:
+  enabled: "§a[KaMenu] 插件已就绪！"
+  disabled: "§e[KaMenu] 插件已关闭。"
+  language_set: "当前语言设置为: {0}"
+  update_available: "&e[KaMenu] &f检测到新版本 &a{0}&f，当前: &7{1}  &a[MineBBS]&8 | &b[SpigotMC]"
+  update_minebbs_hover: "&7点击打开 MineBBS 页面"
+  update_spigotmc_hover: "&7点击打开 SpigotMC 页面"
+
+# 启动信息
+logo:
+  version: "§b插件版本: §a{0}"
+  minecraft: "§b服务器版本: §a{0}"
+  dialog_platform: "§bDialog 平台: §a{0}"
+  language: "§b语言设置: §a{0}"
+  placeholderapi: "§bPlaceholderAPI: {0}"
+  vault: "§bVault: {0}"
+  database: "§b数据库: §a{0}"
+  hook_true: "§a已挂钩"
+  hook_false: "§c未挂钩"
+  menu_count: "§b已加载菜单: §a{0}个"
+  command_count: "§b已注册指令: §a{0}个"
+  action_package_count: "§b已加载动作包: §a{0}个"
+  javascript_package_count: "§b已加载 JavaScript 包: §a{0}个"
+
+# Dialog 平台兼容
+dialog:
+  unavailable_startup: "[KaMenu] 当前核心未提供可用的原生 Dialog API，Dialog 菜单已禁用；Container、actions、变量和自定义指令仍可使用。"
+  unsupported: "§c当前服务器核心不支持原生 Dialog 菜单。请使用 Container 菜单，或升级到支持 Dialog API 的核心版本。"
+
+# 命令消息
+command:
+  player_only: "§c只有玩家可以执行此指令！"
+  player_not_found: "§c玩家 '{0}' 不在线"
+  player_required: "§c控制台必须指定玩家！"
+  usage: "§e用法: /km open <菜单名> 或 /km reload [all|menu|actions|js|lang|config]"
+  no_permission: "§c你没有权限执行此指令！"
+  reloaded: "§a[KaMenu] 配置与菜单已重载成功！"
+  no_menu_name: "§c请输入菜单名！"
+  help_title: "§6§lKaMenu 指令帮助"
+  help_description: "§7插件版本: §a{0}"
+  help_open: "§a/km open <菜单名> [玩家] §7- 打开指定菜单"
+  help_list: "§a/km list [页码] §7- 查看菜单列表"
+  help_guide: "§a/km guide §7- 打开入门向导菜单"
+  help_language: "§a/km language <语言ID> §7- 设置语言并重载"
+  help_examples: "§a/km examples [zh_CN|en_US] [overwrite] §7- 释放指定语言示例菜单"
+  help_migrate: "§a/km migrate <dm|trmenu> [源文件或目录] [输出目录] [overwrite] §7- 迁移第三方菜单"
+  help_pause: "§a/km pause <register|unregister|info> §7- 管理 ESC 暂停菜单入口"
+  help_reload: "§a/km reload [all|menu|actions|js|lang|config] §7- 重载全部或指定模块"
+  help_action: "§a/km action <玩家> <动作> §7- 测试执行动作"
+  help_help: "§a/km help §7- 显示帮助信息"
+  help_item: "§a/km item <子指令> §7- 管理保存的物品"
+  help_footer: "§7更多功能和帮助"
+  help_footer_click_text: "[点击此处]"
+  help_footer_hover: "查看文档"
+  guide_missing: "§c入门向导菜单资源不存在或无法加载: §f{0}"
+  guide_load_failed: "§c入门向导菜单加载失败: {0}"
+  guide_join_hint: "§e[KaMenu] §f当前没有加载任何菜单。<text='&a[打开入门向导]';hover='&7点击打开 KaMenu 入门向导';command='/km guide'>"
+  language_usage: "§c用法: /km language <语言ID>"
+  language_unknown: "§c未知语言: {0}"
+  language_available: "§e可用语言: {0}"
+  language_set_reload: "§a语言已设置为 {0}，并已重载菜单。当前加载 {1} 个菜单和 {2} 个自定义指令。"
+  examples_released: "§a已释放 {0} 示例菜单到 example：新增 {1} 个，跳过 {2} 个，失败 {3} 个。当前加载 {4} 个菜单。"
+  reload_usage: "§e用法: /km reload [all|menu|actions|js|lang|config]"
+  reload_unknown_target: "§c未知的重载目标: {0}"
+  reload_all_success: "§a[KaMenu] 已重载全部模块。"
+  reload_failed_segment_normal: "{0}"
+  reload_failed_segment_warning: "§c{0}§a"
+  reload_menu_success: "§a[KaMenu] 菜单重载完成：总数 {0}，成功 {1}，失败 {2}，耗时 {3}ms。"
+  reload_actions_success: "§a[KaMenu] 动作包重载完成：总数 {0}，成功 {1}，失败 {2}，耗时 {3}ms。"
+  reload_js_success: "§a[KaMenu] JavaScript 包重载完成：总数 {0}，成功 {1}，失败 {2}，耗时 {3}ms。"
+  reload_lang_success: "§a[KaMenu] 语言文件重载完成：总数 {0}，成功 {1}，失败 {2}，耗时 {3}ms，当前语言 {4}。"
+  reload_config_success: "§a[KaMenu] config.yml、custom_commands.yml 与 item_bindings.yml 重载完成：自定义指令总数 {0}，成功 {1}，失败 {2}，耗时 {3}ms。"
+
+# 菜单迁移
+migration:
+  usage: "§e用法: /km migrate <dm|trmenu> [源文件或目录] [输出目录] [overwrite]；省略源目录时使用对应插件的默认菜单目录"
+  unsupported_format: "§c暂不支持迁移格式: {0}"
+  completed: "§aDeluxeMenus 迁移完成：成功 {0} 个，失败 {1} 个，警告 {2} 个。输出目录: {3}"
+  file_success: "§a已生成迁移菜单: §f{1} §7(源文件: {0})"
+  warning: "§e迁移警告 §7[{0}]§e: {1}"
+  error: "§c迁移失败 §7[{0}]§c: {1}"
+  commands_completed: "§aDM 打开指令迁移完成：总数 {0}，新增 {1}，覆盖 {2}，已存在 {3}，冲突 {4}。"
+  trmenu_completed: "§aTrMenu 迁移完成：成功 {0} 个，失败 {1} 个，警告 {2} 个，错误 {3} 个，耗时 {4}ms。输出目录: {5}"
+  trmenu_issue: "§7[{0}/{1}/{2}] §f{3}§7: {4}"
+  trmenu_commands_completed: "§aTrMenu 绑定指令迁移完成：总数 {0}，新增 {1}，覆盖 {2}，已存在 {3}，冲突 {4}。"
+  trmenu_items_completed: "§aTrMenu 绑定物品迁移完成：总数 {0}，新增 {1}，覆盖 {2}，已存在 {3}，冲突 {4}。"
+  command_conflict: "§e跳过冲突指令 /{0}：现有配置为 {1}，迁移目标为 {2}。使用 overwrite 可覆盖。"
+  item_binding_conflict: "§e跳过冲突物品绑定 {0}：现有目标为 {1}，迁移目标为 {2}。使用 overwrite 可覆盖。"
+  commands_invalid_config: "§c无法迁移打开指令：custom_commands.yml 不是有效配置文件。"
+  item_bindings_invalid_config: "§c无法迁移绑定物品：item_bindings.yml 不是有效配置文件。"
+  config_save_failed: "§c迁移菜单已生成，但 custom_commands.yml 保存失败：{0}"
+  item_bindings_save_failed: "§c迁移菜单已生成，但 item_bindings.yml 保存失败：{0}"
+  runtime_reloaded: "§a迁移运行时已重载：菜单成功 {0}，失败 {1}；自定义指令成功 {2}，失败 {3}。"
+  log_saved: "§7完整迁移日志: §f{0}"
+  log_failed: "§c无法写入迁移日志，完整报告已回退到服务器控制台：{0}"
+
+# ESC 暂停菜单入口
+pause_entry:
+  usage: "§e用法: /km pause <register|unregister|info>"
+  register_usage: "§e用法: /km pause register"
+  registered_file: "§a已根据 {0} 生成 ESC 暂停菜单入口。数据包路径: {1}"
+  register_failed: "§c生成 ESC 暂停菜单入口数据包失败，请查看控制台错误。"
+  unregistered: "§a已移除 ESC 暂停菜单入口数据包。"
+  unregister_failed: "§c移除 ESC 暂停菜单入口数据包失败，请检查文件权限。"
+  restart_required: "§e请完整重启服务器后生效。"
+  disabled: "§cESC 暂停菜单入口当前未启用。"
+  unsupported_platform: "§c当前核心或版本不支持 ESC 暂停菜单入口。"
+  button_not_found: "§cESC 暂停菜单入口按钮不存在或未绑定操作: {0}"
+  menu_not_found: "§cESC 暂停菜单入口目标菜单不存在: {0}"
+  info_source: "§epause_menu.yml: §f{0} §7(存在: {1})"
+  info_datapack: "§e数据包路径: §f{0} §7(存在: {1})"
+  source_invalid: "[KaMenu] pause_menu.yml 解析失败: {0}"
+  write_failed: "[KaMenu] 写入 ESC 暂停菜单入口数据包失败: {0}"
+  action_execution_failed: "[KaMenu] 暂停菜单按钮 {0} 的动作队列执行失败: {1}"
+
+# Spigot Dialog 兼容
+spigot_dialog:
+  open_event_failed: "[KaMenu] Spigot Dialog 菜单 {0} 的 Open 事件执行失败：{1}"
+  compile_failed: "[KaMenu] Spigot Dialog 编译失败：contextId={0}，错误={1}"
+  render_failed: "[KaMenu] Spigot Dialog 渲染失败：contextId={0}，错误={1}"
+  unsupported_body: "[KaMenu] Spigot 已跳过不支持的 Body：contextId={0}，组件={1}，类型={2}"
+  invalid_item_property: "[KaMenu] 无效的物品属性：contextId={0}，组件={1}，属性={2}，值={3}"
+  invalid_item_slot: "[KaMenu] 无法读取物品槽位：contextId={0}，组件={1}，槽位或玩家={2}"
+  item_mapping_failed: "[KaMenu] Spigot 物品公共属性映射失败，已回退为基础物品：contextId={0}，组件={1}，错误={2}"
+
+# Paper Dialog
+paper_dialog:
+  open_event_failed: "[KaMenu] Paper Dialog 菜单 {0} 的 Open 事件执行失败：{1}"
+
+# 自定义指令
+custom_commands:
+  legacy_migrated: "[KaMenu] 已将 config.yml 中的 {0} 条自定义指令迁移到 custom_commands.yml。旧配置备份: {1}"
+  legacy_migration_failed: "[KaMenu] 自定义指令迁移失败，旧配置暂未移除: {0}"
+  manager_initialize_failed: "[KaMenu] 自定义指令管理器初始化失败: {0}"
+  invalid_config: "[KaMenu] 自定义指令配置无效: {0}"
+  register_failed: "[KaMenu] 注册自定义指令 /{0} 失败: {1}"
+  menu_not_found: "[KaMenu] 自定义指令 /{0} 已跳过: 找不到菜单 '{1}'"
+  invalid_args_key: "[KaMenu] 自定义指令 /{0} 已忽略无效 args 键: {1}"
+  action_execution_failed: "[KaMenu] 自定义指令 /{0} 的动作队列执行失败: {1}"
+  update_commands_failed: "[KaMenu] 刷新玩家 {0} 的客户端命令补全失败: {1}"
+
+# 物品管理
+item:
+  item_usage: "§c用法: /km item <save|give|delete> [参数]"
+  item_save_usage: "§c用法: /km item save <物品名称>"
+  item_give_usage: "§c用法: /km item give <物品名称> [玩家] [数量]"
+  item_delete_usage: "§c用法: /km item delete <物品名称>"
+  item_empty_hand: "§c你手持的物品为空！"
+  item_saved: "§a物品 '{0}' 已保存成功！"
+  item_save_failed: "§c物品保存失败！"
+  item_not_exist: "§c物品 '{0}' 不存在！"
+  item_given: "§a已将物品 '{0}' (x{2}) 发送给玩家 {1}"
+  item_get_failed: "§c获取物品 '{0}' 失败！"
+  item_deleted: "§a物品 '{0}' 已删除！"
+  item_delete_failed: "§c删除物品 '{0}' 失败！"
+  item_unknown_action: "§c未知的子指令: {0}"
+
+# 菜单管理
+menu:
+  not_found: "§c[KaMenu] 菜单 '{0}' 不存在！"
+  loaded: "已加载菜单: {0}"
+  reloaded: "§a[KaMenu] 菜单已重载，共加载 {0} 个菜单和 {1} 个自定义指令。"
+  missing_dependencies: "§c该菜单缺少必要的依赖文件，请联系管理员。"
+  missing_papi_extensions_prefix: "§c该菜单需要以下PlaceholderAPI扩展才可使用："
+  pass_arguments_insufficient: "§c菜单 '{0}' 至少需要 {1} 个参数，补充默认值后只有 {2} 个，无法打开。"
+
+# 菜单管理器
+manager:
+  resource_not_found: "未找到资源路径: {0}"
+  unsupported_protocol: "不支持的协议: {0}"
+  save_error: "释放默认菜单文件时出错: {0}"
+  jar_extract_error: "从 jar 包提取文件失败: {0}"
+  menu_load_failed: "加载菜单文件失败: {0}，错误: {1}"
+  container_diagnostic_warning: "容器菜单 {0} 配置警告 [{1}]，位置 {2}: {3}"
+  container_diagnostic_error: "容器菜单 {0} 配置错误 [{1}]，位置 {2}: {3}"
+  container_load_failed: "容器菜单 {0} 未加载，共发现 {1} 个配置错误。文件: {2}"
+
+item_renderer:
+  invalid_material: "菜单 {0} 的组件 {1} 使用了无效材质: {2}，已回退为 PAPER"
+  invalid_item_property: "菜单 {0} 的组件 {1} 使用了无效物品属性 {2}: {3}"
+  invalid_item_slot: "菜单 {0} 的组件 {1} 无法读取玩家物品槽位: {2}"
+
+container:
+  config_invalid: "§c容器菜单配置存在错误，无法打开: §f{0}"
+  open_event_failed: "容器菜单 {0} 的 Open 事件执行失败: {1}"
+  close_event_failed: "容器菜单 {0} 的 Close 事件执行失败: {1}"
+  render_failed: "容器菜单 {0} 渲染失败: {1}"
+  refresh_failed: "容器菜单 {0} 刷新失败: {1}"
+  refresh_target_not_found: "容器菜单 {0} 找不到需要刷新的按钮: {1}"
+  anvil_input_unsupported: "[KaMenu] 容器菜单 {0} 已降级为仅展示铁砧；当前核心没有可读取重命名输入的公开 API"
+  furnace_progress_unsupported: "[KaMenu] 容器菜单 {0} 无法在当前核心设置 {1} 的进度显示"
+  progress_action_failed: "容器菜单 {0} 的进度监听器 {1} 执行动作失败: {2}"
+
+# 菜单UI
+ui:
+  default_title: "KaMenu"
+  slider_invalid_config: "[KaMenu] Slider 配置错误: 菜单 '{0}' 的输入组件 '{1}' 的 min ({2}) 必须小于 max ({3})，已使用默认值 min=0.0, max=10.0"
+
+# PAPI变量
+papi:
+  data_not_found: "null"
+
+# 条件工具
+condition:
+  unknown_method: "[KaMenu] 未知内置条件方法: {0}"
+  vault_error: "[KaMenu] Vault经济插件检查失败: {0}"
+  stock_item_not_exist: "[KaMenu] 物品 '{0}' 不存在"
+  stock_item_invalid_params: "[KaMenu] hasStockItem 参数格式错误，应为: 物品名称;数量"
+  has_item_missing_mats: "[KaMenu] hasItem 条件缺少 mats 参数。玩家: {0}"
+  has_item_invalid_material: "[KaMenu] hasItem 条件材质无效: {0}。玩家: {1}"
+
+# 动作处理
+actions:
+  toast_unsupported_platform: "§c当前服务器核心不支持 toast 动作。"
+  unknown_sound_category: "§c未知的声音类别: {0}"
+  test_usage: "§c用法: /kamenu action <玩家> <动作>"
+  test_example: "§a示例: /kamenu action Player1 tell:Hello World"
+  test_player_offline: "§c玩家 '{0}' 不在线"
+  test_success: "§a动作执行成功！目标玩家: {0}"
+  test_failed: "§c动作执行失败: {0}"
+  stock_item_unknown_type: "[KaMenu] stock-item 未知操作类型: {0}，支持的类型: give, take。玩家: {1}"
+  stock_item_missing_name: "[KaMenu] stock-item 操作失败: 缺少 name 参数。玩家: {0}"
+  stock_item_manager_not_init: "[KaMenu] 物品管理器未初始化，无法执行 stock-item 动作。玩家: {0}"
+  item_unknown_type: "[KaMenu] item 未知操作类型: {0}，支持的类型: give, take。玩家: {1}"
+  item_missing_material: "[KaMenu] item 操作失败: 缺少 mats 参数。玩家: {0}"
+  item_invalid_material: "[KaMenu] item 材质无效: {0}。玩家: {1}"
+  points_unavailable: "[KaMenu] PlayerPoints 未安装或尚未启用，无法执行点券动作。玩家: {0}"
+  points_invalid_amount: "[KaMenu] 点券数量 '{0}' 无效，必须是大于 0 的整数。玩家: {1}"
+  points_invalid_type: "[KaMenu] points 操作类型 '{0}' 无效，支持 add/take。玩家: {1}"
+  points_insufficient: "[KaMenu] 玩家 {0} 的点券不足，无法扣除 {1} 点。"
+  points_operation_failed: "[KaMenu] PlayerPoints 操作失败：类型 {0}，数量 {1}，玩家 {2}。"
+  modifier_invalid_chance: "[KaMenu] 动作概率 '{0}' 无效，该行动作已跳过。玩家: {1}"
+  modifier_invalid_delay: "[KaMenu] 单行动作延迟 '{0}' 无效，将立即执行。玩家: {1}"
+  delayed_action_failed: "[KaMenu] 玩家 {0} 的单行延迟动作执行失败: {1}"
+  inventory_full_actionbar: "§c背包已满，{0}个物品掉在了地上"
+  action_list_not_found: "§c错误: 找不到动作列表 '{0}'"
+  action_list_not_found_with_global: "§c错误: 找不到动作列表 '{0}'（已检查当前菜单 Events.Click.{0} 和全局 actions/{0}.yml）"
+  action_list_not_found_global: "§c错误: 找不到全局动作包 '{0}'（请检查 plugins/KaMenu/actions/{0}.yml）"
+  action_list_self_call: "§c错误: 动作列表 '{0}' 不能直接调用自身"
+
+# 包管理
+packages:
+  invalid_id_empty: "[KaMenu] 包已跳过: 包 ID 为空。文件: {1}"
+  invalid_id_characters: "[KaMenu] 包 '{0}' 已跳过: 包 ID 包含非法字符。仅允许英文、数字、_、-、.、/。文件: {1}"
+  invalid_id_parent_path: "[KaMenu] 包 '{0}' 已跳过: 包 ID 不能包含 '..'。文件: {1}"
+  invalid_id_leading_slash: "[KaMenu] 包 '{0}' 已跳过: 包 ID 不能以 '/' 开头。文件: {1}"
+  invalid_id_trailing_slash: "[KaMenu] 包 '{0}' 已跳过: 包 ID 不能以 '/' 结尾。文件: {1}"
+  invalid_id_double_slash: "[KaMenu] 包 '{0}' 已跳过: 包 ID 不能包含连续的 '//'。文件: {1}"
+  action_folder_create_failed: "[KaMenu] 创建 actions 包文件夹失败: {0}"
+  action_package_too_large: "[KaMenu] 动作包 '{0}' 已跳过: 文件过大 ({2} bytes)，上限 {3}。文件: {1}"
+  action_duplicate_id: "[KaMenu] 动作包 '{0}' 已跳过: 包 ID 重复。文件: {1}"
+  action_missing_actions: "[KaMenu] 动作包 '{0}' 已跳过: 缺少或为空的根 actions 列表。文件: {1}"
+  action_load_failed: "[KaMenu] 加载动作包 '{0}' 失败。文件: {1}，错误: {2}"
+  action_loaded: "[KaMenu] 已加载 {0} 个动作包"
+  action_default_released: "[KaMenu] 已释放默认动作包: {0}"
+  action_default_release_failed: "[KaMenu] 释放默认动作包 '{0}' 失败: {1}"
+  javascript_folder_create_failed: "[KaMenu] 创建 JavaScript 包文件夹失败: {0}"
+  javascript_package_too_large: "[KaMenu] JavaScript 包 '{0}' 已跳过: 文件过大 ({2} bytes)，上限 {3}。文件: {1}"
+  javascript_duplicate_id: "[KaMenu] JavaScript 包 '{0}' 已跳过: 包 ID 重复。文件: {1}"
+  javascript_syntax_invalid: "[KaMenu] JavaScript 包 '{0}' 已跳过: 语法校验失败。文件: {1}，错误: {2}"
+  javascript_load_failed: "[KaMenu] 加载 JavaScript 包 '{0}' 失败。文件: {1}，错误: {2}"
+  javascript_loaded: "[KaMenu] 已加载 {0} 个 JavaScript 包"
+  javascript_default_released: "[KaMenu] 已释放默认 JavaScript 包: {0}"
+  javascript_default_release_failed: "[KaMenu] 释放默认 JavaScript 包 '{0}' 失败: {1}"
+
+# JavaScript
+javascript:
+  package_not_found: "[KaMenu] 找不到 JavaScript 包 '{0}'（已检查 {1}）"
+  nashorn_engine_not_found: "[KaMenu] 找不到 Nashorn 引擎，JavaScript 功能暂不可用"
+  wait_library_download: "[KaMenu] 请等待 Nashorn 依赖库下载完成..."
+  nashorn_library_not_loaded: "[KaMenu] Nashorn 依赖库尚未加载，JavaScript 功能暂不可用"
+  restart_after_setup: "[KaMenu] 首次安装完成后请重启服务器"
+  initialize_failed: "[KaMenu] 初始化 JavaScript 支持失败: {0}"
+  execution_error: "[KaMenu] JavaScript 执行错误: {0}"
+  error: "[KaMenu] JavaScript 错误: {0}"
+  execution_error_player: "[KaMenu] 玩家 {0} 执行 JavaScript 时出错: {1}"
+  error_player: "[KaMenu] 玩家 {0} 运行 JavaScript 时出错: {1}"
+  execution_error_source_player: "[KaMenu] 玩家 {1} 执行 {0} 时出现 JavaScript 错误: {2}"
+  error_source_player: "[KaMenu] 玩家 {1} 运行 {0} 时出现 JavaScript 错误: {2}"
+  json_parse_error: "[KaMenu] JSON 解析错误: {0}"
+  execution_failed_user: "§cJavaScript 执行失败: {0}"
+  unavailable: "§cJavaScript 功能暂不可用，请重启服务器完成初始化。"
+
+# 菜单列表
+menu_list:
+  title: "§6§l菜单列表"
+  header: "§e===== {0} ====="
+  page_info: "§7第 {0}/{1} 页"
+  menu_item: "§f{0} §e<text='[点击打开]';hover='点击打开 {0} 菜单';command='/km open {0}'>"
+  prev_page: "[上一页]"
+  next_page: "[下一页]"
+  prev_page_click: "§e<text='[上一页]';command='/km list {0}'>"
+  next_page_click: "§e<text='[下一页]';command='/km list {0}'>"
+  no_menus: "§c服务器没有加载任何菜单"
+
+# 配置文件更新
+config_update:
+  detected_old_version: "检测到旧版本配置文件 (v{0})，开始更新到 v{1}..."
+  default_config_not_exist: "默认配置文件不存在，跳过配置更新"
+  preserved_user_config: "保留用户配置: {0} = {1}"
+  detected_deprecated_config: "检测到用户配置中的废弃项: {0}"
+  update_success: "配置文件更新成功！旧版本: v{0} -> 新版本: v{1}"
+  backup_location: "旧配置已备份到: {0}"
+  save_failed: "配置文件保存失败: {0}"
+  backup_success: "已备份旧配置文件到: {0}"
+  backup_failed: "配置文件备份失败: {0}"
+bedrock_form:
+  initialize_failed: "[KaMenu] Floodgate 基岩表单支持初始化失败：{0}"
+  open_event_failed: "[KaMenu] 基岩表单菜单 {0} 的 Open 事件执行失败：{1}"
+  close_event_failed: "[KaMenu] 基岩表单菜单 {0} 的 Close 事件执行失败：{1}"
+  compile_failed: "[KaMenu] 基岩表单菜单 {0} 编译失败，已回退到原生 Dialog：{1}"
+  send_failed: "[KaMenu] 基岩表单菜单 {0} 发送失败：{1}"
+  send_rejected: "[KaMenu] Floodgate 未能发送基岩表单菜单 {0}，已回退到原生 Dialog"
+  invalid_icon_type: "[KaMenu] 菜单 {0} 的 {1} 使用了无效的按钮图标类型，仅支持 url 或 path"
+  invalid_icon: "[KaMenu] 菜单 {0} 的按钮 {1} 使用了无效的基岩版图标，已忽略该图标"

@@ -1,0 +1,60 @@
+Title: '&f服务器主菜单'
+
+Settings:
+  can_escape: true
+  after_action: 'CLOSE'
+
+Events:
+  Open:
+    - 'tell: &a感谢你选择我们的服务器！'
+
+Body:
+  item:
+    type: 'item'
+    material: 'DIAMOND'
+    name: '服务器图标'
+  info:
+    type: 'message'
+    text: '&a请在以下列表中选择你想使用的功能。'
+  info2:
+    type: 'message'
+    text: '&a'
+
+Bottom:
+  type: 'multi'
+  columns: 1
+  buttons:
+    world:
+      text: '&9[ 世界传送 ]'
+      actions:
+        - 'open: world_menu'
+    land:
+      text: '&c[ 领地管理 ]'
+      actions:
+        - 'open: land_menu'
+    bag:
+      text: '&a[ 随身背包 ]'
+      actions:
+        - 'open: bag_menu'
+    friend:
+      text: '&b[ 我的好友 ]'
+      actions:
+        - 'open: friend_menu'
+    sign:
+      text: '&d[ 每日签到 ]'
+      actions:
+        - 'open: sign_menu'
+    game_event:
+      text: '&5[ 活动中心 ]'
+      actions:
+        - 'open: event_menu'
+    market:
+      text: '&6[ 玩家市场 ]'
+      actions:
+        - 'open: market_menu'
+
+  exit:
+    text: '&4[ 退出 ]'
+    actions:
+      - 'tell: &c再见！'
+      - 'close'

@@ -1,0 +1,78 @@
+1786700647675:geyser reload
+1786700814711:gerser reload
+1786700826156:geyser reload
+1786701070068:stop
+1786714710274:sk reload all
+1786714835821:sk reload commands
+1786717029094:stop
+1786726156637:sk reload commands
+1786765362776:pa reload
+1786766068127:sk reload commands
+1786768201026:pa reload
+1786768794904:stop
+1786768924231:pa reload
+1786769035199:plugins
+1786769183422:stop
+1787058564935:sk reload commands
+1787058657409:dim import "TouriCNParkOur/SMP/1"
+1787060312318:dim list
+1787060399865:dim create TouriCNParkOur/SMP/1
+1787060904776:stop
+1787061338437:/world create TouriCNParkOur:SMP/1 NORMAL
+1787061374690:world create "TouriCNParkOur:SMP/1" NORMAL
+1787061954625:world create TouriCNParkOur/SMP/1 NORMAL
+1787061989019:world create "TouriCNParkOur/SMP/1" NORMAL
+1787062538246:stop
+1787063067949:pw list
+1787063084577:pw
+1787063370924:pw create TouriCNParkOur/SMP/1 normal
+1787063506928:pw create TouriCNParkOur/SMP/1 normal default
+1787063575291:pw create TouriCNParkOur/SMP/1 normal normal
+1787063645458:pw create TouriCNParkOur/SMP/1 NORMAL
+1787065105474:stop
+1787070666487:lpk reload
+1787070724689:stop
+1787107990673:pw create TouriCNParkOur:SMP/1 NORMAL
+1787108231251:stop
+1787117513624:sk reload commands
+1787117555670:pw create touricnparkour/smp/1 NORMAL
+1787117573438:pw create touricnparkour/smp/2 NORMAL
+1787117776392:kamenu reload menu
+1787118664979:pw reload
+1787131457939:pvdc
+1787131472661:pvdc reload
+1787131493999:stop
+1787164690442:kamenu reload menu
+1787166723339:stop
+1787167820785:pw list
+1787168086481:pw load touricnparkour/smp/1
+1787168288586:pw help
+1787168344904:pw load touricnparkour/smp/1
+1787168504636:pw reload
+1787168513024:pw list
+1787168769214:pw load TouriCNParkOur/hub&parkour1/dimensions/minecraft/touricnparkour/smp/1
+1787169589798:pw create touricnparkour/smp/1 NORMAL
+1787169644076:pw create touricnparkour/smp/2 NORMAL
+1787169809556:stop
+1787170070041:pw import touricnparkour/smp/1
+1787171120310:kamenu reload menu
+1787171156824:pw create smp-1 NORMAL
+1787171171624:pw create smp-2 NORMAL
+1787171667855:pw list
+1787171699704:stop
+1787173004297:pw list
+1787173459808:kamenu reload menu
+1787183657347:geyser reload
+1787183666813:stop
+1787186551517:dim create smp-1 NORMAL default -287892183811678
+1787186592612:dim create smp-1_nether NETHER default -287892183811678
+1787186631812:dim create smp-1_the_end END default -287892183811678
+1787186661012:dim create smp-2 NORMAL default 569726515258799
+1787186670600:dim create smp-2_nether NETHER default 569726515258799
+1787186691771:dim create smp-2_the_end END default 569726515258799
+1787187246492:kamenu reload menu
+1787204212050:stop
+1787204968882:sk reload commands
+1787205400749:stop
+1787219620384:geyser reload
+1787232251420:stop

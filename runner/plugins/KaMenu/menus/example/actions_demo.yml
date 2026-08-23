@@ -1,0 +1,156 @@
+Title: '&8» &d&l扩展功能演示 &8«'
+
+Body:
+  intro:
+    type: 'message'
+    text: '&7此菜单展示了所有扩展的 Action 功能，包括 PAPI、标题、可点击文本等。'
+
+  hovertext_demo:
+    type: 'message'
+    text: '&7体验可点击文本：访问<text=&b[ 官网 ];hover=&7打开官网;url=https://example.com> 领取<text=&e[ 奖励 ];hover=&6点击领取;command=daily> 问候<text=&a[ 点击问候 ];hover=&7执行 hello 动作包并传参;actions=hello,玩家,生存服务器>'
+
+  mixed_text:
+    type: 'message'
+    text: '&7普通文字和可点击文字混合：<text=&b[ 链接1 ];hover=&c这是悬停提示1;command=/help> 中间文字 <text=&a[ 链接2 ];hover=&c这是悬停提示2;url=https://example.com>'
+
+  display_item:
+    type: 'item'
+    material: 'ENCHANTED_BOOK'
+    name: '&c&l功能列表'
+    description: '&f点击下方按钮测试不同的功能'
+
+Inputs:
+  test_input:
+    type: 'input'
+    text: '&a测试输入'
+    default: '默认文本'
+    max_length: 50
+
+Bottom:
+  type: 'multi'
+  columns: 3
+  buttons:
+    test_tell:
+      text: '&a[ Tell ]'
+      actions:
+        - 'tell: &a这是普通消息'
+        - 'tell: &7支持颜色代码 &颜色&f'
+
+    test_actionbar:
+      text: '&b[ Actionbar ]'
+      actions:
+        - 'actionbar: &b这是 ActionBar 消息！'
+
+    test_title:
+      text: '&c[ Title ]'
+      actions:
+        - 'title: title=&c&l标题;subtitle=&e副标题;in=10;keep=60;out=20'
+
+    test_hovertext:
+      text: '&d[ Hover Text ]'
+      actions:
+        - 'hovertext: &7普通文本 <text=&a&l点击我;hover=&c执行指令 /help;command=/help> 更多文本'
+
+    test_command:
+      text: '&e[ Command ]'
+      actions:
+        - 'command: say 我执行了玩家指令'
+
+    test_console:
+      text: '&6[ Console ]'
+      actions:
+        - 'console: say 这是控制台执行的消息'
+
+    test_sound:
+      text: '&f[ Sound ]'
+      actions:
+        - 'sound: entity.player.levelup;volume=1.5;pitch=1.2'
+
+    test_sound_category:
+      text: '&8[ Sound+ ]'
+      actions:
+        - 'tell: &f播放不同类别的声音'
+        - 'sound: ambient.cave;category=ambient'
+        - 'sound: entity.experience_orb.pickup;volume=2.0;category=player'
+
+    test_open:
+      text: '&5[ 0pen Menu ]'
+      actions:
+        - 'open: demo'
+
+    test_papi:
+      text: '&3[ Placeholder ]'
+      actions:
+        - 'tell: &a玩家: %player_name%'
+        - 'tell: &b世界: %player_world%'
+        - 'tell: &c坐标: %player_x%, %player_y%, %player_z%'
+        - 'tell: &d血量: %player_health%/%player_max_health%'
+
+    test_variable:
+      text: '&7[ Input ]'
+      actions:
+        - 'tell: &f你输入的内容: &e$(test_input)'
+
+
+
+    test_close:
+      text: '&4[ Close ]'
+      actions:
+        - 'tell: &c再见！'
+        - 'close'
+
+    test_toast:
+      text: '&6[ Toast ]'
+      actions:
+        - 'toast: type=challenge;msg=&f恭喜你完成了挑战！;icon=diamond'
+        - 'close'
+
+    test_wait:
+      text: '&a[ Wait ]'
+      actions:
+        - 'close'
+        - 'tell: &e开始执行...'
+        - 'wait: 20'
+        - 'tell: &a1秒后...'
+        - 'wait: 20'
+        - 'tell: &b2秒后...'
+        - 'wait: 20'
+        - 'tell: &c3秒完成！'
+
+    test_data:
+      text: '&a[ set data ]'
+      actions:
+        - 'close'
+        - 'tell: &e正在设置test个人数据为“Hello”...'
+        - 'set-data: test Hello'
+        - 'wait: 1'
+        - 'tell: &a设置成功！test值为: 内置:{data:test}/PAPI:%kamenu_data_test%'
+
+    test_gdata:
+      text: '&a[ set gdata ]'
+      actions:
+        - 'close'
+        - 'tell: &e正在设置test全局数据“Global”...'
+        - 'set-gdata: test Global'
+        - 'wait: 1'
+        - 'tell: &a设置成功！test值为: 内置:{gdata:test}/PAPI:%kamenu_gdata_test%'
+
+    test_meta:
+      text: '&a[ set meta ]'
+      actions:
+        - 'close'
+        - 'tell: &e正在设置test临时数据“steve”...'
+        - 'set-meta: test steve'
+        - 'wait: 1'
+        - 'tell: &a设置成功！test值为: 内置:{meta:test}/PAPI:%kamenu_meta_test%'
+
+  exit:
+    text: '&8[ Exit ]'
+    actions:
+      - 'actionbar: &7菜单已关闭'
+      - 'close'
+
+Events:
+  Click:
+    hello:
+      - 'tell: &a你好，{arg:0}！欢迎来到 &e{arg:1}&a。'
