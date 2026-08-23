@@ -3,10 +3,14 @@ name: Deploy (unpack)
 on:
   workflow_dispatch:
     inputs:
-      packages:
-        description: '要解压的包名，多个用空格分隔。如：server.zip 或 world/halfserver1.zip world/halfserver2.zip'
+      source:
+        description: '填目录路径（如 world）或具体 zip 文件名（如 server.zip），多个用空格分隔'
         required: true
-        default: 'server.zip'
+        default: '.'
+      target_dir:
+        description: '解压目标目录（相对于仓库根）。留空则解压到源所在目录'
+        required: false
+        default: ''
 
 jobs:
   deploy:
@@ -14,31 +18,46 @@ jobs:
     permissions:
       contents: write
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
       - name: Unpack
         run: |
           cd "$GITHUB_WORKSPACE"
 
-          echo "=== Workspace contents ==="
-          ls -la
-          echo "========================="
+          TARGET=""
+          if [ -n "${{ github.event.inputs.target_dir }}" ]; then
+            TARGET="$GITHUB_WORKSPACE/${{ github.event.inputs.target_dir }}"
+            mkdir -p "$TARGET"
+          fi
 
-          for pkg in ${{ github.event.inputs.packages }}; do
-            # 支持带路径的输入，如 world/halfserver1.zip
-            if [ ! -f "$pkg" ]; then
-              echo "ERROR: $pkg not found in workspace"
+          for item in ${{ github.event.inputs.source }}; do
+            if [ -d "$item" ]; then
+              echo "Scanning directory: $item"
+              ZIPS=$(find "$item" -maxdepth 1 -type f -name "*.zip")
+            elif [ -f "$item" ]; then
+              ZIPS="$item"
+            else
+              echo "ERROR: $item not found"
               exit 1
             fi
 
-            dest=$(dirname "$pkg")
-            echo "Unpacking $pkg -> $dest/"
-            unzip -o "$pkg" -d "$dest"
+            if [ -z "$ZIPS" ]; then
+              echo "ERROR: no zip files found in $item"
+              exit 1
+            fi
 
-            # 解压完删除原 zip
-            rm -f "$pkg"
-            echo "Deleted $pkg"
+            for zipfile in $ZIPS; do
+              if [ -z "$TARGET" ]; then
+                DEST=$(dirname "$zipfile")
+              else
+                DEST="$TARGET"
+              fi
+              mkdir -p "$DEST"
+              echo "Unpacking $zipfile -> $DEST/"
+              unzip -o "$zipfile" -d "$DEST"
+              rm -f "$zipfile"
+              echo "Deleted $zipfile"
+            done
           done
 
       - name: Commit and push
@@ -48,5 +67,5 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add -A
-          git commit -m "deploy: unpack ${{ github.event.inputs.packages }} [no ci]" || echo "nothing to commit"
+          git commit -m "deploy: unpack ${{ github.event.inputs.source }} [no ci]" || echo "nothing to committed"
           git push "https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}.git" "HEAD:${{ github.ref_name }}" --force
