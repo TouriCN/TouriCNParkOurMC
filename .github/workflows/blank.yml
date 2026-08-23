@@ -39,7 +39,10 @@ jobs:
         run: |
           cd /home/container
 
-          # 暂存本地修改 → 拉最新 → 恢复
+          # 设置 pull 策略，避免"偏离分支"报错
+          git config pull.rebase true
+
+          # 暂存 → 拉最新 → 恢复
           git stash
           git pull "https://x-access-token:${GITHUB_TOKEN}@github.com/${REPO}.git" "$BRANCH" || true
           git stash pop 2>/dev/null || true
@@ -53,15 +56,15 @@ jobs:
             chmod +x leaf.jar
           fi
 
-          # 下载 mcrcon（放 runner/ 目录里）
+          # 下载 mcrcon（修正：x86_64 下划线）
           if [ ! -f mcrcon ]; then
-            curl -fL -o mcrcon https://github.com/Tiiffi/mcrcon/releases/download/v0.7.2/mcrcon-0.7.2-linux-x86-64
+            curl -fL -o mcrcon https://github.com/Tiiffi/mcrcon/releases/download/v0.7.2/mcrcon-0.7.2-linux-x86_64
             chmod +x mcrcon
           fi
 
           [ ! -f eula.txt ] && echo "eula=true" > eula.txt
 
-          # 动态读取 RCON 信息
+          # 动态读取 RCON 信息（这行之前是错的，现在修对了）
           RCON_PORT=$(grep "^rcon.port=" server.properties | cut -d"=" -f2)
           RCON_PASSWORD=$(grep "^rcon.password=" server.properties | cut -d"=" -f2)
 
@@ -81,7 +84,7 @@ jobs:
             cd runner
           }
 
-          # 关停时：踢人 → 存档 → 推送 → 清理（只留世界目录）
+          # 关停时：踢人 → 存档 → 推送 → 清理
           trap '
             ./mcrcon -H 127.0.0.1 -P "$RCON_PORT" -p "$RCON_PASSWORD" "kick @a 服务器即将关闭。" || true
             sleep 5
@@ -122,14 +125,12 @@ jobs:
             sleep 30
             COUNT=$((COUNT+1))
 
-            # 每 30 秒：暂存 → 拉取 → 恢复
             cd /home/container
             git stash
-            git pull "https://x-access-token:${GITHUB_TOKEN}@github.com/${REPO}.git" "$BRANCH" || true
+            git pull "https://x-access-token:${GITHUB_TOKEN}@github.com/${REPO}.git" "$BRANCH" --rebase || true
             git stash pop 2>/dev/null || true
             cd runner
 
-            # 每 10 分钟：存档 + 推送
             if [ $COUNT -ge 20 ]; then
               COUNT=0
               ./mcrcon -H 127.0.0.1 -P "$RCON_PORT" -p "$RCON_PASSWORD" "save-all" || true
