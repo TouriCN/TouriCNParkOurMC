@@ -19,9 +19,9 @@ Bottom:
   columns: 1
   buttons:
     game:
-      text: 所有小游戏
+      text: 所有跑酷
       tooltip:
-        - '游玩所有的小游戏'
+        - '游玩所有的跑酷'
       actions:
         - close
         - open:game
