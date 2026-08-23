@@ -3,19 +3,14 @@ name: Deploy (unpack)
 on:
   workflow_dispatch:
     inputs:
-      packages:
-        description: '要解压的包，多个用空格分隔。留空则仅扫描 server.zip 和 halfserver*.zip'
-        required: false
-        default: ''
+      source:
+        description: '填目录路径（如 world）或具体 zip 文件名（如 server.zip），多个用空格分隔'
+        required: true
+        default: '.'
       target_dir:
-        description: '解压目标根目录（相对于仓库根）。留空则解压到每个 zip 所在目录'
+        description: '解压目标目录（相对于仓库根）。留空则解压到源所在目录'
         required: false
         default: ''
-      delete_after_unpack:
-        description: '解压后是否删除原 zip（仅当你明确传了 packages 时才有意义）'
-        required: false
-        default: false
-        type: boolean
 
 jobs:
   deploy:
@@ -25,56 +20,44 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Unpack packages
-        env:
-          PACKAGES: ${{ github.event.inputs.packages }}
-          TARGET_DIR: ${{ github.event.inputs.target_dir }}
-          DELETE_AFTER: ${{ github.event.inputs.delete_after_unpack }}
+      - name: Unpack
         run: |
           cd "$GITHUB_WORKSPACE"
 
-          # 收集要处理的 zip 文件
-          if [ -n "$PACKAGES" ]; then
-            ZIPS=""
-            for name in $PACKAGES; do
-              if [ -f "$name" ]; then
-                ZIPS="$ZIPS $name"
-              else
-                FOUND=$(find . -type f -name "$name" | head -1)
-                if [ -n "$FOUND" ]; then
-                  ZIPS="$ZIPS $FOUND"
-                else
-                  echo "WARNING: package not found: $name"
-                fi
-              fi
-            done
-          else
-            # 默认只处理 server.zip 和 halfserver*.zip
-            ZIPS=$(find . -type f \( -name "server.zip" -o -name "halfserver*.zip" \) | grep -v ".git/" | tr '\n' ' ')
+          TARGET=""
+          if [ -n "${{ github.event.inputs.target_dir }}" ]; then
+            TARGET="$GITHUB_WORKSPACE/${{ github.event.inputs.target_dir }}"
+            mkdir -p "$TARGET"
           fi
 
-          if [ -z "$ZIPS" ]; then
-            echo "No zip packages found to unpack."
-            exit 0
-          fi
-
-          echo "Packages to unpack:$ZIPS"
-
-          for zipfile in $ZIPS; do
-            zdir=$(dirname "$zipfile")
-            if [ -n "$TARGET_DIR" ]; then
-              dest="$GITHUB_WORKSPACE/$TARGET_DIR"
+          for item in ${{ github.event.inputs.source }}; do
+            if [ -d "$item" ]; then
+              echo "Scanning directory: $item"
+              ZIPS=$(find "$item" -maxdepth 1 -type f -name "*.zip")
+            elif [ -f "$item" ]; then
+              ZIPS="$item"
             else
-              dest="$GITHUB_WORKSPACE/$zdir"
+              echo "ERROR: $item not found"
+              exit 1
             fi
-            echo "Unpacking $zipfile -> $dest/"
-            mkdir -p "$dest"
-            unzip -o "$zipfile" -d "$dest"
-            # 只有显式要求时才删除原 zip
-            if [ "$DELETE_AFTER" = "true" ]; then
+
+            if [ -z "$ZIPS" ]; then
+              echo "ERROR: no zip files found in $item"
+              exit 1
+            fi
+
+            for zipfile in $ZIPS; do
+              if [ -z "$TARGET" ]; then
+                DEST=$(dirname "$zipfile")
+              else
+                DEST="$TARGET"
+              fi
+              mkdir -p "$DEST"
+              echo "Unpacking $zipfile -> $DEST/"
+              unzip -o "$zipfile" -d "$DEST"
               rm -f "$zipfile"
-              echo "Deleted: $zipfile"
-            fi
+              echo "Deleted $zipfile"
+            done
           done
 
       - name: Commit and push
@@ -84,8 +67,5 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add -A
-          # 确保 zip 不进仓库历史（双重保险，即使 .gitignore 漏了）
-          git reset -- "*.zip" || true
-          git commit -m "deploy: unpack packages [no ci]" || echo "nothing to commit"
-          git push "https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}.git" \
-            "HEAD:${{ github.ref_name }}" --force || echo "push failed"
+          git commit -m "deploy: unpack ${{ github.event.inputs.source }} [no ci]" || echo "nothing to committed"
+          git push "https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}.git" "HEAD:${{ github.ref_name }}" --force
