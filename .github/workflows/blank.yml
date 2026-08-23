@@ -9,6 +9,12 @@ jobs:
     permissions:
       contents: write
     steps:
+      - name: Install rsync
+        run: |
+          if ! command -v rsync &> /dev/null; then
+            sudo apt-get update && sudo apt-get install -y rsync
+          fi
+
       - name: Checkout
         uses: actions/checkout@v4
 
@@ -93,7 +99,7 @@ jobs:
             echo "Local runner/ cleaned (kept TouriCNParkOur/)."
           ' SIGTERM
 
-          # 启动 Leaf
+          # 启动 Leaf（4C16G，冒号全改等号）
           java -Xms10G -Xmx10G \
                -server \
                -DLeaf.enableFMA=true \
@@ -109,7 +115,7 @@ jobs:
                -XX:G1MaxNewSizePercent=40 \
                -XX:G1HeapRegionSize=16M \
                -XX:G1ReservePercent=20 \
-               -XX:G1HeapWastePercent:5 \
+               -XX:G1HeapWastePercent=5 \
                -XX:G1MixedGCCountTarget=4 \
                -XX:InitiatingHeapOccupancyPercent=15 \
                -XX:G1MixedGCLiveThresholdPercent=90 \
