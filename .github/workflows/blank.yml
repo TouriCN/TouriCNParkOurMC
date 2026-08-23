@@ -38,13 +38,9 @@ jobs:
           BRANCH: ${{ github.ref_name }}
         run: |
           cd /home/container
-
-          # 拉最新
           git pull "https://x-access-token:${GITHUB_TOKEN}@github.com/${REPO}.git" "$BRANCH" || true
-
           cd runner
 
-          # 下载 Leaf 26.2 #83
           if [ ! -f leaf.jar ]; then
             curl -fL -o leaf.jar \
               "https://github.com/Winds-Studio/Leaf/releases/download/ver-26.2/leaf-26.2-83.jar"
@@ -53,7 +49,10 @@ jobs:
 
           [ ! -f eula.txt ] && echo "eula=true" > eula.txt
 
-          # 推送函数：先拉再推，避免冲突
+          # 读取 RCON 连接信息（动态）
+          RCON_PORT=$(grep "^rcon.port=" server.properties | cut -d"=" -f2)
+          RCON_PASSWORD=$(grep "^rcon.password=" server.properties | cut -d"=" -f2)
+
           push() {
             cd /home/container
             git config user.name "github-actions[bot]"
@@ -67,18 +66,15 @@ jobs:
             cd runner
           }
 
-          # 关停时：存档 → 推送 → 清理本地（只留世界目录）
           trap '
-            RCON_PASSWORD=$(grep "^rcon.password=" server.properties | cut -d"=" -f2)
-            mcrcon -H 127.0.0.1 -P 25575 -p "$RCON_PASSWORD" "kick @a 服务器即将关闭。" || true
+            mcrcon -H 127.0.0.1 -P "$RCON_PORT" -p "$RCON_PASSWORD" "kick @a 服务器即将关闭。" || true
             sleep 5
-            mcrcon -H 127.0.0.1 -P 25575 -p "$RCON_PASSWORD" "save-all" || true
+            mcrcon -H 127.0.0.1 -P "$RCON_PORT" -p "$RCON_PASSWORD" "save-all" || true
             sleep 5
             push
             find . -mindepth 1 -maxdepth 1 ! -name "TouriCNParkOur" -exec rm -rf {} +
           ' SIGTERM
 
-          # 启动 Leaf
           java -Xms10G -Xmx10G \
                -server \
                -DLeaf.enableFMA=true \
@@ -103,22 +99,18 @@ jobs:
                -jar leaf.jar --nogui &
           SERVER_PID=$!
 
-          # 主循环
           COUNT=0
           while kill -0 $SERVER_PID 2>/dev/null; do
             sleep 30
             COUNT=$((COUNT+1))
 
-            # 每 30 秒拉一次
             cd /home/container
             git pull "https://x-access-token:${GITHUB_TOKEN}@github.com/${REPO}.git" "$BRANCH" || true
             cd runner
 
-            # 每 10 分钟存档 + 推一次
             if [ $COUNT -ge 20 ]; then
               COUNT=0
-              RCON_PASSWORD=$(grep "^rcon.password=" server.properties | cut -d"=" -f2)
-              mcrcon -H 127.0.0.1 -P 25575 -p "$RCON_PASSWORD" "save-all" || true
+              mcrcon -H 127.0.0.1 -P "$RCON_PORT" -p "$RCON_PASSWORD" "save-all" || true
               sleep 5
               push
             fi
