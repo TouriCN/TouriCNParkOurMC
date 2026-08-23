@@ -4,116 +4,94 @@ on:
   workflow_dispatch:
     inputs:
       debug:
-        description: '调试模式（关闭时不踢玩家、不创建到期提醒 Issue）'
+        description: '调试模式（关闭时不踢玩家）'
         required: false
         default: false
         type: boolean
 
 jobs:
   run-server:
-    runs-on: ubuntu-24.04
-    timeout-minutes: 360
+    runs-on: self-hosted
     permissions:
       contents: write
-      issues: write
     steps:
-      - uses: actions/checkout@v4
-        with:
-          token: ${{ secrets.FINE_GRAINED_PAT }}
+      - name: Checkout (只拉配置/插件，不碰世界数据)
+        uses: actions/checkout@v4
 
-      - uses: actions/setup-java@v4
+      - name: Setup Java
+        uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
           java-version: '25'
 
-      - name: Download Leaf (latest 26.2 build via v2 API)
+      - name: Download Leaf (if not present)
         run: |
-          echo "Fetching latest Leaf 26.2 build number..."
-          LATEST_BUILD=$(curl -s "https://api.leafmc.one/v2/projects/leaf/versions/26.2/latestGroupBuildId")
-          echo "Latest build: #$LATEST_BUILD"
-          curl -L -o leaf.jar \
-            "https://api.leafmc.one/v2/projects/leaf/versions/26.2/builds/$LATEST_BUILD/downloads/leaf-26.2-$LATEST_BUILD.jar"
           if [ ! -f leaf.jar ]; then
-            echo "ERROR: Leaf download failed"
-            exit 1
-          fi
-          chmod +x leaf.jar
-          echo "Leaf #$LATEST_BUILD downloaded."
-
-      - name: Download playit
-        run: |
-          curl -L -o playit-linux-amd64 \
-            "https://github.com/playit-cloud/playit-agent/releases/latest/download/playit-linux-amd64"
-          chmod +x playit-linux-amd64
-
-      - name: Prepare playit config
-        run: |
-          mkdir -p ~/.config/playit_gg
-          if [ -n "${{ secrets.PLAYIT_SECRET }}" ]; then
-            echo "${{ secrets.PLAYIT_SECRET }}" > ~/.config/playit_gg/playit.toml
+            echo "leaf.jar not found, downloading latest 26.2 build..."
+            LATEST_BUILD=$(curl -s "https://api.leafmc.one/v2/projects/leaf/versions/26.2/latestGroupBuildId")
+            echo "Latest build: #$LATEST_BUILD"
+            curl -L -o leaf.jar \
+              "https://api.leafmc.one/v2/projects/leaf/versions/26.2/builds/$LATEST_BUILD/downloads/leaf-26.2-$LATEST_BUILD.jar"
+            chmod +x leaf.jar
+            echo "Leaf #$LATEST_BUILD downloaded."
+          else
+            echo "leaf.jar already exists, skipping download."
           fi
 
       - name: Run server
         env:
-          FINE_GRAINED_PAT: ${{ secrets.FINE_GRAINED_PAT }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           REPO: ${{ github.repository }}
           BRANCH: ${{ github.ref_name }}
-          RUN_ID: ${{ github.run_id }}
-          PLAYIT_SECRET: ${{ secrets.PLAYIT_SECRET }}
           DEBUG: ${{ github.event.inputs.debug }}
+          WORLD_NAME: "TouriCNParkOur"
         run: |
           cd "$GITHUB_WORKSPACE"
 
-          # 首次运行接受 EULA
-          echo "eula=true" > eula.txt
+          # 确保世界目录存在（本地持久盘，不在 git 管理内）
+          mkdir -p "$WORLD_NAME"
 
-          # 启动 playit（首次需交互认领，后续用 secret）
-          if [ -z "$PLAYIT_SECRET" ]; then
-            echo "=========================================="
-            echo "NO PLAYIT_SECRET - interactive claim mode"
-            echo "=========================================="
-            ./playit-linux-amd64 > playit.log 2>&1 &
-            PLAYIT_PID=$!
-            sleep 60
-            CLAIM_URL=$(grep -o 'https://playit.gg/claim/[A-Za-z0-9]*' playit.log | head -1)
-            if [ -n "$CLAIM_URL" ]; then
-              echo "CLAIM URL: $CLAIM_URL"
-            fi
-            # 等待认领（最多 5 分钟）
-            for i in $(seq 1 150); do
-              sleep 2
-              if grep -q "Program approved" playit.log 2>/dev/null; then
-                echo "Claim successful! Copy playit.toml content into PLAYIT_SECRET."
-                cat ~/.config/playit_gg/playit.toml || true
-                break
-              fi
-            done
-          else
-            ./playit-linux-amd64 2>&1 | sed '/login:/s/.*/<REDACTED>/' &
-            PLAYIT_PID=$!
+          # 首次运行接受 EULA
+          if [ ! -f eula.txt ]; then
+            echo "eula=true" > eula.txt
           fi
 
-          # SIGTERM 处理
-          trap '
-            echo "Received SIGTERM - emergency save..."
-            if [ "$DEBUG" != "true" ]; then
-              RCON_PASSWORD=$(grep "^rcon.password=" server.properties | cut -d"=" -f2)
-              mcrcon -H 127.0.0.1 -P 25575 -p "$RCON_PASSWORD" \
-                "kick @a 工作流即将关闭，请等待下次手动启动。查看运行状态: https://github.com/$REPO/actions" || true
-              sleep 5
-            fi
+          # 提交函数：只 add 配置/插件白名单，世界目录天然不进 git
+          maybe_commit() {
             git config user.name "github-actions[bot]"
             git config user.email "github-actions[bot]@users.noreply.github.com"
-            git add -A
-            git reset -- leaf.jar
-            git reset -- playit-linux-amd64
-            git reset -- "*.zip" || true
-            git commit -m "emergency save before shutdown [no ci]" || true
-            git push "https://x-access-token:${FINE_GRAINED_PAT}@github.com/${REPO}.git" \
-              "HEAD:${BRANCH}" --force || true
+            git add server.properties eula.txt \
+              plugins/ config/ mods/ modpack/ \
+              leaf.yml paper.yml bukkit.yml spigot.yml \
+              permissions.yml commands.yml help.yml \
+              banned-players.json banned-ips.json ops.json whitelist.json \
+              version_history.json 2>/dev/null || true
+            git reset -- leaf.jar "*.zip" 2>/dev/null || true
+            if [ -n "$(git status --porcelain)" ]; then
+              git commit -m "sync: config and plugins [no ci]"
+              git push "https://x-access-token:${GITHUB_TOKEN}@github.com/${REPO}.git" "HEAD:${BRANCH}" --force
+              echo "Changes committed and pushed."
+            else
+              echo "No changes, skipping commit."
+            fi
+          }
+
+          # SIGTERM 处理：紧急存档，只保留世界目录
+          trap '
+            echo "Received SIGTERM - emergency save..."
+            RCON_PASSWORD=$(grep "^rcon.password=" server.properties | cut -d"=" -f2)
+            if [ "$DEBUG" != "true" ]; then
+              mcrcon -H 127.0.0.1 -P 25575 -p "$RCON_PASSWORD" \
+                "kick @a 工作流即将关闭。" || true
+              sleep 5
+            fi
+            # 紧急存档，确保 TouriCNParkOur 落盘
+            mcrcon -H 127.0.0.1 -P 25575 -p "$RCON_PASSWORD" "save-all" || true
+            sleep 5
+            echo "World saved. TouriCNParkOur/ preserved on local disk."
           ' SIGTERM
 
-          # 启动 Leaf
+          # 启动 Leaf，指定世界名
           java -Xms2G -Xmx6G \
                -server \
                -DLeaf.enableFMA=true \
@@ -134,39 +112,16 @@ jobs:
                -XX:InitiatingHeapOccupancyPercent:15 \
                -XX:G1MixedGCLiveThresholdPercent:90 \
                --add-modules=jdk.incubator.vector \
+               -Dlevel-name="$WORLD_NAME" \
                -jar leaf.jar --nogui 2>&1 | sed '/login:/s/.*/<REDACTED>/' &
 
           SERVER_PID=$!
 
-          # 主循环：定时同步
-          START_TIME=$(date +%s)
-          WARNED=""
+          # 主循环：定时 save-all + 有变化才提交配置/插件
           while kill -0 $SERVER_PID 2>/dev/null; do
             sleep 600
-            git config user.name "github-actions[bot]"
-            git config user.email "github-actions[bot]@users.noreply.github.com"
-            git add -A
-            git reset -- leaf.jar
-            git reset -- playit-linux-amd64
-            git reset -- "*.zip" || true
-            git commit -m "sync: world data [no ci]" || true
-            git push "https://x-access-token:${FINE_GRAINED_PAT}@github.com/${REPO}.git" \
-              "HEAD:${BRANCH}" --force || true
-
-            CURRENT=$(date +%s)
-            ELAPSED=$((CURRENT - START_TIME))
-            if [ $ELAPSED -ge 20400 ] && [ -z "$WARNED" ]; then
-              WARNED=1
-              if [ "$DEBUG" != "true" ]; then
-                curl -s -X POST \
-                  -H "Authorization: token $FINE_GRAINED_PAT" \
-                  -H "Accept: application/vnd.github.v3+json" \
-                  "https://api.github.com/repos/$REPO/issues" \
-                  -d '{"title":"服务器即将关闭 - 手动启动新实例","body":"工作流已运行约 5 小时 40 分钟，即将达到 6 小时限制。请前往 Actions 页面手动点击 Run workflow 启动新服务器。"}' > /dev/null
-              fi
-            fi
+            RCON_PASSWORD=$(grep "^rcon.password=" server.properties | cut -d"=" -f2)
+            mcrcon -H 127.0.0.1 -P 25575 -p "$RCON_PASSWORD" "save-all" || true
+            sleep 5
+            maybe_commit
           done
-
-          # 关闭
-          kill $PLAYIT_PID 2>/dev/null || true
-          wait $PLAYIT_PID 2>/dev/null || true
