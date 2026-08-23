@@ -1149,3 +1149,31 @@
 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:614)
 	at java.base/java.lang.Thread.run(Thread.java:1474)
 
+[08-23 20:34:51]: [INFO] SQLite Setup finished
+[08-23 20:34:51]: [INFO] No supported permissions system found! Permissions are disabled!
+[08-23 20:34:51]: [WARN] WARNING! The protectInventory feature requires PacketEvents! Disabling it...
+[08-23 20:34:51]: [WARN] WARNING! The denyTabComplete feature requires PacketEvents! Disabling it...
+[08-23 20:34:51]: [INFO] AuthMe 6.0.0 build n.2734 successfully enabled!
+[08-23 20:35:01]: [INFO] Downloading GEO IP database, because the old database is older than 30 days or doesn't exist
+[08-23 20:35:01]: [WARN] No MaxMind credentials found in the configuration file! GeoIp protections will be disabled.
+[08-23 20:35:01]: [INFO] There is no newer GEO IP database uploaded to MaxMind. Using the old one for now.
+[08-23 20:35:01]: [WARN] Could not download GeoLiteAPI database [FileNotFoundException]: plugins/AuthMe/GeoLite2-Country.mmdb (没有那个文件或目录)
+[08-23 20:35:01]: java.io.FileNotFoundException: plugins/AuthMe/GeoLite2-Country.mmdb (没有那个文件或目录)
+	at java.base/java.io.RandomAccessFile.open0(Native Method)
+	at java.base/java.io.RandomAccessFile.open(RandomAccessFile.java:338)
+	at java.base/java.io.RandomAccessFile.<init>(RandomAccessFile.java:257)
+	at java.base/java.io.RandomAccessFile.<init>(RandomAccessFile.java:211)
+	at com.maxmind.db.BufferHolder.<init>(BufferHolder.java:19)
+	at com.maxmind.db.Reader.<init>(Reader.java:119)
+	at com.maxmind.geoip2.DatabaseReader.<init>(DatabaseReader.java:106)
+	at com.maxmind.geoip2.DatabaseReader$Builder.build(DatabaseReader.java:238)
+	at AuthMe-6.0.0-Paper.jar//fr.xephi.authme.service.GeoIpService.startReading(GeoIpService.java:183)
+	at AuthMe-6.0.0-Paper.jar//fr.xephi.authme.service.GeoIpService.updateDatabase(GeoIpService.java:150)
+	at org.bukkit.craftbukkit.scheduler.CraftTask.run(CraftTask.java:78)
+	at org.bukkit.craftbukkit.scheduler.CraftAsyncTask.run(CraftAsyncTask.java:57)
+	at com.destroystokyo.paper.ServerSchedulerReportingWrapper.run(ServerSchedulerReportingWrapper.java:22)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1090)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:614)
+	at java.base/java.lang.Thread.run(Thread.java:1474)
+
+[08-23 20:41:20]: [FINE] .LinYaOVO2014486 logged in 223.104.84.205
