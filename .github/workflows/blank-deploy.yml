@@ -19,8 +19,6 @@ jobs:
       contents: write
     steps:
       - uses: actions/checkout@v4
-        with:
-          token: ${{ secrets.FINE_GRAINED_PAT }}
 
       - name: Unpack packages
         env:
@@ -29,16 +27,12 @@ jobs:
         run: |
           cd "$GITHUB_WORKSPACE"
 
-          # 收集要处理的 zip 文件
           if [ -n "$PACKAGES" ]; then
-            # 用户显式指定了包名（空格分隔）
             ZIPS=""
             for name in $PACKAGES; do
-              # 支持带路径的写法，如 world/halfserver1.zip
               if [ -f "$name" ]; then
                 ZIPS="$ZIPS $name"
               else
-                # 按名字在所有目录中查找
                 FOUND=$(find . -type f -name "$name" | head -1)
                 if [ -n "$FOUND" ]; then
                   ZIPS="$ZIPS $FOUND"
@@ -48,7 +42,6 @@ jobs:
               fi
             done
           else
-            # 未指定则自动扫描所有 zip（排除已被 git 忽略的）
             ZIPS=$(find . -type f -name "*.zip" | grep -v ".git/" | tr '\n' ' ')
           fi
 
@@ -73,10 +66,12 @@ jobs:
           done
 
       - name: Commit and push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add -A
-          git reset -- "*.zip" || true
           git commit -m "deploy: unpack packages [no ci]" || echo "nothing to commit"
-          git push || echo "push failed"
+          git push "https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}.git" \
+            "HEAD:${{ github.ref_name }}" --force || echo "push failed"
