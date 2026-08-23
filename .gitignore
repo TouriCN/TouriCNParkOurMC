@@ -1,4 +1,4 @@
-leaf.jar
-*.zip
-# 世界数据只在本地 TB 盘，不进 git（白名单机制下其实不需要这行，但留作保险）
-TouriCNParkOur/
+runner/leaf.jar
+runner/*.zip
+runner/TouriCNParkOur/
+runner/logs/latest.log
