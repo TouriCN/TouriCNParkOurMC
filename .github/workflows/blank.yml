@@ -15,7 +15,7 @@ jobs:
     permissions:
       contents: write
     steps:
-      - name: Checkout (只拉配置/插件，不碰世界数据)
+      - name: Checkout
         uses: actions/checkout@v4
 
       - name: Setup Java
@@ -24,75 +24,59 @@ jobs:
           distribution: 'temurin'
           java-version: '25'
 
-      - name: Download Leaf (if not present)
-        run: |
-          if [ ! -f leaf.jar ]; then
-            echo "leaf.jar not found, downloading latest 26.2 build..."
-            LATEST_BUILD=$(curl -s "https://api.leafmc.one/v2/projects/leaf/versions/26.2/latestGroupBuildId")
-            echo "Latest build: #$LATEST_BUILD"
-            curl -L -o leaf.jar \
-              "https://api.leafmc.one/v2/projects/leaf/versions/26.2/builds/$LATEST_BUILD/downloads/leaf-26.2-$LATEST_BUILD.jar"
-            chmod +x leaf.jar
-            echo "Leaf #$LATEST_BUILD downloaded."
-          else
-            echo "leaf.jar already exists, skipping download."
-          fi
-
       - name: Run server
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           REPO: ${{ github.repository }}
           BRANCH: ${{ github.ref_name }}
           DEBUG: ${{ github.event.inputs.debug }}
-          WORLD_NAME: "TouriCNParkOur"
         run: |
-          cd "$GITHUB_WORKSPACE"
+          cd "$GITHUB_WORKSPACE/runner"
 
-          # 确保世界目录存在（本地持久盘，不在 git 管理内）
-          mkdir -p "$WORLD_NAME"
+          # 下载 Leaf（本地没有才下）
+          if [ ! -f leaf.jar ]; then
+            echo "Downloading Leaf..."
+            LATEST_BUILD=$(curl -s "https://api.leafmc.one/v2/projects/leaf/versions/26.2/latestGroupBuildId")
+            curl -L -o leaf.jar \
+              "https://api.leafmc.one/v2/projects/leaf/versions/26.2/builds/$LATEST_BUILD/downloads/leaf-26.2-$LATEST_BUILD.jar"
+            chmod +x leaf.jar
+            echo "Leaf #$LATEST_BUILD downloaded."
+          fi
 
           # 首次运行接受 EULA
           if [ ! -f eula.txt ]; then
             echo "eula=true" > eula.txt
           fi
 
-          # 提交函数：只 add 配置/插件白名单，世界目录天然不进 git
+          # 有变化才推送配置/插件回仓库
           maybe_commit() {
             git config user.name "github-actions[bot]"
             git config user.email "github-actions[bot]@users.noreply.github.com"
-            git add server.properties eula.txt \
-              plugins/ config/ mods/ modpack/ \
-              leaf.yml paper.yml bukkit.yml spigot.yml \
-              permissions.yml commands.yml help.yml \
-              banned-players.json banned-ips.json ops.json whitelist.json \
-              version_history.json 2>/dev/null || true
-            git reset -- leaf.jar "*.zip" 2>/dev/null || true
+            git add runner/
             if [ -n "$(git status --porcelain)" ]; then
-              git commit -m "sync: config and plugins [no ci]"
+              git commit -m "sync: runner config and plugins [no ci]"
               git push "https://x-access-token:${GITHUB_TOKEN}@github.com/${REPO}.git" "HEAD:${BRANCH}" --force
               echo "Changes committed and pushed."
             else
-              echo "No changes, skipping commit."
+              echo "No changes, skipping."
             fi
           }
 
-          # SIGTERM 处理：紧急存档，只保留世界目录
+          # SIGTERM 处理
           trap '
             echo "Received SIGTERM - emergency save..."
             RCON_PASSWORD=$(grep "^rcon.password=" server.properties | cut -d"=" -f2)
             if [ "$DEBUG" != "true" ]; then
-              mcrcon -H 127.0.0.1 -P 25575 -p "$RCON_PASSWORD" \
-                "kick @a 工作流即将关闭。" || true
+              mcrcon -H 127.0.0.1 -P 25575 -p "$RCON_PASSWORD" "kick @a 工作流即将关闭。" || true
               sleep 5
             fi
-            # 紧急存档，确保 TouriCNParkOur 落盘
             mcrcon -H 127.0.0.1 -P 25575 -p "$RCON_PASSWORD" "save-all" || true
             sleep 5
-            echo "World saved. TouriCNParkOur/ preserved on local disk."
+            maybe_commit
           ' SIGTERM
 
-          # 启动 Leaf，指定世界名
-          java -Xms2G -Xmx6G \
+          # 启动 Leaf（4C16G 配置）
+          java -Xms10G -Xmx10G \
                -server \
                -DLeaf.enableFMA=true \
                -XX:+UseG1GC \
@@ -103,21 +87,21 @@ jobs:
                -XX:+UnlockExperimentalVMOptions \
                -XX:+DisableExplicitGC \
                -XX:+AlwaysPreTouch \
-               -XX:G1NewSizePercent:30 \
+               -XX:G1NewSizePercent=30 \
                -XX:G1MaxNewSizePercent:40 \
-               -XX:G1HeapRegionSize:8M \
+               -XX:G1HeapRegionSize=16M \
                -XX:G1ReservePercent:20 \
                -XX:G1HeapWastePercent:5 \
                -XX:G1MixedGCCountTarget:4 \
                -XX:InitiatingHeapOccupancyPercent:15 \
                -XX:G1MixedGCLiveThresholdPercent:90 \
                --add-modules=jdk.incubator.vector \
-               -Dlevel-name="$WORLD_NAME" \
+               -Dlevel-name="TouriCNParkOur" \
                -jar leaf.jar --nogui 2>&1 | sed '/login:/s/.*/<REDACTED>/' &
 
           SERVER_PID=$!
 
-          # 主循环：定时 save-all + 有变化才提交配置/插件
+          # 主循环：定时存档 + 有变化才同步
           while kill -0 $SERVER_PID 2>/dev/null; do
             sleep 600
             RCON_PASSWORD=$(grep "^rcon.password=" server.properties | cut -d"=" -f2)
