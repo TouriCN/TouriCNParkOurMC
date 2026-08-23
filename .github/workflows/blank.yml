@@ -12,6 +12,17 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Sync repo runner/ to local (first boot)
+        run: |
+          if [ -d "$GITHUB_WORKSPACE/runner" ]; then
+            mkdir -p /home/container/runner
+            rsync -av --exclude='TouriCNParkOur/' --exclude='leaf.jar' --exclude='*.zip' --exclude='logs/latest.log' \
+              "$GITHUB_WORKSPACE/runner/" /home/container/runner/
+            echo "First boot: synced repo runner/ → /home/container/runner/"
+          else
+            echo "No runner/ in repo, using local /home/container/runner/ as-is."
+          fi
+
       - name: Setup Java
         uses: actions/setup-java@v4
         with:
@@ -24,7 +35,7 @@ jobs:
           REPO: ${{ github.repository }}
           BRANCH: ${{ github.ref_name }}
         run: |
-          cd "$GITHUB_WORKSPACE/runner"
+          cd /home/container/runner
 
           if [ ! -f leaf.jar ]; then
             echo "Downloading Leaf..."
@@ -40,6 +51,9 @@ jobs:
           fi
 
           maybe_commit() {
+            rsync -av --exclude='TouriCNParkOur/' --exclude='leaf.jar' --exclude='*.zip' --exclude='logs/latest.log' \
+              /home/container/runner/ "$GITHUB_WORKSPACE/runner/"
+            cd "$GITHUB_WORKSPACE"
             git config user.name "github-actions[bot]"
             git config user.email "github-actions[bot]@users.noreply.github.com"
             git add runner/
@@ -50,6 +64,7 @@ jobs:
             else
               echo "No changes, skipping."
             fi
+            cd /home/container/runner
           }
 
           trap '
@@ -87,10 +102,25 @@ jobs:
 
           SERVER_PID=$!
 
+          # 主循环：30 秒拉配置 + 10 分钟存档推送
+          LOOP_COUNT=0
           while kill -0 $SERVER_PID 2>/dev/null; do
-            sleep 600
-            RCON_PASSWORD=$(grep "^rcon.password=" server.properties | cut -d"=" -f2)
-            mcrcon -H 127.0.0.1 -P 25575 -p "$RCON_PASSWORD" "save-all" || true
-            sleep 5
-            maybe_commit
+            sleep 30
+            LOOP_COUNT=$((LOOP_COUNT + 1))
+
+            # 每 30 秒：从 GitHub 拉最新配置到本地
+            cd "$GITHUB_WORKSPACE"
+            git pull "https://x-access-token:${GITHUB_TOKEN}@github.com/${REPO}.git" "$BRANCH" || true
+            rsync -av --exclude='TouriCNParkOur/' --exclude='leaf.jar' --exclude='*.zip' --exclude='logs/latest.log' \
+              "$GITHUB_WORKSPACE/runner/" /home/container/runner/
+            cd /home/container/runner
+
+            # 每 10 分钟（30s × 20 = 600s）：存档 + 推本地改动
+            if [ $LOOP_COUNT -ge 20 ]; then
+              LOOP_COUNT=0
+              RCON_PASSWORD=$(grep "^rcon.password=" server.properties | cut -d"=" -f2)
+              mcrcon -H 127.0.0.1 -P 25575 -p "$RCON_PASSWORD" "save-all" || true
+              sleep 5
+              maybe_commit
+            fi
           done
