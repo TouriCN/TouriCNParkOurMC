@@ -107,19 +107,6 @@ jobs:
                -Dlevel-name="TouriCNParkOur" \
                -jar leaf.jar --nogui &
           SERVER_PID=$!
-          # 诊断信息
-          sleep 30
-          echo "=== 进程监听状态 ==="
-          echo "--- TCP 40256 ---"
-          cat /proc/net/tcp | awk '{print $2}' | grep -i ":9D88" && echo "TCP 40256 有监听 (0.0.0.0:40256 = :9D88)" || echo "TCP 40256 无监听"
-          echo "--- UDP 40256 ---"
-          cat /proc/net/udp | awk '{print $2}' | grep -i ":9D88" && echo "UDP 40256 有监听" || echo "UDP 40256 无监听"
-
-          echo "=== 谁在监听 40256 (TCP) ==="
-          ss -tlnp | grep 40256 || echo "没有任何进程在 TCP 40256 上监听"
-
-          echo "=== 谁在监听 40256 (UDP) ==="
-          ss -ulnp | grep 40256 || echo "没有任何进程在 UDP 40256 上监听"
 
           COUNT=0
           while kill -0 $SERVER_PID 2>/dev/null; do
