@@ -47,6 +47,8 @@ on join:
     else:
         send "&e大厅坐标尚未设置，请联系管理员执行 /sethub" to player
 
+    execute console command "effect give %player% saturation 999999 255 true"
+
     # 菜单钟：没有才给
     set {_hasMenu} to false
     loop all items in player's inventory:
@@ -58,15 +60,3 @@ on join:
     if {_hasMenu} is false:
         give a clock named "&a菜单" with lore "&7右击打开菜单" to player
         send "&a已为你添加菜单物品！右击即可打开大厅菜单" to player
-
-    # 不给饱食的世界列表 —— 在列表里不给，列表外都给（大厅照常给）
-    set {_noSatWorlds::*} to "smp-1" and "smp-2"
-
-    set {_giveSat} to true
-    loop {_noSatWorlds::*}:
-        if world of player is loop-value:
-            set {_giveSat} to false
-            exit loop
-
-    if {_giveSat} is true:
-        execute console command "effect give %player% saturation 999999 255 true"
