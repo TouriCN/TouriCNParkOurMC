@@ -3,18 +3,18 @@ name: Minecraft Server
 on:
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 env:
   REPO: ${{ github.repository }}
   BRANCH: ${{ github.ref_name }}
-  GH_TOKEN: ${{ secrets.PAT }}   # ← 你的 PAT，不过期
+  GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 jobs:
   server:
     runs-on: self-hosted
-    timeout-minutes: 6480        # 4.5 天，到时间 GitHub 发 SIGTERM 自毁
-    permissions:
-      contents: write
-
+    timeout-minutes: 6480   # 4.5 天，到时间 GitHub 发 SIGTERM 自毁
     steps:
       - uses: actions/setup-java@v4
         with:
@@ -25,20 +25,19 @@ jobs:
         run: |
           cd /home/container
 
-          # ── 初始化 git（首次）──
+          # ── git 初始化（首次）──
           if [ ! -d .git ]; then
             git init
             git remote add origin "https://x-access-token:${GH_TOKEN}@github.com/${REPO}.git"
             git fetch origin
             git checkout -b "$BRANCH" "origin/$BRANCH"
           fi
-
           git config pull.rebase true
 
           # ── 启动时拉取：远端是真相源 ──
           git stash --include-untracked || true
-          git fetch origin "$BRANCH"
-          git reset --hard "origin/$BRANCH"
+          git fetch origin "$BRANCH" || true
+          git reset --hard "origin/$BRANCH" || true
           git stash pop 2>/dev/null || true
 
           cd runner
@@ -66,21 +65,28 @@ jobs:
             git config user.name "github-actions[bot]"
             git config user.email "github-actions[bot]@users.noreply.github.com"
 
-            # 先以远端为准拉最新，再把本地修改叠上去
+            # 先以远端为准
             git stash --include-untracked || true
-            git fetch origin "$BRANCH"
-            git reset --hard "origin/$BRANCH"
+            git fetch origin "$BRANCH" || true
+            git reset --hard "origin/$BRANCH" || true
             git stash pop 2>/dev/null || true
 
-            git add runner/
+            # -A 捕获删除（删插件也能推上去），|| true 防止 nfs 文件消失时报错被 set -e 杀掉
+            git add -A runner/ || true
+
+            # 强制排除不该进 git 的
+            git reset HEAD runner/TouriCNParkOur runner/logs runner/leaf.jar runner/mcrcon 2>/dev/null || true
+
             if [ -n "$(git status --porcelain)" ]; then
-              git commit -m "sync: runner [no ci]"
-              git push "https://x-access-token:${GH_TOKEN}@github.com/${REPO}.git" "HEAD:$BRANCH"
+              git commit -m "sync: runner [no ci]" || true
+              # token 可能已过期（24h 限制），push 失败就跳过，不崩
+              git push "https://x-access-token:${GH_TOKEN}@github.com/${REPO}.git" "HEAD:$BRANCH" || echo "push failed (token may be expired), skipping"
             fi
+
             cd runner
           }
 
-          # ── 关停陷阱：4.5 天到了 GitHub 发 SIGTERM 就走这里 ──
+          # ── 关停陷阱 ──
           trap '
             ./mcrcon -H 127.0.0.1 -P "$RCON_PORT" -p "$RCON_PASSWORD" "kick @a 服务器即将重启。" || true
             sleep 5
@@ -88,7 +94,7 @@ jobs:
             sleep 5
             push
             find . -mindepth 1 -maxdepth 1 ! -name "TouriCNParkOur" -exec rm -rf {} +
-            kill -15 $SERVER_PID 2>/dev/null
+            kill -15 $JAVA_PID 2>/dev/null
             exit 0
           ' SIGTERM
 
@@ -114,24 +120,25 @@ jobs:
                -XX:G1MixedGCLiveThresholdPercent=90 \
                --add-modules=jdk.incubator.vector \
                -Dlevel-name="TouriCNParkOur" \
-               -jar leaf.jar --nogui &
-          SERVER_PID=$!
+               -jar leaf.jar --nogui > server.log 2>&1 &
+
+          JAVA_PID=$!
 
           # ── 主循环 ──
           COUNT=0
-          while kill -0 $SERVER_PID 2>/dev/null; do
+          while kill -0 $JAVA_PID 2>/dev/null; do
             sleep 30
             COUNT=$((COUNT+1))
 
-            # 每 30 秒：远端是真相源
+            # 每 30 秒：远端是真相源（token 过期就跳过，不崩）
             cd /home/container
             git stash --include-untracked || true
-            git fetch origin "$BRANCH"
-            git reset --hard "origin/$BRANCH"
+            git fetch origin "$BRANCH" || true
+            git reset --hard "origin/$BRANCH" || true
             git stash pop 2>/dev/null || true
             cd runner
 
-            # 每 10 分钟：本地保存 + 推送
+            # 每 10 分钟：保存 + 推送
             if [ $COUNT -ge 20 ]; then
               COUNT=0
               ./mcrcon -H 127.0.0.1 -P "$RCON_PORT" -p "$RCON_PASSWORD" "save-all" || true
