@@ -24,7 +24,7 @@ Bottom:
         - '游玩所有的跑酷'
       actions:
         - close
-        - open:game
+        - open:parkour1
     hub:
       text: 回到大厅
       tooltip:
