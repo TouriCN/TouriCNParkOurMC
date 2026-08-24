@@ -1,0 +1,31 @@
+Title: 'TouriCNParkOur｜跑酷菜单'
+
+Settings:
+  can_escape: true
+  after_action: CLOSE
+  need_placeholder:
+    - player
+
+Body:
+  info:
+    type: message
+    text: "%player_name%，请在以下列表中选择你想使用的功能！"
+  info2:
+    type: message
+    text: "注意:我们仅标注不能很好的徒步到达的"
+
+Bottom:
+  type: multi
+  columns: 1
+  buttons:
+    p1:
+      text: 峡间跑酷【1】
+      tooltip:
+        - '属实有点难的，找路这一块'
+      actions:
+        - close
+        - console:tp %player_name% 
+  exit:
+    text: 关闭菜单
+    actions:
+      - close
