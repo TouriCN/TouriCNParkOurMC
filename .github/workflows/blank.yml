@@ -2,52 +2,40 @@ name: Minecraft Server
 
 on:
   workflow_dispatch:
+  push:
+    branches: [playit-only]
+
+env:
+  REPO: TouriCN/TouriCNParkOurMC
+  BRANCH: playit-only
 
 jobs:
-  run-server:
+  server:
     runs-on: self-hosted
-    permissions:
-      contents: write
+    timeout-minutes: 1440
+
     steps:
-      - name: Ensure /home/container is a git repo
+      - name: Sync and Start Server
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          REPO: ${{ github.repository }}
-          BRANCH: ${{ github.ref_name }}
-        run: |
-          if [ ! -d /home/container/.git ]; then
-            cd /home/container
-            git init
-            git remote add origin "https://x-access-token:${GITHUB_TOKEN}@github.com/${REPO}.git"
-            git fetch origin
-            git checkout -b "$BRANCH" "origin/$BRANCH"
-          fi
-
-      - uses: actions/setup-java@v4
-        with:
-          distribution: 'temurin'
-          java-version: '25'
-
-      - name: Run server
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          REPO: ${{ github.repository }}
-          BRANCH: ${{ github.ref_name }}
         run: |
           cd /home/container
-          git config pull.rebase true
 
-          git stash
-          git pull "https://x-access-token:${GITHUB_TOKEN}@github.com/${REPO}.git" "$BRANCH" || true
+          # ── 安全同步：以 GitHub 远端为真相源，永不冲突 ──
+          git stash --include-untracked || true
+          git fetch origin "$BRANCH"
+          git reset --hard "origin/$BRANCH"
           git stash pop 2>/dev/null || true
 
           cd runner
 
+          # ── 下载 Leaf（如果不存在）──
           if [ ! -f leaf.jar ]; then
             curl -fL -o leaf.jar "https://github.com/Winds-Studio/Leaf/releases/download/ver-26.2/leaf-26.2-83.jar"
             chmod +x leaf.jar
           fi
 
+          # ── 编译 mcrcon（如果不存在）──
           if [ ! -f mcrcon ]; then
             curl -fL -o mcrcon.c https://raw.githubusercontent.com/Tiiffi/mcrcon/master/mcrcon.c
             gcc -std=gnu11 -Wall -Wextra -Wpedantic -Os mcrcon.c -o mcrcon
@@ -55,17 +43,21 @@ jobs:
             rm -f mcrcon.c
           fi
 
+          # ── 接受 EULA ──
           [ ! -f eula.txt ] && echo "eula=true" > eula.txt
 
+          # ── 读取 RCON 配置 ──
           RCON_PORT=$(grep "^rcon.port=" server.properties | cut -d"=" -f2)
           RCON_PASSWORD=$(grep "^rcon.password=" server.properties | cut -d"=" -f2)
 
+          # ── 关停时：踢人 → 保存 → 推送 → 清场 ──
           push() {
             cd /home/container
             git config user.name "github-actions[bot]"
             git config user.email "github-actions[bot]@users.noreply.github.com"
-            git stash
-            git pull "https://x-access-token:${GITHUB_TOKEN}@github.com/${REPO}.git" "$BRANCH" --rebase || true
+            git stash --include-untracked || true
+            git fetch origin "$BRANCH"
+            git reset --hard "origin/$BRANCH"
             git stash pop 2>/dev/null || true
             git add runner/
             if [ -n "$(git status --porcelain)" ]; then
@@ -84,6 +76,7 @@ jobs:
             find . -mindepth 1 -maxdepth 1 ! -name "TouriCNParkOur" -exec rm -rf {} +
           ' SIGTERM
 
+          # ── 启动 Leaf ──
           java -Xms10G -Xmx10G \
                -server \
                -DLeaf.enableFMA=true \
@@ -106,20 +99,24 @@ jobs:
                --add-modules=jdk.incubator.vector \
                -Dlevel-name="TouriCNParkOur" \
                -jar leaf.jar --nogui &
+
           SERVER_PID=$!
 
+          # ── 保活 + 定期自动保存推送 ──
           COUNT=0
           while kill -0 $SERVER_PID 2>/dev/null; do
             sleep 30
             COUNT=$((COUNT+1))
 
+            # 安全同步（以 GitHub 为准，不冲突）
             cd /home/container
-            git stash
-            git pull "https://x-access-token:${GITHUB_TOKEN}@github.com/${REPO}.git" "$BRANCH" --rebase || true
+            git stash --include-untracked || true
+            git fetch origin "$BRANCH"
+            git reset --hard "origin/$BRANCH"
             git stash pop 2>/dev/null || true
             cd runner
 
-
+            # 每 10 分钟（20 × 30s）保存一次并推送
             if [ $COUNT -ge 20 ]; then
               COUNT=0
               ./mcrcon -H 127.0.0.1 -P "$RCON_PORT" -p "$RCON_PASSWORD" "save-all" || true
