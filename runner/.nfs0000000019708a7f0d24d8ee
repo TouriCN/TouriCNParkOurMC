@@ -475,3 +475,179 @@ Caused by: java.io.IOException: Incomplete JFR file
 [16:15:45 INFO]: Thread RCON Client /127.0.0.1 started
 [16:15:45 INFO]: [3m[37m[Rcon: Saved the game][0m
 [16:15:45 INFO]: Thread RCON Client /127.0.0.1 shutting down
+[16:16:05 WARN]: [spark] Exception occurred while rotating profiler job
+me.lucko.spark.paper.common.sampler.async.JfrParsingException: Error parsing JFR data from profiler output
+	at me.lucko.spark.paper.common.sampler.async.AsyncProfilerJob.aggregate(AsyncProfilerJob.java:224) ~[spark-paper-1.10-dev-f181ccf-SNAPSHOT.jar:?]
+	at me.lucko.spark.paper.common.sampler.async.AsyncSampler.rotateProfilerJob(AsyncSampler.java:156) ~[spark-paper-1.10-dev-f181ccf-SNAPSHOT.jar:?]
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:545) ~[?:?]
+	at java.base/java.util.concurrent.FutureTask.runAndReset(FutureTask.java:369) ~[?:?]
+	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:310) ~[?:?]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1090) ~[?:?]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:614) ~[?:?]
+	at java.base/java.lang.Thread.run(Thread.java:1474) ~[?:?]
+Caused by: java.io.IOException: Incomplete JFR file
+	at me.lucko.spark.paper.common.sampler.async.jfr.JfrReader.<init>(JfrReader.java:95) ~[spark-paper-1.10-dev-f181ccf-SNAPSHOT.jar:?]
+	at me.lucko.spark.paper.common.sampler.async.AsyncProfilerJob.aggregate(AsyncProfilerJob.java:213) ~[spark-paper-1.10-dev-f181ccf-SNAPSHOT.jar:?]
+	... 7 more
+[16:17:05 WARN]: [spark] Exception occurred while rotating profiler job
+me.lucko.spark.paper.common.sampler.async.JfrParsingException: Error parsing JFR data from profiler output
+	at me.lucko.spark.paper.common.sampler.async.AsyncProfilerJob.aggregate(AsyncProfilerJob.java:224) ~[spark-paper-1.10-dev-f181ccf-SNAPSHOT.jar:?]
+	at me.lucko.spark.paper.common.sampler.async.AsyncSampler.rotateProfilerJob(AsyncSampler.java:156) ~[spark-paper-1.10-dev-f181ccf-SNAPSHOT.jar:?]
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:545) ~[?:?]
+	at java.base/java.util.concurrent.FutureTask.runAndReset(FutureTask.java:369) ~[?:?]
+	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:310) ~[?:?]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1090) ~[?:?]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:614) ~[?:?]
+	at java.base/java.lang.Thread.run(Thread.java:1474) ~[?:?]
+Caused by: java.io.IOException: Incomplete JFR file
+	at me.lucko.spark.paper.common.sampler.async.jfr.JfrReader.<init>(JfrReader.java:95) ~[spark-paper-1.10-dev-f181ccf-SNAPSHOT.jar:?]
+	at me.lucko.spark.paper.common.sampler.async.AsyncProfilerJob.aggregate(AsyncProfilerJob.java:213) ~[spark-paper-1.10-dev-f181ccf-SNAPSHOT.jar:?]
+	... 7 more
+[16:18:05 WARN]: [spark] Exception occurred while rotating profiler job
+me.lucko.spark.paper.common.sampler.async.JfrParsingException: Error parsing JFR data from profiler output
+	at me.lucko.spark.paper.common.sampler.async.AsyncProfilerJob.aggregate(AsyncProfilerJob.java:224) ~[spark-paper-1.10-dev-f181ccf-SNAPSHOT.jar:?]
+	at me.lucko.spark.paper.common.sampler.async.AsyncSampler.rotateProfilerJob(AsyncSampler.java:156) ~[spark-paper-1.10-dev-f181ccf-SNAPSHOT.jar:?]
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:545) ~[?:?]
+	at java.base/java.util.concurrent.FutureTask.runAndReset(FutureTask.java:369) ~[?:?]
+	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:310) ~[?:?]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1090) ~[?:?]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:614) ~[?:?]
+	at java.base/java.lang.Thread.run(Thread.java:1474) ~[?:?]
+Caused by: java.io.IOException: Incomplete JFR file
+	at me.lucko.spark.paper.common.sampler.async.jfr.JfrReader.<init>(JfrReader.java:95) ~[spark-paper-1.10-dev-f181ccf-SNAPSHOT.jar:?]
+	at me.lucko.spark.paper.common.sampler.async.AsyncProfilerJob.aggregate(AsyncProfilerJob.java:213) ~[spark-paper-1.10-dev-f181ccf-SNAPSHOT.jar:?]
+	... 7 more
+[16:18:20 WARN]: [PVDC] An error occurred while accessing LuckPerms data: net.luckperms.api.LuckPerms
+[16:18:55 INFO]: [3m[37m[.LinYaOVO2014486: Set own game mode to Adventure Mode][0m
+[16:19:05 WARN]: [spark] Exception occurred while rotating profiler job
+me.lucko.spark.paper.common.sampler.async.JfrParsingException: Error parsing JFR data from profiler output
+	at me.lucko.spark.paper.common.sampler.async.AsyncProfilerJob.aggregate(AsyncProfilerJob.java:224) ~[spark-paper-1.10-dev-f181ccf-SNAPSHOT.jar:?]
+	at me.lucko.spark.paper.common.sampler.async.AsyncSampler.rotateProfilerJob(AsyncSampler.java:156) ~[spark-paper-1.10-dev-f181ccf-SNAPSHOT.jar:?]
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:545) ~[?:?]
+	at java.base/java.util.concurrent.FutureTask.runAndReset(FutureTask.java:369) ~[?:?]
+	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:310) ~[?:?]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1090) ~[?:?]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:614) ~[?:?]
+	at java.base/java.lang.Thread.run(Thread.java:1474) ~[?:?]
+Caused by: java.io.IOException: Incomplete JFR file
+	at me.lucko.spark.paper.common.sampler.async.jfr.JfrReader.<init>(JfrReader.java:95) ~[spark-paper-1.10-dev-f181ccf-SNAPSHOT.jar:?]
+	at me.lucko.spark.paper.common.sampler.async.AsyncProfilerJob.aggregate(AsyncProfilerJob.java:213) ~[spark-paper-1.10-dev-f181ccf-SNAPSHOT.jar:?]
+	... 7 more
+[16:19:22 WARN]: .LinYaOVO2014486 moved too quickly! -2.1672699999999736,-16.010809999999992,5.801806999999997
+[16:19:26 WARN]: .LinYaOVO2014486 moved wrongly!, (-11.951809999999995)
+[16:19:28 WARN]: .LinYaOVO2014486 moved wrongly!, (-7.559539999999998)
+[16:19:37 WARN]: .LinYaOVO2014486 moved too quickly! -3.2886399999999867,-14.606120000000004,5.857512999999997
+[16:19:43 WARN]: .LinYaOVO2014486 moved wrongly!, (-14.606120000000004)
+[16:19:48 WARN]: .LinYaOVO2014486 moved wrongly!, (-5.307430000000011)
+[16:19:52 WARN]: .LinYaOVO2014486 moved too quickly! -2.0844000000000165,-14.554149999999993,5.552520000000001
+[16:20:05 WARN]: [spark] Exception occurred while rotating profiler job
+me.lucko.spark.paper.common.sampler.async.JfrParsingException: Error parsing JFR data from profiler output
+	at me.lucko.spark.paper.common.sampler.async.AsyncProfilerJob.aggregate(AsyncProfilerJob.java:224) ~[spark-paper-1.10-dev-f181ccf-SNAPSHOT.jar:?]
+	at me.lucko.spark.paper.common.sampler.async.AsyncSampler.rotateProfilerJob(AsyncSampler.java:156) ~[spark-paper-1.10-dev-f181ccf-SNAPSHOT.jar:?]
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:545) ~[?:?]
+	at java.base/java.util.concurrent.FutureTask.runAndReset(FutureTask.java:369) ~[?:?]
+	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:310) ~[?:?]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1090) ~[?:?]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:614) ~[?:?]
+	at java.base/java.lang.Thread.run(Thread.java:1474) ~[?:?]
+Caused by: java.io.IOException: Incomplete JFR file
+	at me.lucko.spark.paper.common.sampler.async.jfr.JfrReader.<init>(JfrReader.java:95) ~[spark-paper-1.10-dev-f181ccf-SNAPSHOT.jar:?]
+	at me.lucko.spark.paper.common.sampler.async.AsyncProfilerJob.aggregate(AsyncProfilerJob.java:213) ~[spark-paper-1.10-dev-f181ccf-SNAPSHOT.jar:?]
+	... 7 more
+[16:21:05 WARN]: [spark] Exception occurred while rotating profiler job
+me.lucko.spark.paper.common.sampler.async.JfrParsingException: Error parsing JFR data from profiler output
+	at me.lucko.spark.paper.common.sampler.async.AsyncProfilerJob.aggregate(AsyncProfilerJob.java:224) ~[spark-paper-1.10-dev-f181ccf-SNAPSHOT.jar:?]
+	at me.lucko.spark.paper.common.sampler.async.AsyncSampler.rotateProfilerJob(AsyncSampler.java:156) ~[spark-paper-1.10-dev-f181ccf-SNAPSHOT.jar:?]
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:545) ~[?:?]
+	at java.base/java.util.concurrent.FutureTask.runAndReset(FutureTask.java:369) ~[?:?]
+	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:310) ~[?:?]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1090) ~[?:?]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:614) ~[?:?]
+	at java.base/java.lang.Thread.run(Thread.java:1474) ~[?:?]
+Caused by: java.io.IOException: Incomplete JFR file
+	at me.lucko.spark.paper.common.sampler.async.jfr.JfrReader.<init>(JfrReader.java:95) ~[spark-paper-1.10-dev-f181ccf-SNAPSHOT.jar:?]
+	at me.lucko.spark.paper.common.sampler.async.AsyncProfilerJob.aggregate(AsyncProfilerJob.java:213) ~[spark-paper-1.10-dev-f181ccf-SNAPSHOT.jar:?]
+	... 7 more
+[16:21:35 INFO]: Teleported .LinYaOVO2014486 to -166.550000, 59.000000, 16.550000
+[16:21:52 INFO]: .LinYaOVO2014486 fell from a high place
+[16:22:05 WARN]: [spark] Exception occurred while rotating profiler job
+me.lucko.spark.paper.common.sampler.async.JfrParsingException: Error parsing JFR data from profiler output
+	at me.lucko.spark.paper.common.sampler.async.AsyncProfilerJob.aggregate(AsyncProfilerJob.java:224) ~[spark-paper-1.10-dev-f181ccf-SNAPSHOT.jar:?]
+	at me.lucko.spark.paper.common.sampler.async.AsyncSampler.rotateProfilerJob(AsyncSampler.java:156) ~[spark-paper-1.10-dev-f181ccf-SNAPSHOT.jar:?]
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:545) ~[?:?]
+	at java.base/java.util.concurrent.FutureTask.runAndReset(FutureTask.java:369) ~[?:?]
+	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:310) ~[?:?]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1090) ~[?:?]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:614) ~[?:?]
+	at java.base/java.lang.Thread.run(Thread.java:1474) ~[?:?]
+Caused by: java.io.IOException: Incomplete JFR file
+	at me.lucko.spark.paper.common.sampler.async.jfr.JfrReader.<init>(JfrReader.java:95) ~[spark-paper-1.10-dev-f181ccf-SNAPSHOT.jar:?]
+	at me.lucko.spark.paper.common.sampler.async.AsyncProfilerJob.aggregate(AsyncProfilerJob.java:213) ~[spark-paper-1.10-dev-f181ccf-SNAPSHOT.jar:?]
+	... 7 more
+[16:22:27 INFO]: [Geyser-Spigot] LinYaOVO2014486 已因 §r基岩版客户端已断开连接 与 Java 服务器断开了连接
+[16:22:27 INFO]: [floodgate] Floodgate 玩家 .LinYaOVO2014486 已断开连接
+[16:22:27 INFO]: .LinYaOVO2014486 lost connection: Disconnected
+[16:22:27 INFO]: [NoChatReports] Forgetting player: .LinYaOVO2014486
+[16:22:27 INFO]: [voicechat] Disconnecting client .LinYaOVO2014486
+[16:22:27 INFO]: [93m.LinYaOVO2014486 left the game[0m
+[16:22:27 WARN]: [AuthMe] Error during SQL operation: [SQLiteException]: [SQLITE_READONLY_DBMOVED] The database file has been moved since it was opened (attempt to write a readonly database)
+[16:22:27 WARN]: [AuthMe] Error during SQL operation: [SQLiteException]: [SQLITE_READONLY_DBMOVED] The database file has been moved since it was opened (attempt to write a readonly database)
+[16:23:05 WARN]: [spark] Exception occurred while rotating profiler job
+me.lucko.spark.paper.common.sampler.async.JfrParsingException: Error parsing JFR data from profiler output
+	at me.lucko.spark.paper.common.sampler.async.AsyncProfilerJob.aggregate(AsyncProfilerJob.java:224) ~[spark-paper-1.10-dev-f181ccf-SNAPSHOT.jar:?]
+	at me.lucko.spark.paper.common.sampler.async.AsyncSampler.rotateProfilerJob(AsyncSampler.java:156) ~[spark-paper-1.10-dev-f181ccf-SNAPSHOT.jar:?]
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:545) ~[?:?]
+	at java.base/java.util.concurrent.FutureTask.runAndReset(FutureTask.java:369) ~[?:?]
+	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:310) ~[?:?]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1090) ~[?:?]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:614) ~[?:?]
+	at java.base/java.lang.Thread.run(Thread.java:1474) ~[?:?]
+Caused by: java.io.IOException: Incomplete JFR file
+	at me.lucko.spark.paper.common.sampler.async.jfr.JfrReader.<init>(JfrReader.java:95) ~[spark-paper-1.10-dev-f181ccf-SNAPSHOT.jar:?]
+	at me.lucko.spark.paper.common.sampler.async.AsyncProfilerJob.aggregate(AsyncProfilerJob.java:213) ~[spark-paper-1.10-dev-f181ccf-SNAPSHOT.jar:?]
+	... 7 more
+[16:24:05 WARN]: [spark] Exception occurred while rotating profiler job
+me.lucko.spark.paper.common.sampler.async.JfrParsingException: Error parsing JFR data from profiler output
+	at me.lucko.spark.paper.common.sampler.async.AsyncProfilerJob.aggregate(AsyncProfilerJob.java:224) ~[spark-paper-1.10-dev-f181ccf-SNAPSHOT.jar:?]
+	at me.lucko.spark.paper.common.sampler.async.AsyncSampler.rotateProfilerJob(AsyncSampler.java:156) ~[spark-paper-1.10-dev-f181ccf-SNAPSHOT.jar:?]
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:545) ~[?:?]
+	at java.base/java.util.concurrent.FutureTask.runAndReset(FutureTask.java:369) ~[?:?]
+	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:310) ~[?:?]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1090) ~[?:?]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:614) ~[?:?]
+	at java.base/java.lang.Thread.run(Thread.java:1474) ~[?:?]
+Caused by: java.io.IOException: Incomplete JFR file
+	at me.lucko.spark.paper.common.sampler.async.jfr.JfrReader.<init>(JfrReader.java:95) ~[spark-paper-1.10-dev-f181ccf-SNAPSHOT.jar:?]
+	at me.lucko.spark.paper.common.sampler.async.AsyncProfilerJob.aggregate(AsyncProfilerJob.java:213) ~[spark-paper-1.10-dev-f181ccf-SNAPSHOT.jar:?]
+	... 7 more
+[16:25:05 WARN]: [spark] Exception occurred while rotating profiler job
+me.lucko.spark.paper.common.sampler.async.JfrParsingException: Error parsing JFR data from profiler output
+	at me.lucko.spark.paper.common.sampler.async.AsyncProfilerJob.aggregate(AsyncProfilerJob.java:224) ~[spark-paper-1.10-dev-f181ccf-SNAPSHOT.jar:?]
+	at me.lucko.spark.paper.common.sampler.async.AsyncSampler.rotateProfilerJob(AsyncSampler.java:156) ~[spark-paper-1.10-dev-f181ccf-SNAPSHOT.jar:?]
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:545) ~[?:?]
+	at java.base/java.util.concurrent.FutureTask.runAndReset(FutureTask.java:369) ~[?:?]
+	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:310) ~[?:?]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1090) ~[?:?]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:614) ~[?:?]
+	at java.base/java.lang.Thread.run(Thread.java:1474) ~[?:?]
+Caused by: java.io.IOException: Incomplete JFR file
+	at me.lucko.spark.paper.common.sampler.async.jfr.JfrReader.<init>(JfrReader.java:95) ~[spark-paper-1.10-dev-f181ccf-SNAPSHOT.jar:?]
+	at me.lucko.spark.paper.common.sampler.async.AsyncProfilerJob.aggregate(AsyncProfilerJob.java:213) ~[spark-paper-1.10-dev-f181ccf-SNAPSHOT.jar:?]
+	... 7 more
+[16:26:05 WARN]: [spark] Exception occurred while rotating profiler job
+me.lucko.spark.paper.common.sampler.async.JfrParsingException: Error parsing JFR data from profiler output
+	at me.lucko.spark.paper.common.sampler.async.AsyncProfilerJob.aggregate(AsyncProfilerJob.java:224) ~[spark-paper-1.10-dev-f181ccf-SNAPSHOT.jar:?]
+	at me.lucko.spark.paper.common.sampler.async.AsyncSampler.rotateProfilerJob(AsyncSampler.java:156) ~[spark-paper-1.10-dev-f181ccf-SNAPSHOT.jar:?]
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:545) ~[?:?]
+	at java.base/java.util.concurrent.FutureTask.runAndReset(FutureTask.java:369) ~[?:?]
+	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:310) ~[?:?]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1090) ~[?:?]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:614) ~[?:?]
+	at java.base/java.lang.Thread.run(Thread.java:1474) ~[?:?]
+Caused by: java.io.IOException: Incomplete JFR file
+	at me.lucko.spark.paper.common.sampler.async.jfr.JfrReader.<init>(JfrReader.java:95) ~[spark-paper-1.10-dev-f181ccf-SNAPSHOT.jar:?]
+	at me.lucko.spark.paper.common.sampler.async.AsyncProfilerJob.aggregate(AsyncProfilerJob.java:213) ~[spark-paper-1.10-dev-f181ccf-SNAPSHOT.jar:?]
+	... 7 more
+[16:26:25 INFO]: Thread RCON Client /127.0.0.1 started
+[16:26:25 INFO]: [3m[37m[Rcon: Saved the game][0m
+[16:26:25 INFO]: Thread RCON Client /127.0.0.1 shutting down
