@@ -1273,16 +1273,16 @@
 [08-24 16:01:02]: [WARN] WARNING! The protectInventory feature requires PacketEvents! Disabling it...
 [08-24 16:01:02]: [WARN] WARNING! The denyTabComplete feature requires PacketEvents! Disabling it...
 [08-24 16:01:02]: [INFO] AuthMe 6.0.0 build n.2734 successfully enabled!
-[08-24 21:14:10]: [INFO] SQLite Setup finished
-[08-24 21:14:10]: [INFO] No supported permissions system found! Permissions are disabled!
-[08-24 21:14:10]: [WARN] WARNING! The protectInventory feature requires PacketEvents! Disabling it...
-[08-24 21:14:10]: [WARN] WARNING! The denyTabComplete feature requires PacketEvents! Disabling it...
-[08-24 21:14:11]: [INFO] AuthMe 6.0.0 build n.2734 successfully enabled!
-[08-24 21:14:19]: [INFO] Downloading GEO IP database, because the old database is older than 30 days or doesn't exist
-[08-24 21:14:19]: [WARN] No MaxMind credentials found in the configuration file! GeoIp protections will be disabled.
-[08-24 21:14:19]: [INFO] There is no newer GEO IP database uploaded to MaxMind. Using the old one for now.
-[08-24 21:14:19]: [WARN] Could not download GeoLiteAPI database [FileNotFoundException]: plugins/AuthMe/GeoLite2-Country.mmdb (没有那个文件或目录)
-[08-24 21:14:19]: java.io.FileNotFoundException: plugins/AuthMe/GeoLite2-Country.mmdb (没有那个文件或目录)
+[08-25 01:49:27]: [INFO] SQLite Setup finished
+[08-25 01:49:27]: [INFO] No supported permissions system found! Permissions are disabled!
+[08-25 01:49:27]: [WARN] WARNING! The protectInventory feature requires PacketEvents! Disabling it...
+[08-25 01:49:27]: [WARN] WARNING! The denyTabComplete feature requires PacketEvents! Disabling it...
+[08-25 01:49:27]: [INFO] AuthMe 6.0.0 build n.2734 successfully enabled!
+[08-25 01:49:35]: [INFO] Downloading GEO IP database, because the old database is older than 30 days or doesn't exist
+[08-25 01:49:35]: [WARN] No MaxMind credentials found in the configuration file! GeoIp protections will be disabled.
+[08-25 01:49:35]: [INFO] There is no newer GEO IP database uploaded to MaxMind. Using the old one for now.
+[08-25 01:49:35]: [WARN] Could not download GeoLiteAPI database [FileNotFoundException]: plugins/AuthMe/GeoLite2-Country.mmdb (没有那个文件或目录)
+[08-25 01:49:35]: java.io.FileNotFoundException: plugins/AuthMe/GeoLite2-Country.mmdb (没有那个文件或目录)
 	at java.base/java.io.RandomAccessFile.open0(Native Method)
 	at java.base/java.io.RandomAccessFile.open(RandomAccessFile.java:338)
 	at java.base/java.io.RandomAccessFile.<init>(RandomAccessFile.java:257)
