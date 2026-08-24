@@ -1,4 +1,4 @@
-name: Minecraft Server
+name: Minecraft Server (5-Day Chain)
 
 on:
   workflow_dispatch:
@@ -12,20 +12,24 @@ env:
   GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 jobs:
-  server:
+  # ═══════════════════════════════════════
+  # Day 1 — 跑 1 天
+  # ═══════════════════════════════════════
+  server-day-1:
     runs-on: self-hosted
-    timeout-minutes: 6480   # 4.5 天，到时间 GitHub 发 SIGTERM 自毁
-    steps:
-      - uses: actions/setup-java@v4
+    timeout-minutes: 1440
+    steps: &server-steps          # ← 定义锚点，后面直接复用
+      # ── Step 1: 准备 Java ──
+      - name: ☕ Setup Java
+        uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
           java-version: '25'
 
-      - name: Run Server
+      # ── Step 2: Git 初始化 & 拉取 ──
+      - name: 📦 Git Init & Pull
         run: |
           cd /home/container
-
-          # ── git 初始化（首次）──
           if [ ! -d .git ]; then
             git init
             git remote add origin "https://x-access-token:${GH_TOKEN}@github.com/${REPO}.git"
@@ -33,16 +37,15 @@ jobs:
             git checkout -b "$BRANCH" "origin/$BRANCH"
           fi
           git config pull.rebase true
-
-          # ── 启动时拉取：远端是真相源 ──
           git stash --include-untracked || true
           git fetch origin "$BRANCH" || true
           git reset --hard "origin/$BRANCH" || true
           git stash pop 2>/dev/null || true
 
-          cd runner
-
-          # ── 下载依赖 ──
+      # ── Step 3: 下载依赖 ──
+      - name: 📥 Download Dependencies
+        run: |
+          cd /home/container/runner
           if [ ! -f leaf.jar ]; then
             curl -fL -o leaf.jar "https://github.com/Winds-Studio/Leaf/releases/download/ver-26.2/leaf-26.2-83.jar"
             chmod +x leaf.jar
@@ -50,55 +53,47 @@ jobs:
           if [ ! -f mcrcon ]; then
             curl -fL -o mcrcon.c https://raw.githubusercontent.com/Tiiffi/mcrcon/master/mcrcon.c
             gcc -std=gnu11 -Wall -Wextra -Wpedantic -Os mcrcon.c -o mcrcon
-            chmod +x mcrcon
-            rm -f mcrcon.c
+            chmod +x mcrcon; rm -f mcrcon.c
           fi
           [ ! -f eula.txt ] && echo "eula=true" > eula.txt
 
-          # ── RCON ──
+      # ── Step 4: 启动服务器（前台跑一整天）──
+      - name: 🚀 Start Server Loop
+        run: |
+          cd /home/container/runner
           RCON_PORT=$(grep "^rcon.port=" server.properties | cut -d"=" -f2)
           RCON_PASSWORD=$(grep "^rcon.password=" server.properties | cut -d"=" -f2)
 
-          # ── 推送函数：本地是真相源 ──
+          # 推送函数
           push() {
             cd /home/container
             git config user.name "github-actions[bot]"
             git config user.email "github-actions[bot]@users.noreply.github.com"
-
-            # 先以远端为准
             git stash --include-untracked || true
             git fetch origin "$BRANCH" || true
             git reset --hard "origin/$BRANCH" || true
             git stash pop 2>/dev/null || true
-
-            # -A 捕获删除（删插件也能推上去），|| true 防止 nfs 文件消失时报错被 set -e 杀掉
             git add -A runner/ || true
-
-            # 强制排除不该进 git 的
             git reset HEAD runner/TouriCNParkOur runner/logs runner/leaf.jar runner/mcrcon 2>/dev/null || true
-
             if [ -n "$(git status --porcelain)" ]; then
               git commit -m "sync: runner [no ci]" || true
-              # token 可能已过期（24h 限制），push 失败就跳过，不崩
-              git push "https://x-access-token:${GH_TOKEN}@github.com/${REPO}.git" "HEAD:$BRANCH" || echo "push failed (token may be expired), skipping"
+              git push "https://x-access-token:${GH_TOKEN}@github.com/${REPO}.git" "HEAD:$BRANCH"
             fi
-
             cd runner
           }
 
-          # ── 关停陷阱 ──
+          # 关停陷阱
           trap '
-            ./mcrcon -H 127.0.0.1 -P "$RCON_PORT" -p "$RCON_PASSWORD" "kick @a 服务器即将重启。" || true
+            ./mcrcon -H 127.0.0.1 -P "$RCON_PORT" -p "$RCON_PASSWORD" "kick @a 服务器重启中..." || true
             sleep 5
             ./mcrcon -H 127.0.0.1 -P "$RCON_PORT" -p "$RCON_PASSWORD" "save-all" || true
-            sleep 5
-            push
+            sleep 5; push
             find . -mindepth 1 -maxdepth 1 ! -name "TouriCNParkOur" -exec rm -rf {} +
             kill -15 $JAVA_PID 2>/dev/null
             exit 0
           ' SIGTERM
 
-          # ── 启动 ──
+          # 启动 Leaf
           java -Xms10G -Xmx10G \
                -server \
                -DLeaf.enableFMA=true \
@@ -123,26 +118,54 @@ jobs:
                -jar leaf.jar --nogui > server.log 2>&1 &
 
           JAVA_PID=$!
-
-          # ── 主循环 ──
           COUNT=0
           while kill -0 $JAVA_PID 2>/dev/null; do
-            sleep 30
-            COUNT=$((COUNT+1))
-
-            # 每 30 秒：远端是真相源（token 过期就跳过，不崩）
+            sleep 30; COUNT=$((COUNT+1))
             cd /home/container
             git stash --include-untracked || true
             git fetch origin "$BRANCH" || true
             git reset --hard "origin/$BRANCH" || true
             git stash pop 2>/dev/null || true
             cd runner
-
-            # 每 10 分钟：保存 + 推送
             if [ $COUNT -ge 20 ]; then
               COUNT=0
               ./mcrcon -H 127.0.0.1 -P "$RCON_PORT" -p "$RCON_PASSWORD" "save-all" || true
-              sleep 5
-              push
+              sleep 5; push
             fi
           done
+
+  # ═══════════════════════════════════════
+  # Day 2 — 跑 1 天（复用 Day 1 的全部 steps）
+  # ═══════════════════════════════════════
+  server-day-2:
+    needs: server-day-1
+    runs-on: self-hosted
+    timeout-minutes: 1440
+    steps: *server-steps
+
+  # ═══════════════════════════════════════
+  # Day 3 — 跑 1 天
+  # ═══════════════════════════════════════
+  server-day-3:
+    needs: server-day-2
+    runs-on: self-hosted
+    timeout-minutes: 1440
+    steps: *server-steps
+
+  # ═══════════════════════════════════════
+  # Day 4 — 跑 1 天
+  # ═══════════════════════════════════════
+  server-day-4:
+    needs: server-day-3
+    runs-on: self-hosted
+    timeout-minutes: 1440
+    steps: *server-steps
+
+  # ═══════════════════════════════════════
+  # Day 5 — 跑 0.8 天（1152 min），收尾
+  # ═══════════════════════════════════════
+  server-day-5:
+    needs: server-day-4
+    runs-on: self-hosted
+    timeout-minutes: 1152
+    steps: *server-steps
