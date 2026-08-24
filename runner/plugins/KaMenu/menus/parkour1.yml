@@ -24,7 +24,7 @@ Bottom:
         - '属实有点难的，找路这一块'
       actions:
         - close
-        - console:tp %player_name% 
+        - console:tp %player_name% -166.55 59.00 16.55
   exit:
     text: 关闭菜单
     actions:
