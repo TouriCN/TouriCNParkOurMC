@@ -1,0 +1,302 @@
+Picked up _JAVA_OPTIONS: -Djava.util.prefs.userRoot=/home/container/.aio/.userPrefs -Djava.util.prefs.systemRoot=/home/container/.aio/.systemPrefs
+WARNING: Using incubator modules: jdk.incubator.vector
+Starting org.bukkit.craftbukkit.Main
+2026-08-25T03:48:59.585983009Z ServerMain WARN Advanced terminal features are not available in this environment
+[11:48:59 INFO]: [bootstrap] Running Java 25 (OpenJDK 64-Bit Server VM 25.0.4.1+1-LTS; Eclipse Adoptium Temurin-25.0.4.1+1) on Linux 6.12.57+deb13-amd64 (amd64)
+[11:48:59 INFO]: [bootstrap] Loading Leaf 26.2-83-ver/26.2@693a2b5 (2026-08-18T22:11:57Z) for Minecraft 26.2
+[11:48:59 INFO]: [LeafConfig] Loading config...
+WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+WARNING: sun.misc.Unsafe::objectFieldOffset has been called by org.joml.MemUtil$MemUtilUnsafe (file:/home/container/runner/libraries/org/joml/joml/1.10.8/joml-1.10.8.jar)
+WARNING: Please consider reporting this to the maintainers of class org.joml.MemUtil$MemUtilUnsafe
+WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
+[11:49:00 INFO]: [LeafConfig] Successfully loaded config in 360ms.
+[11:49:00 INFO]: [PluginInitializerManager] Initializing plugins...
+[11:49:00 INFO]: [PluginInitializerManager] Initialized 14 plugins
+[11:49:00 INFO]: [PluginInitializerManager] Paper plugins (1):
+ - MiniMOTD (2.2.4)
+[11:49:00 INFO]: [PluginInitializerManager] Bukkit plugins (13):
+ - AuthMe (6.0.0-b2734), Geyser-Spigot (2.11.1-SNAPSHOT), KaMenu (2.0.3), Lobby-Parkour (1.3.5), NoChatReports (2.7.8), PlaceholderAPI (2.12.3), PlayerViewDistanceController (2.3.3), Skript (2.16.1), ViaBackwards (5.11.0), ViaVersion (5.11.0), WorldEdit (7.4.5+7590-b8dc4c1), floodgate (2.2.5-SNAPSHOT (b140-8780fa4)), voicechat (2.6.21)
+[11:49:04 INFO]: [ca.spottedleaf.dataconverter.minecraft.datatypes.MCTypeRegistry] Initialising converters for DataConverter...
+[11:49:04 INFO]: Environment: Environment[sessionHost=https://sessionserver.mojang.com, servicesHost=https://api.minecraftservices.com, profilesHost=https://api.mojang.com, name=PROD]
+[11:49:05 INFO]: [ca.spottedleaf.dataconverter.minecraft.datatypes.MCTypeRegistry] Finished initialising converters for DataConverter in 515.6ms
+[11:49:07 INFO]: Loaded 1585 recipes
+[11:49:07 INFO]: Loaded 1688 advancements
+[11:49:07 INFO]: Resource reload finished after 269 ms
+[11:49:07 INFO]: RecipeManager took approximately 2 tasks/82 ms (1 tasks/82 ms preparing, 1 tasks/0 ms applying)
+[11:49:07 INFO]: ServerFunctionLibrary took approximately 3 tasks/0 ms (2 tasks/0 ms preparing, 1 tasks/0 ms applying)
+[11:49:07 INFO]: ServerAdvancementManager took approximately 2 tasks/178 ms (1 tasks/157 ms preparing, 1 tasks/21 ms applying)
+[11:49:07 INFO]: Total blocking time: 21 ms
+[11:49:07 INFO]: Starting minecraft server version 26.2
+[11:49:07 WARN]: ****************************
+[11:49:07 WARN]: YOU ARE RUNNING THIS SERVER AS AN ADMINISTRATIVE OR ROOT USER. THIS IS NOT ADVISED.
+[11:49:07 WARN]: YOU ARE OPENING YOURSELF UP TO POTENTIAL RISKS WHEN DOING THIS.
+[11:49:07 WARN]: FOR MORE INFORMATION, SEE https://madelinemiller.dev/blog/root-minecraft-server/
+[11:49:07 WARN]: ****************************
+[11:49:07 INFO]: Loading properties
+[11:49:07 INFO]: This server is running Leaf version 26.2-83-ver/26.2@693a2b5 (2026-08-18T22:11:57Z) (Implementing API version 26.2.build.83-alpha)
+[11:49:07 WARN]: Couldn't load server icon
+java.lang.IllegalArgumentException: BufferedImage must be 64 pixels wide (512)
+	at com.google.common.base.Preconditions.checkArgument(Preconditions.java:192) ~[guava-33.6.0-jre.jar:?]
+	at org.bukkit.craftbukkit.CraftServer.loadServerIcon0(CraftServer.java:2480) ~[leaf-26.2.jar:26.2-83-693a2b5]
+	at org.bukkit.craftbukkit.CraftServer.loadServerIcon0(CraftServer.java:2470) ~[leaf-26.2.jar:26.2-83-693a2b5]
+	at org.bukkit.craftbukkit.CraftServer.loadIcon(CraftServer.java:1138) ~[leaf-26.2.jar:26.2-83-693a2b5]
+	at org.bukkit.craftbukkit.CraftServer.<init>(CraftServer.java:489) ~[leaf-26.2.jar:26.2-83-693a2b5]
+	at net.minecraft.server.players.PlayerList.<init>(PlayerList.java:147) ~[leaf-26.2.jar:26.2-83-693a2b5]
+	at net.minecraft.server.dedicated.DedicatedPlayerList.<init>(DedicatedPlayerList.java:16) ~[leaf-26.2.jar:26.2-83-693a2b5]
+	at net.minecraft.server.dedicated.DedicatedServer.initServer(DedicatedServer.java:234) ~[leaf-26.2.jar:26.2-83-693a2b5]
+	at net.minecraft.server.MinecraftServer.runServer(MinecraftServer.java:1342) ~[leaf-26.2.jar:26.2-83-693a2b5]
+	at net.minecraft.server.MinecraftServer.lambda$spin$0(MinecraftServer.java:303) ~[leaf-26.2.jar:26.2-83-693a2b5]
+	at java.base/java.lang.Thread.run(Thread.java:1474) ~[?:?]
+[11:49:07 INFO]: [spark] This server bundles the spark profiler. For more information please visit https://docs.papermc.io/paper/profiling
+[11:49:08 INFO]: Server Ping Player Sample Count: 12
+[11:49:08 INFO]: Using 4 threads for Netty based IO
+[11:49:08 INFO]: [MoonriseCommon] Paper is using 1 worker threads, 1 I/O threads
+[11:49:08 INFO]: Default game type: ADVENTURE
+[11:49:08 INFO]: Generating keypair
+[11:49:08 INFO]: Starting Minecraft server on 0.0.0.0:35893
+[11:49:09 INFO]: Paper: Using libdeflate (Linux x86_64) compression from Velocity.
+[11:49:09 INFO]: Paper: Using OpenSSL 3.x.x (Linux x86_64) cipher from Velocity.
+[11:49:09 INFO]: [SpigotLibraryLoader] [AuthMe] Loading 17 libraries... please wait
+[11:49:09 INFO]: [SpigotLibraryLoader] [AuthMe] Loaded library /home/container/runner/libraries/ch/jalu/injector/1.0/injector-1.0.jar
+[11:49:09 INFO]: [SpigotLibraryLoader] [AuthMe] Loaded library /home/container/runner/libraries/javax/inject/javax.inject/1/javax.inject-1.jar
+[11:49:09 INFO]: [SpigotLibraryLoader] [AuthMe] Loaded library /home/container/runner/libraries/javax/annotation/javax.annotation-api/1.3.1/javax.annotation-api-1.3.1.jar
+[11:49:09 INFO]: [SpigotLibraryLoader] [AuthMe] Loaded library /home/container/runner/libraries/net/ricecode/string-similarity/1.0.0/string-similarity-1.0.0.jar
+[11:49:09 INFO]: [SpigotLibraryLoader] [AuthMe] Loaded library /home/container/runner/libraries/com/maxmind/geoip2/geoip2/4.3.0/geoip2-4.3.0.jar
+[11:49:09 INFO]: [SpigotLibraryLoader] [AuthMe] Loaded library /home/container/runner/libraries/com/maxmind/db/maxmind-db/3.1.1/maxmind-db-3.1.1.jar
+[11:49:09 INFO]: [SpigotLibraryLoader] [AuthMe] Loaded library /home/container/runner/libraries/com/fasterxml/jackson/core/jackson-databind/2.19.0/jackson-databind-2.19.0.jar
+[11:49:09 INFO]: [SpigotLibraryLoader] [AuthMe] Loaded library /home/container/runner/libraries/com/fasterxml/jackson/datatype/jackson-datatype-jsr310/2.19.0/jackson-datatype-jsr310-2.19.0.jar
+[11:49:09 INFO]: [SpigotLibraryLoader] [AuthMe] Loaded library /home/container/runner/libraries/com/fasterxml/jackson/core/jackson-core/2.19.0/jackson-core-2.19.0.jar
+[11:49:09 INFO]: [SpigotLibraryLoader] [AuthMe] Loaded library /home/container/runner/libraries/com/fasterxml/jackson/core/jackson-annotations/2.19.0/jackson-annotations-2.19.0.jar
+[11:49:09 INFO]: [SpigotLibraryLoader] [AuthMe] Loaded library /home/container/runner/libraries/javatar/javatar/2.5/javatar-2.5.jar
+[11:49:09 INFO]: [SpigotLibraryLoader] [AuthMe] Loaded library /home/container/runner/libraries/org/apache/commons/commons-email/1.6.0/commons-email-1.6.0.jar
+[11:49:09 INFO]: [SpigotLibraryLoader] [AuthMe] Loaded library /home/container/runner/libraries/com/sun/mail/jakarta.mail/1.6.7/jakarta.mail-1.6.7.jar
+[11:49:09 INFO]: [SpigotLibraryLoader] [AuthMe] Loaded library /home/container/runner/libraries/com/sun/activation/jakarta.activation/1.2.1/jakarta.activation-1.2.1.jar
+[11:49:09 INFO]: [SpigotLibraryLoader] [AuthMe] Loaded library /home/container/runner/libraries/com/zaxxer/HikariCP/7.0.2/HikariCP-7.0.2.jar
+[11:49:09 INFO]: [SpigotLibraryLoader] [AuthMe] Loaded library /home/container/runner/libraries/org/slf4j/slf4j-api/2.0.17/slf4j-api-2.0.17.jar
+[11:49:09 INFO]: [SpigotLibraryLoader] [AuthMe] Loaded library /home/container/runner/libraries/org/slf4j/slf4j-simple/2.0.13/slf4j-simple-2.0.13.jar
+[11:49:09 INFO]: [SpigotLibraryLoader] [AuthMe] Loaded library /home/container/runner/libraries/ch/jalu/datasourcecolumns/0.1.2/datasourcecolumns-0.1.2.jar
+[11:49:09 INFO]: [SpigotLibraryLoader] [AuthMe] Loaded library /home/container/runner/libraries/com/mysql/mysql-connector-j/9.3.0/mysql-connector-j-9.3.0.jar
+[11:49:09 INFO]: [SpigotLibraryLoader] [AuthMe] Loaded library /home/container/runner/libraries/com/google/protobuf/protobuf-java/4.29.0/protobuf-java-4.29.0.jar
+[11:49:09 INFO]: [SpigotLibraryLoader] [AuthMe] Loaded library /home/container/runner/libraries/org/mariadb/jdbc/mariadb-java-client/3.5.7/mariadb-java-client-3.5.7.jar
+[11:49:09 INFO]: [SpigotLibraryLoader] [AuthMe] Loaded library /home/container/runner/libraries/org/postgresql/postgresql/42.7.7/postgresql-42.7.7.jar
+[11:49:09 INFO]: [SpigotLibraryLoader] [AuthMe] Loaded library /home/container/runner/libraries/org/checkerframework/checker-qual/3.49.3/checker-qual-3.49.3.jar
+[11:49:09 INFO]: [SpigotLibraryLoader] [AuthMe] Loaded library /home/container/runner/libraries/de/rtner/PBKDF2/1.1.4/PBKDF2-1.1.4.jar
+[11:49:09 INFO]: [SpigotLibraryLoader] [AuthMe] Loaded library /home/container/runner/libraries/org/picketbox/picketbox/4.0.21.Final/picketbox-4.0.21.Final.jar
+[11:49:09 INFO]: [SpigotLibraryLoader] [AuthMe] Loaded library /home/container/runner/libraries/de/mkammerer/argon2-jvm-nolibs/2.12/argon2-jvm-nolibs-2.12.jar
+[11:49:09 INFO]: [SpigotLibraryLoader] [AuthMe] Loaded library /home/container/runner/libraries/net/java/dev/jna/jna/5.16.0/jna-5.16.0.jar
+[11:49:09 INFO]: [SpigotLibraryLoader] [AuthMe] Loaded library /home/container/runner/libraries/at/favre/lib/bcrypt/0.10.2/bcrypt-0.10.2.jar
+[11:49:09 INFO]: [SpigotLibraryLoader] [AuthMe] Loaded library /home/container/runner/libraries/at/favre/lib/bytes/1.5.0/bytes-1.5.0.jar
+[11:49:09 INFO]: [SpigotLibraryLoader] [AuthMe] Loaded library /home/container/runner/libraries/com/warrenstrange/googleauth/1.5.0/googleauth-1.5.0.jar
+[11:49:09 INFO]: [SpigotLibraryLoader] [AuthMe] Loaded library /home/container/runner/libraries/commons-codec/commons-codec/1.14/commons-codec-1.14.jar
+[11:49:09 INFO]: [SpigotLibraryLoader] [AuthMe] Loaded library /home/container/runner/libraries/org/apache/httpcomponents/httpclient/4.5.12/httpclient-4.5.12.jar
+[11:49:09 INFO]: [SpigotLibraryLoader] [AuthMe] Loaded library /home/container/runner/libraries/org/apache/httpcomponents/httpcore/4.4.13/httpcore-4.4.13.jar
+[11:49:09 INFO]: [SpigotLibraryLoader] [AuthMe] Loaded library /home/container/runner/libraries/commons-logging/commons-logging/1.2/commons-logging-1.2.jar
+[11:49:09 INFO]: [SpigotLibraryLoader] [AuthMe] Loaded library /home/container/runner/libraries/ch/jalu/configme/1.3.1/configme-1.3.1.jar
+[11:49:09 INFO]: [SpigotLibraryLoader] [AuthMe] Loaded library /home/container/runner/libraries/org/yaml/snakeyaml/2.0/snakeyaml-2.0.jar
+[11:49:09 INFO]: [SpigotLibraryLoader] [AuthMe] Loaded library /home/container/runner/libraries/org/bstats/bstats-bukkit/3.1.0/bstats-bukkit-3.1.0.jar
+[11:49:09 INFO]: [SpigotLibraryLoader] [AuthMe] Loaded library /home/container/runner/libraries/org/bstats/bstats-base/3.1.0/bstats-base-3.1.0.jar
+[11:49:10 INFO]: [floodgate] Loading server plugin floodgate v2.2.5-SNAPSHOT (b140-8780fa4)
+[11:49:10 INFO]: [floodgate] 启动 Floodgate，耗时539ms
+[11:49:10 INFO]: [ViaVersion] Loading server plugin ViaVersion v5.11.0
+[11:49:10 INFO]: [ViaVersion] ViaVersion 5.11.0 is now loaded. Registering protocol transformers and injecting...
+[11:49:11 INFO]: [ViaBackwards] Loading translations...
+[11:49:11 INFO]: [ViaBackwards] Registering protocols...
+[11:49:11 INFO]: [PlaceholderAPI] Loading server plugin PlaceholderAPI v2.12.3
+[11:49:12 INFO]: [Geyser-Spigot] Loading server plugin Geyser-Spigot v2.11.1-SNAPSHOT
+[11:49:12 INFO]: [Geyser-Spigot] 正在加载扩展...
+[11:49:12 INFO]: [Geyser-Spigot] 已加载 0 个扩展
+[11:49:12 INFO]: [ViaBackwards] Loading server plugin ViaBackwards v5.11.0
+[11:49:12 INFO]: [Lobby-Parkour] Loading server plugin Lobby-Parkour v1.3.5
+[11:49:12 INFO]: [KaMenu] Loading server plugin KaMenu v2.0.3
+[11:49:12 INFO]: [KaMenu] Checking and downloading necessary dependent libraries, please wait...
+[11:49:12 INFO]: [AuthMe] Loading server plugin AuthMe v6.0.0-b2734
+[11:49:12 INFO]: [WorldEdit] Loading server plugin WorldEdit v7.4.5+7590-b8dc4c1
+[11:49:13 INFO]: Got request to register class com.sk89q.worldedit.bukkit.BukkitServerInterface with WorldEdit [com.sk89q.worldedit.extension.platform.PlatformManager@2ba76f79]
+[11:49:13 INFO]: [PVDC] Loading server plugin PlayerViewDistanceController v2.3.3
+[11:49:13 INFO]: [voicechat] Loading server plugin voicechat v2.6.21
+[11:49:13 INFO]: [Skript] Loading server plugin Skript v2.16.1
+[11:49:13 INFO]: [NoChatReports] Loading server plugin NoChatReports v2.7.8
+[11:49:13 INFO]: [MiniMOTD] Loading server plugin MiniMOTD v2.2.4
+[11:49:13 INFO]: Server permissions file permissions.yml is empty, ignoring it
+[11:49:13 INFO]: [WorldEdit] Enabling WorldEdit v7.4.5+7590-b8dc4c1
+[11:49:13 INFO]: Registering commands with com.sk89q.worldedit.bukkit.BukkitServerInterface
+[11:49:13 INFO]: WEPIF: Using the Bukkit Permissions API.
+[11:49:13 INFO]: Using com.sk89q.worldedit.bukkit.adapter.impl.v26_2.PaperweightAdapter as the Bukkit adapter
+[11:49:13 WARN]: **** SERVER IS RUNNING IN OFFLINE/INSECURE MODE!
+[11:49:13 WARN]: The server will make no attempt to authenticate usernames. Beware.
+[11:49:13 WARN]: While this makes the game possible to play without internet access, it also opens up the ability for hackers to connect with any username they choose.
+[11:49:13 WARN]: To change this, set "online-mode" to "true" in the server.properties file.
+[11:49:13 INFO]: Preparing level "TouriCNParkOur/hub&parkour1"
+[11:49:14 INFO]: Loading 0 persistent chunks for level 'minecraft:overworld'...
+[11:49:14 INFO]: Preparing spawn area: 100%
+[11:49:14 INFO]: Prepared spawn area in 1 ms
+[11:49:14 INFO]: Loading 0 persistent chunks for level 'minecraft:the_nether'...
+[11:49:14 INFO]: Prepared spawn area in 0 ms
+[11:49:14 INFO]: Loading 0 persistent chunks for level 'minecraft:the_end'...
+[11:49:14 INFO]: Prepared spawn area in 0 ms
+[11:49:14 INFO]: Done preparing level "TouriCNParkOur/hub&parkour1" (0.927s)
+[11:49:14 INFO]: [floodgate] Enabling floodgate v2.2.5-SNAPSHOT (b140-8780fa4)
+[11:49:14 INFO]: [ViaVersion] Enabling ViaVersion v5.11.0
+[11:49:15 INFO]: [ViaVersion] ViaVersion detected server version: 26.2 (776)
+[11:49:15 INFO]: [PlaceholderAPI] Enabling PlaceholderAPI v2.12.3
+[11:49:15 INFO]: [PlaceholderAPI] Fetching available expansion information...
+[11:49:15 INFO]: [Geyser-Spigot] Enabling Geyser-Spigot v2.11.1-SNAPSHOT
+[11:49:16 INFO]: [ViaBackwards] Enabling ViaBackwards v5.11.0
+[11:49:16 INFO]: [Lobby-Parkour] Enabling Lobby-Parkour v1.3.5
+[11:49:16 INFO]: [Lobby-Parkour] -------------------------------
+[11:49:16 INFO]: [Lobby-Parkour]         LPK - Lobby Parkour       
+[11:49:16 INFO]: [Lobby-Parkour]           Version: 1.3.5
+[11:49:16 INFO]: [Lobby-Parkour]            Author: crumb
+[11:49:16 INFO]: [Lobby-Parkour] --------------------------------
+[11:49:16 INFO]: [KaMenu] Enabling KaMenu v2.0.3
+[11:49:16 INFO]: [KaMenu] BungeeCord support enabled
+[11:49:17 INFO]: [com.zaxxer.hikari.HikariDataSource] HikariPool-1 - Starting...
+[11:49:17 INFO]: [com.zaxxer.hikari.pool.HikariPool] HikariPool-1 - Added connection org.sqlite.jdbc4.JDBC4Connection@1cbec7ff
+[11:49:17 INFO]: [com.zaxxer.hikari.HikariDataSource] HikariPool-1 - Start completed.
+[11:49:17 INFO]: [PlaceholderAPI] Successfully registered internal expansion: kamenu [2.0.3]
+[11:49:17 INFO]: [93m________________________________________________________[0m
+[11:49:17 INFO]: [96m[0m
+[11:49:17 INFO]: [96m  _  __      [36m __  __                        [96m[0m
+[11:49:17 INFO]: [96m | |/ / ____ [36m|  \/  | ___ _ __  _   _       [96m[0m
+[11:49:17 INFO]: [96m | ' / |    |[36m| |\/| |/ _ \ '_ \| | | |      [96m[0m
+[11:49:17 INFO]: [96m | . \ | [] |[36m| |  | |  __/ | | | |_| |      [96m[0m
+[11:49:17 INFO]: [96m |_|\_\|_,\_\[36m|_|  |_|\___|_| |_|\__,_|      [96m[0m
+[11:49:17 INFO]: [96m[0m
+[11:49:17 INFO]: [96m插件版本: [92m2.0.3[0m
+[11:49:17 INFO]: [96m服务器版本: [92m26.2[0m
+[11:49:17 INFO]: [96mDialog 平台: [92mPaper[0m
+[11:49:17 INFO]: [96m数据库: [92msqlite[0m
+[11:49:17 INFO]: [96m语言设置: [92mzh_CN[0m
+[11:49:17 INFO]: [96mVault: [91m未挂钩[0m
+[11:49:17 INFO]: [96mPlaceholderAPI: [92m已挂钩[0m
+[11:49:17 INFO]: [96m已加载菜单: [92m19个[0m
+[11:49:17 INFO]: [96m已注册指令: [92m4个[0m
+[11:49:17 INFO]: [96m已加载动作包: [92m1个[0m
+[11:49:17 INFO]: [96m已加载 JavaScript 包: [92m1个[0m
+[11:49:17 INFO]: [93m________________________________________________________[0m
+[11:49:17 INFO]: [AuthMe] Enabling AuthMe v6.0.0-b2734
+[11:49:17 INFO]: [AuthMe] SQLite Setup finished
+[11:49:17 INFO]: [AuthMe] No supported permissions system found! Permissions are disabled!
+[11:49:17 WARN]: [AuthMe] WARNING! The protectInventory feature requires PacketEvents! Disabling it...
+[11:49:17 WARN]: [AuthMe] WARNING! The denyTabComplete feature requires PacketEvents! Disabling it...
+[11:49:17 INFO]: [AuthMe] AuthMe 6.0.0 build n.2734 successfully enabled!
+[11:49:17 INFO]: [PVDC] Enabling PlayerViewDistanceController v2.3.3
+[11:49:17 INFO]: [PVDC] Plugin started!
+[11:49:17 WARN]: [PVDC] LuckPerms is not running on this server: it is optional, but recommended!
+[11:49:17 INFO]: [PVDC] Checking for updates...
+[11:49:17 WARN]: [PVDC] Ping mode disabled
+[11:49:17 WARN]: [PVDC] Dynamic mode disabled
+[11:49:17 INFO]: [PVDC] Enabling PlaceholderAPI Hook
+[11:49:17 INFO]: [PlaceholderAPI] Successfully registered internal expansion: pvdc [1.0.0]
+[11:49:17 INFO]: [voicechat] Enabling voicechat v2.6.21
+[11:49:17 INFO]: [voicechat] Initializing compatibility for version 26.2.build.83-alpha
+[11:49:17 INFO]: [voicechat] Compatibility version 20
+[11:49:17 INFO]: [voicechat] Successfully initialized commodore command completion
+[11:49:17 INFO]: [PlaceholderAPI] Successfully registered internal expansion: voicechat [2.6.21]
+[11:49:17 INFO]: [voicechat] Successfully registered PlaceholderAPI expansion
+[11:49:17 INFO]: [voicechat] Successfully added ViaVersion mappings
+[11:49:17 INFO]: [Skript] Enabling Skript v2.16.1
+[11:49:17 INFO]: [37m[[33mSkript[37m] [0mSuccessfully generated the config and the example scripts.
+[11:49:18 WARN]: [PVDC] Unable to check for updates! HTTP response code: 404
+[11:49:19 INFO]: [37m[[33mSkript[37m] [0m ~ created by & © Peter Güttinger aka Njol ~
+[11:49:19 INFO]: [NoChatReports] Enabling NoChatReports v2.7.8
+[11:49:19 INFO]: [NoChatReports] Loading support for Minecraft version: 26.2
+[11:49:19 INFO]: [MiniMOTD] Enabling MiniMOTD v2.2.4
+[11:49:20 WARN]: [MiniMOTD] Could not load icon.png: image must be 64x64px
+[11:49:20 INFO]: [spark] Starting background profiler...
+[11:49:20 INFO]: [PlaceholderAPI] Placeholder expansion registration initializing...
+[11:49:21 INFO]: [37m[[33mSkript[37m] [0mLoaded 5750 aliases in 1271ms
+[11:49:22 INFO]: [Geyser-Spigot] ******************************************
+[11:49:22 INFO]: [Geyser-Spigot] 
+[11:49:22 INFO]: [Geyser-Spigot] 正在加载 Geyser 版本 2.11.1-b1225 (git-master-5f6d017)
+[11:49:22 INFO]: [Geyser-Spigot] 
+[11:49:22 INFO]: [Geyser-Spigot] ******************************************
+[11:49:24 INFO]: [Geyser-Spigot] Registered 1 custom items
+[11:49:25 INFO]: [Geyser-Spigot] 已在 UDP 端口 35893 上启动 Geyser
+[11:49:25 INFO]: [Geyser-Spigot] 完成 (3.229秒)！ 运行 /geyser help 以获取帮助！
+[11:49:25 INFO]: Starting remote control listener
+[11:49:25 INFO]: Thread RCON Listener started
+[11:49:25 INFO]: RCON running on 0.0.0.0:25575
+[11:49:25 INFO]: Saving chunks for level 'ServerLevel[TouriCNParkOur/hub&parkour1]'/minecraft:overworld
+[11:49:25 INFO]: Saving chunks for level 'ServerLevel[TouriCNParkOur/hub&parkour1]'/minecraft:the_nether
+[11:49:25 INFO]: Saving chunks for level 'ServerLevel[TouriCNParkOur/hub&parkour1]'/minecraft:the_end
+[11:49:25 INFO]: ThreadedChunkStorage (world): All chunks are saved
+[11:49:25 INFO]: ThreadedChunkStorage (DIM-1): All chunks are saved
+[11:49:25 INFO]: ThreadedChunkStorage (DIM1): All chunks are saved
+[11:49:25 INFO]: ThreadedChunkStorage: All dimensions are saved
+[11:49:25 ERROR]: Couldn't load server icon
+java.lang.IllegalArgumentException: Invalid world icon size [512, 512], but expected [64, 64]
+	at net.minecraft.server.MinecraftServer.lambda$loadStatusIcon$3(MinecraftServer.java:1649) ~[leaf-26.2.jar:26.2-83-693a2b5]
+	at java.base/java.util.Optional.flatMap(Optional.java:289) ~[?:?]
+	at net.minecraft.server.MinecraftServer.loadStatusIcon(MinecraftServer.java:1642) ~[leaf-26.2.jar:26.2-83-693a2b5]
+	at net.minecraft.server.MinecraftServer.runServer(MinecraftServer.java:1348) ~[leaf-26.2.jar:26.2-83-693a2b5]
+	at net.minecraft.server.MinecraftServer.lambda$spin$0(MinecraftServer.java:303) ~[leaf-26.2.jar:26.2-83-693a2b5]
+	at java.base/java.lang.Thread.run(Thread.java:1474) ~[?:?]
+[11:49:25 INFO]: Running delayed init tasks
+[11:49:25 INFO]: [AuthMe] Downloading GEO IP database, because the old database is older than 30 days or doesn't exist
+[11:49:25 WARN]: [AuthMe] No MaxMind credentials found in the configuration file! GeoIp protections will be disabled.
+[11:49:25 INFO]: [AuthMe] There is no newer GEO IP database uploaded to MaxMind. Using the old one for now.
+[11:49:25 INFO]: [NoChatReports] Checking for updates...
+[11:49:25 INFO]: [ViaVersion] Finished mapping loading, shutting down loader executor.
+[11:49:25 WARN]: [AuthMe] Could not download GeoLiteAPI database [FileNotFoundException]: plugins/AuthMe/GeoLite2-Country.mmdb (没有那个文件或目录)
+[11:49:25 INFO]: [37m[[33mSkript[37m] [0mLoading variables...
+[11:49:25 INFO]: [37m[[33mSkript[37m] [0mLoaded 6 variables in 0.0 seconds
+[11:49:26 INFO]: [37m[[33mSkript[37m] [0m所有脚本都已加载，没有错误。
+[11:49:26 INFO]: [37m[[33mSkript[37m] [0m已加载1个脚本，总共包含4个结构。 (耗时0.31 seconds）
+[11:49:26 INFO]: [37m[[33mSkript[37m] [0m已完成加载。
+[11:49:26 INFO]: Done (27.033s)! For help, type "help"
+[11:49:26 INFO]: [voicechat] Loading plugins
+[11:49:26 INFO]: [voicechat] Loaded 0 plugin(s)
+[11:49:26 INFO]: [voicechat] Initializing plugins
+[11:49:26 INFO]: [voicechat] Initialized 0 plugin(s)
+[11:49:26 WARN]: [voicechat] Running in offline mode - Voice chat encryption is not secure!
+[11:49:26 INFO]: [voicechat] Using server-ip as bind address: 0.0.0.0
+[11:49:26 INFO]: [PlaceholderAPI] Successfully registered external expansion: player [2.0.9]
+[11:49:26 INFO]: [voicechat] Voice chat server started at 0.0.0.0:40256
+[11:49:26 INFO]: [PlaceholderAPI] Successfully registered external expansion: floodgate [1.5.2]
+[11:49:26 INFO]: [92m2 placeholder hook(s) registered![0m
+[11:49:26 INFO]: [NoChatReports] You are running the latest version.
+[11:49:26 INFO]: [MiniMOTD] Cannot look for updates: Server returned HTTP response code: 403 for URL: https://api.github.com/repos/jpenilla/MiniMOTD/releases
+[11:51:32 INFO]: [37m[[33mSkript[37m] [91m    Checking for updates failed. Do you have Internet connection?[0m
+[11:51:32 WARN]: java.util.concurrent.CompletionException: java.lang.RuntimeException: java.net.ConnectException: 连接超时
+[11:51:32 WARN]: 	at java.base/java.util.concurrent.CompletableFuture.wrapInCompletionException(CompletableFuture.java:323)
+[11:51:32 WARN]: 	at java.base/java.util.concurrent.CompletableFuture.encodeThrowable(CompletableFuture.java:359)
+[11:51:32 WARN]: 	at java.base/java.util.concurrent.CompletableFuture.completeThrowable(CompletableFuture.java:364)
+[11:51:32 WARN]: 	at java.base/java.util.concurrent.CompletableFuture$AsyncSupply.run(CompletableFuture.java:1791)
+[11:51:32 WARN]: 	at java.base/java.util.concurrent.CompletableFuture$AsyncSupply.exec(CompletableFuture.java:1781)
+[11:51:32 WARN]: 	at java.base/java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:511)
+[11:51:32 WARN]: 	at java.base/java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(ForkJoinPool.java:1450)
+[11:51:32 WARN]: 	at java.base/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:2019)
+[11:51:32 WARN]: 	at java.base/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:187)
+[11:51:32 WARN]: Caused by: java.lang.RuntimeException: java.net.ConnectException: 连接超时
+[11:51:32 WARN]: 	at Skript-2.16.1.jar//ch.njol.skript.update.GithubChecker.lambda$check$0(GithubChecker.java:97)
+[11:51:32 WARN]: 	at java.base/java.util.concurrent.CompletableFuture$AsyncSupply.run(CompletableFuture.java:1789)
+[11:51:32 WARN]: 	... 5 more
+[11:51:32 WARN]: Caused by: java.net.ConnectException: 连接超时
+[11:51:32 WARN]: 	at java.base/sun.nio.ch.Net.connect0(Native Method)
+[11:51:32 WARN]: 	at java.base/sun.nio.ch.Net.connect(Net.java:546)
+[11:51:32 WARN]: 	at java.base/sun.nio.ch.Net.connect(Net.java:535)
+[11:51:32 WARN]: 	at java.base/sun.nio.ch.NioSocketImpl.connect(NioSocketImpl.java:585)
+[11:51:32 WARN]: 	at java.base/java.net.SocksSocketImpl.connect(SocksSocketImpl.java:284)
+[11:51:32 WARN]: 	at java.base/java.net.Socket.connect(Socket.java:659)
+[11:51:32 WARN]: 	at java.base/sun.security.ssl.SSLSocketImpl.connect(SSLSocketImpl.java:304)
+[11:51:32 WARN]: 	at java.base/sun.security.ssl.BaseSSLSocketImpl.connect(BaseSSLSocketImpl.java:181)
+[11:51:32 WARN]: 	at java.base/sun.net.NetworkClient.doConnect(NetworkClient.java:166)
+[11:51:32 WARN]: 	at java.base/sun.net.www.http.HttpClient.openServer(HttpClient.java:524)
+[11:51:32 WARN]: 	at java.base/sun.net.www.http.HttpClient.openServer(HttpClient.java:612)
+[11:51:32 WARN]: 	at java.base/sun.net.www.protocol.https.HttpsClient.<init>(HttpsClient.java:207)
+[11:51:32 WARN]: 	at java.base/sun.net.www.protocol.https.HttpsClient.New(HttpsClient.java:289)
+[11:51:32 WARN]: 	at java.base/sun.net.www.protocol.https.AbstractDelegateHttpsURLConnection.getNewHttpClient(AbstractDelegateHttpsURLConnection.java:196)
+[11:51:32 WARN]: 	at java.base/sun.net.www.protocol.http.HttpURLConnection.plainConnect0(HttpURLConnection.java:966)
+[11:51:32 WARN]: 	at java.base/sun.net.www.protocol.http.HttpURLConnection.plainConnect(HttpURLConnection.java:902)
+[11:51:32 WARN]: 	at java.base/sun.net.www.protocol.http.HttpURLConnection.connect(HttpURLConnection.java:875)
+[11:51:32 WARN]: 	at java.base/sun.net.www.protocol.https.AbstractDelegateHttpsURLConnection.connect(AbstractDelegateHttpsURLConnection.java:181)
+[11:51:32 WARN]: 	at java.base/sun.net.www.protocol.http.HttpURLConnection.getInputStream0(HttpURLConnection.java:1379)
+[11:51:32 WARN]: 	at java.base/sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1305)
+[11:51:32 WARN]: 	at java.base/sun.net.www.protocol.https.HttpsURLConnectionImpl.getInputStream(HttpsURLConnectionImpl.java:223)
+[11:51:32 WARN]: 	at java.base/java.net.URL.openStream(URL.java:1263)
+[11:51:32 WARN]: 	at Skript-2.16.1.jar//ch.njol.skript.update.GithubChecker.lambda$check$0(GithubChecker.java:91)
+[11:51:32 WARN]: 	... 6 more
+[11:59:28 INFO]: Thread RCON Client /127.0.0.1 started
+[11:59:28 INFO]: [3m[37m[Rcon: Saved the game][0m
+[11:59:28 INFO]: Thread RCON Client /127.0.0.1 shutting down
