@@ -29,4 +29,4 @@ TouriCNParkOur是一款以跑酷为主要玩法的小游戏服务器。<br>
 | Simple Voice Chat | MIT | [henkelmax/simple-voice-chat](https://github.com/henkelmax/simple-voice-chat) |
 | WorldEdit | GPL-3.0 | [EngineHub/WorldEdit](https://github.com/EngineHub/WorldEdit) |
 
-###### © 2026 TouriCN|MIT License
+###### © 2026 TouriCN|ARR
