@@ -4,7 +4,7 @@ TouriCNParkOur是一款以跑酷为主要玩法的小游戏服务器。
 ## 使用插件
 
 | 插件 | 协议 | 项目地址 |
-|------|------|---------|
+|------|---------|---------|
 | AuthMe | LGPL-3.0 | [AuthMeReloaded](https://github.com/AuthMe/AuthMeReloaded) |
 | Dimension | MIT | [modrinth.com/plugin/dimensions](https://modrinth.com/plugin/dimensions) |
 | Floodgate | MIT | [GeyserMC/Floodgate](https://github.com/GeyserMC/Floodgate) |
