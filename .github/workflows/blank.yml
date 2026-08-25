@@ -77,7 +77,7 @@ jobs:
             git reset HEAD runner/TouriCNParkOur runner/logs runner/leaf.jar runner/mcrcon 2>/dev/null || true
             if [ -n "$(git status --porcelain)" ]; then
               git commit -m "sync: runner [no ci]" || true
-              git push "https://x-access-token:${GH_TOKEN}@github.com/${REPO}.git" "HEAD:$BRANCH"
+              git push "https://x-access-token:${GH_TOKEN}@github.com/${REPO}.git" "HEAD:$BRANCH" || echo "⚠️ push failed, will retry next cycle"
             fi
             cd runner
           }
