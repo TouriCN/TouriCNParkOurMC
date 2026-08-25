@@ -1,5 +1,7 @@
 # TouriCNParkOur
-TouriCNParkOur是一款以跑酷为主要玩法的小游戏服务器。
+TouriCNParkOur是一款以跑酷为主要玩法的小游戏服务器。<br>
+这里是该服务器的GitHub仓库，这里存放着关于此服务器的除了世界文件以外的所有文件！<br>
+该服务器使用自托管的Actions Runner以及一些工作流来运作，这个仓库的工作流在[此处](.github/workflow/blank.yml)可见。
 ## 关于许可证
 工作流部分以MIT License开源，Runner文件夹内的内容ARR(保留所有权宜)。<br>
 | 注意: |
