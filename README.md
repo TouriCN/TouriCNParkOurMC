@@ -1,7 +1,7 @@
 # TouriCNParkOur
 TouriCNParkOur是一款以跑酷为主要玩法的小游戏服务器。
 ## 关于许可证
-工作流部分以MIT License开源，Runner文件夹内的内容ARR。
+工作流部分以MIT License开源，Runner文件夹内的内容ARR(保留所有权宜)。
 ## 使用插件
 
 | 插件 | 协议 | 项目地址 |
