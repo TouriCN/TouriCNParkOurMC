@@ -5,6 +5,7 @@ TouriCNParkOur是一款以跑酷为主要玩法的小游戏服务器。<br>
 <br><br><br>
 本仓库以[Briiqn/Actions-Server](https://github.com/Briiqn/Actions-Server)仓库为基础改进而来。
 ## 关于许可证
+仓库整体以The Unlicense开源。<br>
 工作流部分以MIT License开源，Runner文件夹内的内容ARR(保留所有权宜)。<br>
 | 注意: |
 |------------|
