@@ -5,8 +5,8 @@ TouriCNParkOur是一款以跑酷为主要玩法的小游戏服务器。<br>
 <br><br><br>
 本仓库以[Briiqn/Actions-Server](https://github.com/Briiqn/Actions-Server)仓库为基础改进而来。
 ## 关于许可证
-仓库整体以The Unlicense开源。<br>
-工作流部分以MIT License开源，Runner文件夹内的内容ARR(保留所有权宜)。<br>
+仓库整体以MIT Licence开源。<br>
+工作流部分以MIT Licence开源，Runner文件夹内的内容ARR(保留所有权宜)。<br>
 | 注意: |
 |------------|
 | Runner文件夹中的plugins文件夹中的插件二进制文件并非我所做，具体使用插件并不使用ARR协议；具体可看"使用插件"部分。 |
@@ -30,4 +30,4 @@ TouriCNParkOur是一款以跑酷为主要玩法的小游戏服务器。<br>
 | Simple Voice Chat | MIT | [henkelmax/simple-voice-chat](https://github.com/henkelmax/simple-voice-chat) |
 | WorldEdit | GPL-3.0 | [EngineHub/WorldEdit](https://github.com/EngineHub/WorldEdit) |
 
-###### © 2026 TouriCN|ARR
+###### © 2026 TouriCN|MIT License
